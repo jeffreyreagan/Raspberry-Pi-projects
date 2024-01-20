@@ -1,0 +1,36 @@
+/* Add your styles here */
+
+body {
+    background-color: white;
+    color: red;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: red;
+}
+
+p {
+    color: red;
+}
+
+strong {
+    color: red;
+}
+
+button {
+    background-color: red;
+    color: black;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}

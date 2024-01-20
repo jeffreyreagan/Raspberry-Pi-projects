@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeff1163's webpage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+</head>
+<body>
+    <h1>Welcome! 
+        <p>Your IP Address: {{ visitor_ip }}</p>
+    </h1>
+
+    <p>Current Time: {{ time }}</p>
+    <p>Internal Temperature: {{ temperature }} �C</p>
+    <p><strong>You have accessed the network. Please be aware current development in progress.</strong></p>
+</body>   
+ <!-- templates/index.html -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Image Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <button id="generateButton">Generate Random Image</button>
+    <img id="randomImage" alt="Random Image">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <h1>Test for page 2 Button</h1>
+    <button id="page_2_button" onclick="changePage_2()"> Go to Page 2 </button>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <button id="page_3_button" onclick="changePage_3()"> Go to Page 3</button>
+    <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
+
+
+</body>
+</html>
+

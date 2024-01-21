@@ -15,6 +15,7 @@ app.register_blueprint(main_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
 app.register_blueprint(codeacademy_projects_bp)
+app.register_blueprint(NYCFashionWeek_bp)
 print("WEBSERVER starting Jeff")
 
 #home or index
@@ -62,5 +63,16 @@ def page_3_bp():
 def codeacademy_projects_bp():    
     return render_template('codeacademy_projects.html')
 
+@app.route('/NYCFashionWeek.html')
+def NYCFashionWeek_bp():
+    return render_template('NYCFashionWeek.html')
+
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)
+
+
+'''  
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name
+
+"'''

@@ -15,6 +15,7 @@ app.register_blueprint(main_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
 app.register_blueprint(codeacademy_projects_bp)
+app.register_blueprint(table_bp)
 app.register_blueprint(NYCFashionWeek_bp)
 print("WEBSERVER starting Jeff")
 
@@ -66,6 +67,10 @@ def codeacademy_projects_bp():
 @app.route('/NYCFashionWeek.html')
 def NYCFashionWeek_bp():
     return render_template('NYCFashionWeek.html')
+
+@app.route('/table.html')
+def table_bp():
+    return render_template('table.html')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)

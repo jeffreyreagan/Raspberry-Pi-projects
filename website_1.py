@@ -1,3 +1,5 @@
+'''This program is meant for educational purposes. Do not use for other purposes. No Warranty of Any Kind. Thanks JR'''
+
 #imports 
 from flask import Flask, render_template, send_file, request
 from routes import *
@@ -9,12 +11,11 @@ import platform
 #setup
 app = Flask(__name__)
 
-
-
 app.register_blueprint(main_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
-print("flask app starting")
+app.register_blueprint(codeacademy_projects_bp)
+print("WEBSERVER starting Jeff")
 
 #home or index
 @app.route('/')
@@ -27,6 +28,7 @@ def get_internal_temperature():
         result = subprocess.run(['vcgencmd', 'measure_temp'], capture_output=True, text=True)
         temperature_str = result.stdout.strip().replace('temp=', '').replace('\'C', '')
         return float(temperature_str)
+    
 #assemble index
 def index():
     print("Accessing index route.")
@@ -54,6 +56,11 @@ def page_2():
 @app.route('/page_3.html')
 def page_3_bp():
     return render_template('page_3.html')
+
+#codeacedemy projects
+@app.route('/codeacademy_projects.html')
+def codeacademy_projects_bp():    
+    return render_template('codeacademy_projects.html')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)

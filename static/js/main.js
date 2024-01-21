@@ -7,6 +7,9 @@ function changePage_2() {
 function changePage_3() {
     window.location.href='page_3.html'
 }
+function change_Codeacademy_projects() {
+    window.location.href='codeacademy_projects.html'
+}
 function changePage_home(){
     window.location.href='/'
 }

@@ -6,9 +6,17 @@ function changePage_2() {
 function changePage_3() {
     window.location.href = 'page_3.html';
 }
+<<<<<<< HEAD
 
 function changePage_home() {
     window.location.href = '/';
+=======
+function change_Codeacademy_projects() {
+    window.location.href='codeacademy_projects.html'
+}
+function changePage_home(){
+    window.location.href='/'
+>>>>>>> e5f4d08ba02842460d3736c4d214f36471804426
 }
 
 document.addEventListener('DOMContentLoaded', function () {

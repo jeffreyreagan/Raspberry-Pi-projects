@@ -1,3 +1,5 @@
+'''This program is meant for educational purposes. Do not use for other purposes. No Warranty of Any Kind. Thanks JR'''
+
 #imports 
 from flask import Flask, render_template, send_file, request, jsonify
 from routes import *
@@ -14,13 +16,26 @@ app.register_blueprint(main_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
-print("flask app starting")
+app.register_blueprint(codeacademy_projects_bp)
+app.register_blueprint(table_bp)
+app.register_blueprint(NYCFashionWeek_bp)
+print("WEBSERVER starting Jeff")
 
 #home or index
 @app.route('/')
 
 #determine OS and gather temp data
+<<<<<<< HEAD
 
+=======
+def get_internal_temperature():
+    if platform.system() == 'Windows':
+        return 0.0
+    else:
+        result = subprocess.run(['vcgencmd', 'measure_temp'], capture_output=True, text=True)
+        temperature_str = result.stdout.strip().replace('temp=', '').replace('\'C', '')
+        return float(temperature_str)
+>>>>>>> e5f4d08ba02842460d3736c4d214f36471804426
     
 #assemble index
 @app.route('/index.html')
@@ -48,7 +63,29 @@ def page_2():
 def page_3_bp():
     return render_template('page_3.html')
 
+<<<<<<< HEAD
 
+=======
+#codeacedemy projects
+@app.route('/codeacademy_projects.html')
+def codeacademy_projects_bp():    
+    return render_template('codeacademy_projects.html')
+
+@app.route('/NYCFashionWeek.html')
+def NYCFashionWeek_bp():
+    return render_template('NYCFashionWeek.html')
+
+@app.route('/table.html')
+def table_bp():
+    return render_template('table.html')
+>>>>>>> e5f4d08ba02842460d3736c4d214f36471804426
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)
+
+
+'''  
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name
+
+"'''

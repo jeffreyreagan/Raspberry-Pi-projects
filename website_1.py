@@ -52,23 +52,6 @@ def page_2():
 def page_3_bp():
     return render_template('page_3.html')
 
-<<<<<<< HEAD
-
-=======
-#codeacedemy projects
-@app.route('/codeacademy_projects.html')
-def codeacademy_projects_bp():    
-    return render_template('codeacademy_projects.html')
-
-@app.route('/NYCFashionWeek.html')
-def NYCFashionWeek_bp():
-    return render_template('NYCFashionWeek.html')
-
-@app.route('/table.html')
-def table_bp():
-    return render_template('table.html')
->>>>>>> e5f4d08ba02842460d3736c4d214f36471804426
-
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)
 

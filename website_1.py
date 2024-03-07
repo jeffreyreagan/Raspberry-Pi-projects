@@ -25,17 +25,6 @@ print("WEBSERVER starting Jeff")
 @app.route('/')
 
 #determine OS and gather temp data
-<<<<<<< HEAD
-
-=======
-def get_internal_temperature():
-    if platform.system() == 'Windows':
-        return 0.0
-    else:
-        result = subprocess.run(['vcgencmd', 'measure_temp'], capture_output=True, text=True)
-        temperature_str = result.stdout.strip().replace('temp=', '').replace('\'C', '')
-        return float(temperature_str)
->>>>>>> e5f4d08ba02842460d3736c4d214f36471804426
     
 #assemble index
 @app.route('/index.html')

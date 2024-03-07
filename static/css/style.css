@@ -2,18 +2,31 @@
 
 body {
     background-color: white;
-    color: red;
+    color: black;
     font-family: Arial, sans-serif;
-    text-align: center;
+    text-align: left;
     padding: 20px;
 }
-
+header {
+    text-align: left;
+    
+}
+ol {
+    list-style-type: none; /* Removes the default numbering */
+}
+h3 {
+    color: red;
+}
+h2 {
+    color: red;
+}
 h1 {
     color: red;
+    text-align: center;
 }
 
 p {
-    color: red;
+    color: black;
 }
 
 strong {
@@ -33,4 +46,23 @@ img {
     max-width: 100%;
     height: auto;
     margin-top: 20px;
+    border: solid 1px black;
+    padding: 10px;
 }
+
+#ui_img {
+    float: right;
+}
+.nav {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
+  .nav a{
+    text-align: center;
+    font-size: large;
+    float: center;
+  }

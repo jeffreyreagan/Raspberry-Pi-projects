@@ -1,13 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <h1>Test for back to home Button</h1>
-    <button id="home_button" onclick="changePage_home()">Go home Button</button>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-   
-    <button id="page_3_button" onclick="changePage_3()"> </button>
-    <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <header>
+            <h1>PLC/HMI/SCADA Experience</h1>
+            <nav class="nav">
+                
+                    <a href="programming_journey.html">Programming Journey</a>
+                    <a href="motorcycle_hobby.html">Motorcycle Hobby</a>
+                    <a href="raspberry_pi_interface.html">Raspberry Pi Interface</a>
+                    <a href="web_scraping.html">Web Scraping</a>
+                
+            </nav>
+        </header>
+        <body>
+        <section class="content">
+            <h2>Introduction</h2>
+                <p>Here I share insights into my professional journey within industrial automation, with a particular focus on Programmable Logic Controllers (PLCs), Human-Machine Interfaces (HMIs), and Supervisory Control and Data Acquisition (SCADA) systems.</p>
+                <p>My journey began at Alfred State, where I pursued and successfully completed an Associate's degree in Electrical Construction and Maintenance. This foundational education provided me with a comprehensive understanding of electrical engineering principles and methodologies, setting the stage for a career filled with innovation.</p>
+                <p>Transitioning from traditional relay logic systems to modern Programmable Logic Controllers (PLCs) was a turning point for my career. PLCs provided unparalleled flexibility and efficiency, simplifying control logic design and enabling rapid adjustments without extensive rewiring. Their modular design and user-friendly interfaces facilitated iterative development and real-time adjustments, fostering innovation and adaptability. </p>
+                <p>PLCs facilitated seamless integration with diverse industrial components, enabling efficient communication and coordination between different systems. This enhanced connectivity streamlined operations, optimized efficiency, and allowed for centralized control and monitoring, ultimately improving productivity and flexibility in industrial processes.</p>
+            <h2>Projects</h2>
+                <h3>Real-time Monitoring and Control Interface for Vacuum Pump Systems</h3>
+                
+                <h3>Overview</h3>
+                <img id="ui_img" src="/static/images/UI.PNG" alt="UI" style="width:700px;height:250px;">
+                    <p>As part of my project portfolio, I developed a real-time monitoring and control interface using Flask—a lightweight web framework in Python. This application provides a user-friendly interface for monitoring and controlling vacuum pump systems in industrial settings. Leveraging Flask's flexibility and simplicity, I designed a responsive web UI that communicates with a Programmable Logic Controller (PLC) to fetch real-time data and control parameters of multiple vacuum pumps.</p>
+                <h3>Key Features</h3>
+                    <p>Real-time Data Retrieval: The application fetches real-time data from the PLC, including vacuum levels and separator pressures for each pump.</p>
+                    <p>Alarm Status Monitoring: Users can monitor the alarm status of each pump, facilitating quick identification of potential issues or anomalies.</p>
+                    <p>Dynamic UI Elements: The UI dynamically updates pump animations and colors based on their operational status, providing intuitive visual feedback to users.</p>
+                <h3>Technologies Used:</h3>
+                <ul>
+                    <li>Python Flask: For building the web application and handling HTTP requests.</li>
+                    <li>JavaScript (AJAX): For asynchronous data retrieval and dynamic UI updates without page reloads.</li>
+                    <li>Pylogix Library: For interfacing with the PLC and retrieving real-time data.</li>
+                    <li>HTML/CSS: For designing the user interface and styling elements for improved usability.</li>
+                </ul>
+                <h3>Project Impact:</h3>
+                    <p>This project showcases my ability to develop practical solutions for industrial automation challenges by integrating software and hardware components. By creating a robust monitoring and control interface, I demonstrated proficiency in web development, PLC programming, and data communication protocols. The application's user-friendly design and real-time data visualization capabilities enhance operational efficiency and facilitate proactive maintenance, contributing to improved productivity and reliability in industrial environments.</p>
+                
+                <div class="skills">
+                <h2>Skills</h2>
+                    <h3>PLC Programming</h3>
+                    <ul>
+                        <li>Ladder logic, function block diagrams, structured text</li>
+                        <li>Allen Bradley software(Studio 5000, RSlogix, RsLinx)</li>
+                        <li>Communication protocols (Modbus, Profibus, Ethernet/IP)</li>
+                        <li>Troubleshooting and diagnostics</li>
+                    </ul>
+                    <h3>HMI Programming</h3>
+                    <ul>
+                        <li>Designing intuitive interfaces</li>
+                        <li>Dynamic graphics, alarm management, trend displays</li>
+                        <li>Integration with PLCs and other devices</li>
+                    </ul>
+                    <h3>SCADA configuration</h3>
+                    <ul>
+                        <li>Deploying SCADA systems</li>
+                        <li>System architecture design</li>
+                        <li>Real-time visualization, trends, alarms, reports</li>
+                    </ul>
+                </div>            
+        </section>
+    
+        <footer>
+            <p>&copy; 2024 Jeffrey Reagan</p>
+        </footer>
+
+        <h1>Test for back to home Button</h1>
+        <button id="home_button" onclick="changePage_home()">Go home Button</button>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+        <button id="page_3_button" onclick="changePage_3()">Page 3</button>
+        <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
+    
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PLC/HMI/SCADA Experience</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
 </body>
 </html>

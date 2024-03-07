@@ -1,4 +1,5 @@
 # image_generator.py
+#pip install Pillow
 from PIL import Image, ImageDraw
 import io
 import random

@@ -7,13 +7,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 </head>
+    <header>
+    <div class="nav-home">
+    <nav>
+        <ol>
+            <li><a href="page_2.html">PLC/HMI/SCADA programming and design</a></li>
+            <li><a href="page_3.html">Python web development</a></li>
+            <li><a href="page_4.html">Web scraping</a></li>
+            <li><a href="page_5.html">Robotics</a></li>
+            <li><a href="page_6.html">Hobbys</a></li>
+            <li><a href="contact.html">Contact Me</a></li>
+        </ol>
+    </nav>
+    </header>
+    <div>
 <body>
     <h1>Welcome! 
         <p>Your IP Address: {{ visitor_ip }}</p>
     </h1>
 
-    <p>Current Time: {{ time }}</p>
-    <p>Internal Temperature: {{ temperature }} �C</p>
+    <p>Current Time: <span id="time"></span></p>
+    <p>Internal Temperature: <span id="temperature"></span></p>
+
+    <!-- Link to your JavaScript file -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <p><strong>You have accessed the network. Please be aware current development in progress.</strong></p>
 </body>   
  <!-- templates/index.html -->

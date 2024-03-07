@@ -7,5 +7,3 @@ data_bp = Blueprint('data', __name__)
 from routes.main_routes import *
 from routes.page_2_routes import *
 from routes.page_3_routes import *
-from routes.codeacademy_projects_routes import *
-from routes.NYCFashionWeek_routes import *

@@ -6,23 +6,23 @@
     <title>Jeff1163's webpage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-</head>
+<body>    
     <header>
     <div class="nav-home">
-    <nav>
+        <nav>
         <ol>
-            <li><a href="page_2.html">PLC/HMI/SCADA programming and design</a></li>
-            <li><a href="page_3.html">Python web development</a></li>
-            <li><a href="page_4.html">Web scraping</a></li>
-            <li><a href="page_5.html">Robotics</a></li>
-            <li><a href="page_6.html">Hobbys</a></li>
-            <li><a href="contact.html">Contact Me</a></li>
+            <li><a href="page_2.html"style="text-decoration:none">PLC/HMI/SCADA programming and design</a></li>
+            <li><a href="page_3.html"style="text-decoration:none">Python web development</a></li>
+            <li><a href="page_4.html"style="text-decoration:none">Web scraping</a></li>
+            <li><a href="page_5.html"style="text-decoration:none">Robotics</a></li>
+            <li><a href="page_6.html"style="text-decoration:none">Hobbys</a></li>
+            <li><a href="contact.html"style="text-decoration:none">Contact Me</a></li>
         </ol>
-    </nav>
+        </nav>
     </header>
-    <div>
-<body>
-    <h1>Welcome! 
+    </div>
+    <div class="welcome">
+    <h1 id="welcomehead">Welcome! 
         <p>Your IP Address: {{ visitor_ip }}</p>
     </h1>
 
@@ -57,5 +57,6 @@
     <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
 
 </body>
+</div>
 </html>
 

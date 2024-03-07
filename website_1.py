@@ -16,9 +16,7 @@ app.register_blueprint(main_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
-app.register_blueprint(codeacademy_projects_bp)
-app.register_blueprint(table_bp)
-app.register_blueprint(NYCFashionWeek_bp)
+
 print("WEBSERVER starting Jeff")
 
 #home or index

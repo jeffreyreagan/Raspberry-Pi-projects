@@ -5,10 +5,18 @@ body {
     color: black;
     font-family: Arial, sans-serif;
     text-align: left;
-    padding: 20px;
+
+
+#welcomehead {
+    z-index: 999;
+    padding-top: 100px;
+}
+    
 }
 header {
-    text-align: left;
+    text-align: center;
+    z-index: 999;
+    
     
 }
 ol {
@@ -20,9 +28,14 @@ h3 {
 h2 {
     color: red;
 }
-h1 {
+#welcome {
     color: red;
     text-align: center;
+    display: block;
+    padding: 100;
+    margin: 100;
+    position: absolute;
+    z-index: 998;
 }
 
 p {
@@ -61,8 +74,44 @@ img {
     overflow: hidden;
     text-align: center;
   }
-  .nav a{
+  .nav a {
     text-align: center;
     font-size: large;
     float: center;
+    
+  }
+  .nav-home{
+    top:0 ;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    z-index: 996;
+  }
+  .nav-home li {
+    float: left;
+    color: red;
+    
+    border-right: 1px solid red;
+    padding: 0;
+    
+  }
+  .nav-home li:last-child {
+    float: right;
+    padding-right: 25px;
+  }
+  .nav-home li a{
+    display: block;
+    font-size: 20pt;
+    color: rgb(255, 0, 0);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .nav-home ol {
+    background-color: rgb(192, 191, 191);
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 997;
   }

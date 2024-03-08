@@ -33,9 +33,9 @@ header {
   border: none;
 }
 #raspi {
-  margin: 250px;
-  
+  margin-left: 250px;
   border: none;
+
 }
 body .welcome #deco {
     float: right;

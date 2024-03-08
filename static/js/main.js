@@ -36,31 +36,34 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentPosition = 0;
 
     // Set the step size for each movement
-    var step = 2; // Adjust as needed
+    var step = 1; // Adjust as needed
 
     // Function to animate the envelope's movement
     function animateEnvelope() {
-        // Calculate the new position based on the direction
-        var newPosition = currentPosition + direction * step;
-
+        // Calculate the width of the window
+        var windowWidth = window.innerWidth;
+    
+        // Calculate the new position based on the direction and window width
+        var newPosition = currentPosition + direction * step * (windowWidth / 700); // 700 is the total width including margins
+    
         // Check if the envelope has reached the right edge of the computer
-        if (newPosition >= 250) {
+        if (newPosition >= windowWidth - 650) { // 100 is the width of the envelope image
             direction = -1; // Change direction to move left
         }
-
+    
         // Check if the envelope has reached the left edge of the raspi
-        if (newPosition <= -150) {
+        if (newPosition <= 0) {
             direction = 1; // Change direction to move right
         }
-
+    
         // Update the position of the envelope
         currentPosition = newPosition;
         envelope.style.marginLeft = currentPosition + "px";
-
+    
         // Call animateEnvelope recursively to create continuous animation
         requestAnimationFrame(animateEnvelope);
     }
-
+    
     // Start the animation
     animateEnvelope();
 

@@ -24,10 +24,12 @@
     <div class="welcome">
     <h1 id="welcomehead">Welcome! 
         <img id="computer"src="/static/images/computer.jpg" width="50" height="50"/><img id="envelope1" src='/static/images/envelope1.jpg' alt="envelope1" width="50" height="50"><img id="raspi" src="/static/images/raspi.jpg" width="100" height="100"/>
-        <p>Your IP Address: {{ visitor_ip }}</p>
-        <img id="deco" src="/static/images/deco.jpg" width="300" height="300"> 
-    
     </h1>
+    <h2 class="ips"> 
+        <p id="clientip">Your IP Address: {{ visitor_ip }}</p>
+        <p id="serverip">Raspberry Pi Server IP address:</p>
+        <img id="deco" src="/static/images/deco.jpg" width="300" height="300"> 
+    </h2>
     <div id="bigwelcome">
         <p>Hello World! I'm Jeffrey Reagan, and I'm thrilled to welcome you to my digital space where I share my experience and knowledge in industrial automation, web development, programming, robotics, as well as my hobbies.
         </p>

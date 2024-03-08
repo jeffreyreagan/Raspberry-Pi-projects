@@ -17,6 +17,22 @@ header {
     text-align: center;
     z-index: 999;
 }
+.ips {
+  vertical-align: top;
+}
+#clientip {
+  width:500px;
+  display: inline;
+  vertical-align: top;
+}
+#serverip {
+  text-align: right;
+  padding-top: 0;
+  margin-top: 0;
+  margin-left: 50%;
+  display: inline;
+  vertical-align: top;
+}
 #computer {
   border: none;
 }
@@ -33,8 +49,10 @@ header {
   border: none;
 }
 #raspi {
-  margin-left: 250px;
+  right: 250px;
   border: none;
+  position: absolute;
+  padding-bottom: 0px;
 
 }
 body .welcome #deco {

@@ -5,20 +5,43 @@ body {
     color: black;
     font-family: Arial, sans-serif;
     text-align: left;
-
+}
 
 #welcomehead {
     z-index: 999;
     padding-top: 100px;
 }
     
-}
+
 header {
     text-align: center;
     z-index: 999;
-    
-    
 }
+#computer {
+  border: none;
+}
+#envelope1 {
+  margin-left: 250px;
+  border: none;
+}
+#envelope2 {
+  margin-left: 250px;
+  border: none;
+}
+#envelope3 {
+  margin-left: 250px;
+  border: none;
+}
+#raspi {
+  margin: 250px;
+  
+  border: none;
+}
+body .welcome #deco {
+    float: right;
+}
+    
+
 ol {
     list-style-type: none; /* Removes the default numbering */
 }

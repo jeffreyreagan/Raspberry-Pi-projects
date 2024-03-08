@@ -16,6 +16,9 @@ app.register_blueprint(main_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(page_2_bp)
 app.register_blueprint(page_3_bp)
+app.register_blueprint(page_4_bp)
+app.register_blueprint(page_5_bp)
+app.register_blueprint(page_6_bp)
 
 print("WEBSERVER starting Jeff")
 
@@ -49,6 +52,27 @@ def page_2():
 @app.route('/page_3.html')
 def page_3_bp():
     return render_template('page_3.html')
+
+#Page 4
+@app.route('/page_4.html')
+def page_4():
+    return render_template('page_4.html')
+
+#Page 5
+@app.route('/page_5.html')
+def page_5_bp():
+    return render_template('page_5.html')
+
+#Page 6
+@app.route('/page_6.html')
+def page_6():
+    return render_template('page_6.html')
+
+#Page 7
+@app.route('/page_7.html')
+def page_7_bp():
+    return render_template('page_7.html')
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True, use_reloader=True)

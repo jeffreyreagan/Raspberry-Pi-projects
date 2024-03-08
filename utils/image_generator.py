@@ -23,7 +23,7 @@ def generate_random_image(width, height):
     return image
 
 def get_random_image_io():
-    width, height = 800, 600
+    width, height = 400, 300
     random_image = generate_random_image(width, height)
     img_io = io.BytesIO()
     random_image.save(img_io, 'PNG')

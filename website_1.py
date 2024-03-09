@@ -7,7 +7,7 @@ from utils.image_generator import get_random_image_io
 import subprocess
 import datetime
 import platform
-
+import requests
 
 #setup
 app = Flask(__name__)
@@ -26,6 +26,20 @@ print("WEBSERVER starting Jeff")
 @app.route('/')
 
 #determine OS and gather temp data
+@app.route('/api/server_ip')
+def get_server_ip():
+    # Fetch the public IP address using an external API
+    try:
+        response = requests.get('https://api.ipify.org?format=json')
+        if response.status_code == 200:
+            ip_address = response.json()['ip']
+        else:
+            raise Exception('Failed to fetch IP address')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    # Return the public IP address as JSON
+    return jsonify({'server_ip': ip_address})
     
 #assemble index
 @app.route('/index.html')
@@ -75,7 +89,7 @@ def page_7_bp():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=5000, debug=True, use_reloader=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=True)
 
 
 '''  

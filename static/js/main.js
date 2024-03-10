@@ -11,21 +11,50 @@ function changePage_home() {
     window.location.href = '/';
 }
 
-function toggleNavbar() {
+// Function to toggle the visibility of navbar-nav
+// Function to toggle the visibility of navbar-nav
+
+
+// Function to show navbar-nav on screens 1640px or wider
+function showNavbarOnWideScreens() {
+    var screenWidth = window.innerWidth;
     var navbarNav = document.querySelector('.navbar-nav');
-    var navbartoggler = document.querySelector('.navbar-toggler');
-    var background = document.getElementById('background');
-    
-    // Toggle navbar visibility
-    if (navbarNav.style.display === 'none' || window.getComputedStyle(navbarNav).display === 'none') {
-        navbarNav.style.display = 'block';
-        background.classList.add('transparent-background');
-    } else {
+
+    // If screen width is 1640px or wider, display navbar-nav
+    if (screenWidth >= 1640) {
+        navbarNav.classList.add('show');
+        console.log('adding show class to navbar-nav');
         
-        navbarNav.style.display = 'none';
-        background.classList.remove('transparent-background');
+    } else {
+        navbarNav.classList.remove('show');
+        console.log("removing show class from navbar-nav");
     }
 }
+
+function toggleNavbar() {
+    var navbarNav1 = document.querySelector('.navbar-nav');
+    
+    console.log('toggle navbar called');
+    if (navbarNav1.style.display === 'block') {
+        // If navbar-nav is currently shown, hide it
+        navbarNav1.style.display = 'none';
+        console.log('should be hidden');
+    } else {
+        // If navbar-nav is currently hidden, show it
+        navbarNav1.style.display = 'block';
+        console.log('should be shown');
+    } 
+}
+// Initial call to show navbar-nav on page load
+showNavbarOnWideScreens();
+
+// Event listener for window resize to adjust navbar-nav visibility
+window.addEventListener('resize', function() {
+    showNavbarOnWideScreens();
+});
+
+// Event listener for toggleNavbar button click
+
 
 document.addEventListener('DOMContentLoaded', function () {
     var button = document.getElementById('generateButton');

@@ -35,8 +35,8 @@ header {
   vertical-align: top;
   text-align: center;
   font-size: large;
-
-}
+                
+}   
 
 .ips {
   vertical-align: top;
@@ -189,11 +189,15 @@ img {
     position: fixed;
     z-index: 997;
   }
+
+  .show {
+    display: block !important; /* Show the element */
+}
+  .hide {
+    display: none;
+  }
 @media (min-width: 1640px) {
-    .navbar-nav {
-        display: block;
-        
-    }
+
 
     .navbar-toggler {
         display: none;
@@ -207,11 +211,13 @@ img {
     }
 }
 
+.transparent-background {
+  background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value to control transparency */
+}
 @media (max-width: 1640px) {
-  .navbar-nav {
-      display: none;
-      opacity: .8;
-  }
+.navbar-nav {
+  display: none;
+}
 .navbar-toggler {
     display:block;
     left: 0px;

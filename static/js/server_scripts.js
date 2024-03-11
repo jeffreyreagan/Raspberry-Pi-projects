@@ -8,14 +8,9 @@ $(document).ready(function() {
         });
     }
   
-    function updateactivealarmspump1() {
-        $.getJSON('/get_pump1vacuum_alarm_status', function(data) {
-            $('#pump1_active_alarms').text(data.active_alarms);
-        });
-    }
-    updateactivealarmspump1();
-    setInterval(updateactivealarmspump1, 2000);
     
+    
+
     function fetchPump2VacuumData() {
         $.getJSON('/get_pump2vacuum_data', function(data) {
             $('#pump2vacuum').text(data.pump2vacuum);
@@ -27,94 +22,17 @@ $(document).ready(function() {
 
     
 
-    function updateactivealarmspump2() {
-        $.getJSON('/get_pump2vacuum_alarm_status', function(data) {
-            $('#pump2_active_alarms').text(data.active_alarms);
-        });
-    }
-        setInterval(updateactivealarmspump2, 2000);
-    
-    function fetchPump3VacuumData() {
-        $.getJSON('/get_pump3vacuum_data', function(data) {
-            $('#pump3vacuum').text(data.pump3vacuum);
-        });
-        $.getJSON('/get_VACUUM_3_SEPARATOR_PRESSURE_data', function(data) {
-            $('#seperator3_psi').text(data.seperator3_psi);
-        });
-    }
-    function updatealarmstatuspump3() {
-        $.getJSON('/get_pump3vacuum_alarm_status', function(data) {
-            $('#pump3alarmstatus').text(data.alarm_status);
-        });
-    }
-    updatealarmstatuspump3();
-    setInterval(updatealarmstatuspump3, 2000);
-
-    function updateactivealarmspump3() {
-        $.getJSON('/get_pump3vacuum_alarm_status', function(data) {
-            $('#pump3_active_alarms').text(data.active_alarms);
-        });
-    }
-        setInterval(updateactivealarmspump3, 2000);
-    function fetchPump4VacuumData() {
-        $.getJSON('/get_pump4vacuum_data', function(data) {
-            $('#pump4vacuum').text(data.pump4vacuum);
-        });
-        $.getJSON('/get_VACUUM_4_SEPARATOR_PRESSURE_data', function(data) {
-            $('#seperator4_psi').text(data.seperator4_psi);
-        });
-    }
-    function updatealarmstatuspump4() {
-        $.getJSON('/get_pump4vacuum_alarm_status', function(data) {
-            $('#pump4alarmstatus').text(data.alarm_status);
-        });
-    }
-    updatealarmstatuspump4();
-    setInterval(updatealarmstatuspump4, 2000);
-
-    function updateactivealarmspump4() {
-        $.getJSON('/get_pump4vacuum_alarm_status', function(data) {
-            $('#pump4_active_alarms').text(data.active_alarms);
-        });
-    }
-    setInterval(updateactivealarmspump4, 2000);
-    function fetchPump5VacuumData() {
-        $.getJSON('/get_pump5vacuum_data', function(data) {
-            $('#pump5vacuum').text(data.pump5vacuum);
-        });
-        $.getJSON('/get_VACUUM_5_SEPARATOR_PRESSURE_data', function(data) {
-            $('#seperator5_psi').text(data.seperator5_psi);
-        });
-    }
-    function updatealarmstatuspump5() {
-        $.getJSON('/get_pump5vacuum_alarm_status', function(data) {
-            $('#pump5alarmstatus').text(data.alarm_status);
-        });
-    }
-    updatealarmstatuspump5();
-    setInterval(updatealarmstatuspump5, 2000);
-
-    function updateactivealarmspump5() {
-        $.getJSON('/get_pump5vacuum_alarm_status', function(data) {
-            $('#pump5_active_alarms').text(data.active_alarms);
-        });
-    }
-    setInterval(updateactivealarmspump5, 2000);
 
   
     // Fetch data initially when the page loads
     fetchPump1VacuumData();
     fetchPump2VacuumData();
-    fetchPump3VacuumData();
-    fetchPump4VacuumData();
-    fetchPump5VacuumData();
+ 
 
     // Update data every second
     setInterval(fetchPump1VacuumData, 2000);
     setInterval(fetchPump2VacuumData, 2000);
-    setInterval(fetchPump3VacuumData, 2000);
-    setInterval(fetchPump4VacuumData, 2000);
-    setInterval(fetchPump5VacuumData, 2000);
+
 
 
 
@@ -298,8 +216,16 @@ $(document).ready(function() {
                     const pump_1_status_value = data[2];
                     console.log(data[2]);
                     const pump_2_status_value = data[3];
+                    const pump_1_alarm_descriptions = data[7];
+                    console.log(data[7]);
+                    const pump_3_status_value = data[4];
+                    const pump_4_status_value = data[5];
+                    const pump_5_status_value = data[6];
                     $('#pump1alarmstatus').text(pump_1_status_value);
-                    
+                    $('#pump1_active_alarms').text(pump_1_alarm_descriptions);
+                    $('#pump3alarmstatus').text(pump_3_status_value);
+                    $('#pump4alarmstatus').text(pump_4_status_value);
+                    $('#pump5alarmstatus').text(pump_5_status_value);
                     console.log(data[3]);
                     $('#pump2alarmstatus').text(pump_2_status_value);
                     // Log the response data (for debugging)

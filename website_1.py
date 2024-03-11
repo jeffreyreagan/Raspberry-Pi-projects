@@ -148,12 +148,6 @@ def get_pump2vacuum_data():
     pump_vacuum_data, _= simulate_plc_data()
     return jsonify({'pump2vacuum': pump_vacuum_data[1]})
 
-@app.route('/get_pump2vacuum_alarm_status')
-def get_pump2vacuum_alarm_status():
-    if pump_2_status_value == 1:
-        return jsonify({'alarm_status': 'True'})
-    else:
-        return jsonify({'alarm_status': 'False'})
 
 @app.route('/get_VACUUM_2_SEPARATOR_PRESSURE_data')
 def get_VACUUM_2_SEPARATOR_PRESSURE_data():
@@ -181,6 +175,8 @@ def check_animation_status():
     results = []
     circle_colors_tuple = update_circle_color()
     circle_colors = circle_colors_tuple[0]
+    pump_1_alarm_desciptions = circle_colors_tuple[6]
+    print(pump_1_alarm_desciptions)
     if circle_colors['pump1color'] == 'green':
         print("updating pump 1 status to green")
         results.append({'status': 'Animation 1 started'})
@@ -215,8 +211,8 @@ def check_animation_status():
     elif circle_colors['pump5color'] != 'green':
         results.append({'status': 'Animation 5 stopped'})
         print("updating pump 5 status to red")   
-    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value)
+    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=True)
+    app.run(debug=True, use_reloader=True)

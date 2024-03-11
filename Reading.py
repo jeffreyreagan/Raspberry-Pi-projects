@@ -77,9 +77,18 @@ pump_4_status_value = ''
 pump_5_status_value = ''
 
 def randomize_alarm_status():
+    time.sleep(5)
+    
     pump_1_status_value = random.choice([0, 1])
     pump_2_status_value = random.choice([0, 1])
-    return pump_1_status_value, pump_2_status_value
+    pump_3_status_value = random.choice([0, 1])
+    pump_4_status_value = random.choice([0, 1])
+    pump_5_status_value = random.choice([0, 1])
+    if pump_1_status_value == 0:
+        pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+    elif pump_1_status_value == 1:
+        pump_1_status_description = ''
+    return pump_1_status_value, pump_2_status_value, pump_1_status_description, pump_3_status_value, pump_4_status_value, pump_5_status_value
 
 
 
@@ -99,9 +108,15 @@ import time
 
 def update_circle_color():
     circle_colors = {'pump1color': '', 'pump2color': '', 'pump3color': '', 'pump4color': '', 'pump5color': ''}  # Initialize colors
-    pump_1_status_value,  pump_2_status_value = randomize_alarm_status()
+    pump_1_statuses_value = randomize_alarm_status()
+    pump_1_status_value = pump_1_statuses_value[0]
+    pump_1_status_description = pump_1_statuses_value[2]
+    pump_2_status_value = pump_1_statuses_value[1]
+    pump_3_status_value = pump_1_statuses_value[3]
+    pump_4_status_value = pump_1_statuses_value[4]
+    pump_5_status_value = pump_1_statuses_value[5]
     try:
-        time.sleep(5)
+        
         # Simulate reading tag values
         
         
@@ -110,7 +125,6 @@ def update_circle_color():
             circle_colors['pump1color'] = 'green'              
         elif pump_1_status_value == 0:
             circle_colors['pump1color'] = 'red'
-            
         if pump_2_status_value == 1:
             circle_colors['pump2color'] = 'green'
         elif pump_2_status_value == 0:
@@ -133,7 +147,7 @@ def update_circle_color():
             
         time.sleep(1)
         print("Returning pump statuses")
-        return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value
+        return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_description
         
     except Exception as e:
         print(f"An error occurred: {e}")

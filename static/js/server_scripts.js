@@ -429,7 +429,7 @@ function calculateAverage() {
     vacuumData.forEach((vacuum) => {
         sum += vacuum;
     });
-    return sum / vacuumData.length;
+    return sum ;
 }
 
 // Function to fetch data from your JavaScript variables (replace with your own data retrieval method)
@@ -447,10 +447,10 @@ function fetchPumpVacuumData() {
     });
     // Fetch vacuum data for pump 2
     $.getJSON('/get_pump2vacuum_data', function(data) {
-        vacuumData[0] = data.pump2vacuum; // Update vacuum data for pump 1
+        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 1
     
 
-    $('#pump1vacuum').text(data.pump2vacuum);
+    $('#pump2vacuum').text(data.pump2vacuum);
     });
 
     $.getJSON('/get_VACUUM_2_SEPARATOR_PRESSURE_data', function(data) {
@@ -458,7 +458,7 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump3vacuum_data', function(data) {
-        vacuumData[0] = data.pump3vacuum; // Update vacuum data for pump 1
+        vacuumData[2] = data.pump3vacuum; // Update vacuum data for pump 1
     
 
     $('#pump3vacuum').text(data.pump3vacuum);
@@ -469,7 +469,7 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump4vacuum_data', function(data) {
-        vacuumData[0] = data.pump4vacuum; // Update vacuum data for pump 1
+        vacuumData[3] = data.pump4vacuum; // Update vacuum data for pump 1
     
 
     $('#pump4vacuum').text(data.pump4vacuum);
@@ -480,7 +480,7 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump5vacuum_data', function(data) {
-        vacuumData[0] = data.pump5vacuum; // Update vacuum data for pump 1
+        vacuumData[4] = data.pump5vacuum; // Update vacuum data for pump 1
     
 
     $('#pump5vacuum').text(data.pump5vacuum);

@@ -100,16 +100,16 @@ from Reading import read_plc_tag, update_circle_color, update_alarm_tags_all_pum
 from pylogix import PLC
 import random
 from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5
-pump1stat = '0'
-pump2stat = '0'
-pump3stat = '0'
-pump4stat = '0'
-pump5stat = '0'
+pump1stat = ''
+pump2stat = ''
+pump3stat = ''
+pump4stat = ''
+pump5stat = ''
 
 def simulate_plc_data():
     # Simulate pump vacuum data
    
-    pump_vacuum_data = [random.randint(0, 100) for _ in range(5)]
+    pump_vacuum_data = [random.randint(1, 100) for _ in range(5)]
     
     # Simulate alarm status
     
@@ -125,8 +125,10 @@ def get_pump1vacuum_data():
     
     if pump1stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
-        return jsonify({'pump1vacuum': pump_vacuum_data[0]})
+        print("should be setting p1 vac to something")
+        return jsonify({'pump1vacuum': pump_vacuum_data[1]})
     else:
+        print("should be setting p1 vac to 0")
         return jsonify({'pump1vacuum': 0})
 
     
@@ -311,11 +313,14 @@ def check_animation_status():
         results.append({'status': 'Animation 1 started'})
         pump_1_status_value = 0
         pump1stat = '1'
+        print("updating pump 1 stat")
+        
     elif circle_colors['pump1color'] != 'green':
         results.append({'status': 'Animation 1 stopped'})
         print("updating pump 1 status to red")
         pump_1_status_value = 1
         pump1stat = '0'
+        
     if circle_colors['pump2color'] == 'green':
         results.append({'status': 'Animation 2 started'})
         print("updating pump 2 status to green")

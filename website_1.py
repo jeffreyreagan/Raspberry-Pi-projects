@@ -99,9 +99,12 @@ import time
 from Reading import read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 from pylogix import PLC
 import random
-from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1
+from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5
 pump1stat = '0'
 pump2stat = '0'
+pump3stat = '0'
+pump4stat = '0'
+pump5stat = '0'
 
 def simulate_plc_data():
     # Simulate pump vacuum data
@@ -158,10 +161,69 @@ def get_VACUUM_2_SEPARATOR_PRESSURE_data():
         return jsonify({'seperator2_psi': 0})
 
 # Routes for pump 3 (similar structure as pump 2)
+@app.route('/get_pump3vacuum_data')
+def get_pump3vacuum_data():
+   
+    if pump3stat == '1':
+        pump_vacuum_data, _ = simulate_plc_data()
+        return jsonify({'pump3vacuum': pump_vacuum_data[1]})
+    else:
+        return jsonify({'pump3vacuum': 0})
+
+
+@app.route('/get_VACUUM_3_SEPARATOR_PRESSURE_data')
+def get_VACUUM_3_SEPARATOR_PRESSURE_data():
+   
+    if pump3stat == '1':
+        _, separator_pressure_data = simulate_plc_data()
+        return jsonify({'seperator3_psi': separator_pressure_data[1]})
+    else:
+        return jsonify({'seperator3_psi': 0})
 
 # Routes for pump 4 (similar structure as pump 2)
+@app.route('/get_pump4vacuum_data')
+def get_pump4vacuum_data():
+   
+    if pump4stat == '1':
+        pump_vacuum_data, _ = simulate_plc_data()
+        return jsonify({'pump4vacuum': pump_vacuum_data[1]})
+    else:
+        return jsonify({'pump4vacuum': 0})
+
+
+@app.route('/get_VACUUM_4_SEPARATOR_PRESSURE_data')
+def get_VACUUM_4_SEPARATOR_PRESSURE_data():
+   
+    if pump4stat == '1':
+        _, separator_pressure_data = simulate_plc_data()
+        return jsonify({'seperator4_psi': separator_pressure_data[1]})
+    else:
+        return jsonify({'seperator4_psi': 0})
 
 # Routes for pump 5 (similar structure as pump 2)
+@app.route('/get_pump5vacuum_data')
+def get_pump5vacuum_data():
+   
+    if pump5stat == '1':
+        pump_vacuum_data, _ = simulate_plc_data()
+        return jsonify({'pump5vacuum': pump_vacuum_data[1]})
+    else:
+        return jsonify({'pump5vacuum': 0})
+
+
+@app.route('/get_VACUUM_5_SEPARATOR_PRESSURE_data')
+def get_VACUUM_5_SEPARATOR_PRESSURE_data():
+   
+    if pump5stat == '1':
+        _, separator_pressure_data = simulate_plc_data()
+        return jsonify({'seperator5_psi': separator_pressure_data[1]})
+    else:
+        return jsonify({'seperator5_psi': 0})
+
+
+
+
+
 @app.route('/toggle_pump_1', methods=['POST'])
 def toggle_pump_1_route():
     
@@ -171,6 +233,55 @@ def toggle_pump_1_route():
         
         # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
+
+@app.route('/toggle_pump_2', methods=['POST'])
+def toggle_pump_2_route():
+    
+        # Call the toggle_pump_1 function from the reading.py file
+        result = toggle_pump_2()
+        print("should be toggling pump 2")
+        
+        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
+        return result
+
+@app.route('/toggle_pump_3', methods=['POST'])
+def toggle_pump_3_route():
+    
+        # Call the toggle_pump_1 function from the reading.py file
+        result = toggle_pump_3()
+        print("should be toggling pump 3")
+        
+        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
+        return result
+
+@app.route('/toggle_pump_4', methods=['POST'])
+def toggle_pump_4_route():
+    
+        # Call the toggle_pump_1 function from the reading.py file
+        result = toggle_pump_4()
+        print("should be toggling pump 4")
+        
+        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
+        return result
+
+@app.route('/toggle_pump_5', methods=['POST'])
+def toggle_pump_5_route():
+    
+        # Call the toggle_pump_1 function from the reading.py file
+        result = toggle_pump_5()
+        print("should be toggling pump 5")
+        
+        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
+        return result
+
+
+
+
+
+
+
+
+
 
 
 
@@ -186,10 +297,14 @@ def get_circle_color():
 def check_animation_status():
     global pump1stat
     global pump2stat
+    global pump3stat
+    global pump4stat
+    global pump5stat
     results = []
     circle_colors_tuple = update_circle_color()
     circle_colors = circle_colors_tuple[0]
     pump_1_alarm_desciptions = circle_colors_tuple[6]
+    pump_2_alarm_desciptions = circle_colors_tuple[7]
     print(pump_1_alarm_desciptions)
     if circle_colors['pump1color'] == 'green':
         print("updating pump 1 status to green")
@@ -214,22 +329,28 @@ def check_animation_status():
     if circle_colors['pump3color'] == 'green':
         print("updating pump 3 status to green")
         results.append({'status': 'Animation 3 started'})
+        pump3stat = '1'
     elif circle_colors['pump3color'] != 'green':
         results.append({'status': 'Animation 3 stopped'})
         print("updating pump 3 status to red")
+        pump3stat = '0'
     if circle_colors['pump4color'] == 'green':
         results.append({'status': 'Animation 4 started'})
         print("updating pump 4 status to green")
+        pump4stat = '1'
     elif circle_colors['pump4color'] != 'green':
         results.append({'status': 'Animation 4 stopped'})
         print("updating pump 4 status to red") 
+        pump4stat = '0'
     if circle_colors['pump5color'] == 'green':
         results.append({'status': 'Animation 5 started'})
         print("updating pump 5 status to green")
+        pump5stat = '1'
     elif circle_colors['pump5color'] != 'green':
         results.append({'status': 'Animation 5 stopped'})
         print("updating pump 5 status to red")   
-    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions)
+        pump5stat = '0'
+    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions, pump_2_alarm_desciptions)
 
 import json
 @app.route('/get_graph_data', methods=['GET'])

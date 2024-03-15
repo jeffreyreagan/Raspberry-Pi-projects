@@ -19,6 +19,92 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#togglePump2Button').on('click', function() {
+        // Call the server to toggle the pump status
+        $.ajax({
+            url: '/toggle_pump_2',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response.status === 1) {
+                    $('#togglePump2Button').text('Turn Off Pump 2');
+                    $('#status').text('Pump 2 is On');
+                } else {
+                    $('#togglePump2Button').text('Turn On Pump 2');
+                    $('#status').text('Pump 2 is Off');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump:', error);
+            }
+        });
+    });
+
+    $('#togglePump3Button').on('click', function() {
+        // Call the server to toggle the pump status
+        $.ajax({
+            url: '/toggle_pump_3',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response.status === 1) {
+                    $('#togglePump3Button').text('Turn Off Pump 3');
+                    $('#status').text('Pump 3 is On');
+                } else {
+                    $('#togglePump3Button').text('Turn On Pump 3');
+                    $('#status').text('Pump 3 is Off');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump 3:', error);
+            }
+        });
+    });
+
+    $('#togglePump4Button').on('click', function() {
+        // Call the server to toggle the pump status
+        $.ajax({
+            url: '/toggle_pump_4',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response.status === 1) {
+                    $('#togglePump4Button').text('Turn Off Pump 4');
+                    $('#status').text('Pump 4 is On');
+                } else {
+                    $('#togglePump4Button').text('Turn On Pump 4');
+                    $('#status').text('Pump 4 is Off');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump 4:', error);
+            }
+        });
+    });
+
+    $('#togglePump5Button').on('click', function() {
+        // Call the server to toggle the pump status
+        $.ajax({
+            url: '/toggle_pump_5',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response.status === 1) {
+                    $('#togglePump5Button').text('Turn Off Pump 5');
+                    $('#status').text('Pump 5 is On');
+                } else {
+                    $('#togglePump5Button').text('Turn On Pump 5');
+                    $('#status').text('Pump 5 is Off');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump 5:', error);
+            }
+        });
+    });
+
+    
     
   
     // Fetch data initially when the page loads
@@ -215,6 +301,7 @@ function checkAnimationStatus() {
             const pump_3_status_value = data[4];
             const pump_4_status_value = data[5];
             const pump_5_status_value = data[6];
+            const pump_2_alarm_descriptions = data[8];
             $('#pump1alarmstatus').text(pump_1_status_value);
             $('#pump1_active_alarms').text(pump_1_alarm_descriptions);
             $('#pump3alarmstatus').text(pump_3_status_value);
@@ -222,6 +309,7 @@ function checkAnimationStatus() {
             $('#pump5alarmstatus').text(pump_5_status_value);
             console.log(data[3]);
             $('#pump2alarmstatus').text(pump_2_status_value);
+            $('#pump2_active_alarms').text(pump_2_alarm_descriptions);
             // Log the response data (for debugging)
             if (animationstatuses[0].status === 'Animation 1 started' && animation_state_p1 !== 2) {
                 console.log("trying to start animation p_1");
@@ -359,11 +447,48 @@ function fetchPumpVacuumData() {
     });
     // Fetch vacuum data for pump 2
     $.getJSON('/get_pump2vacuum_data', function(data) {
-        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 2
+        vacuumData[0] = data.pump2vacuum; // Update vacuum data for pump 1
+    
+
+    $('#pump1vacuum').text(data.pump2vacuum);
     });
 
-    // Fetch other relevant data if needed (e.g., separator pressure)
-    // Replace with your own data retrieval logic
+    $.getJSON('/get_VACUUM_2_SEPARATOR_PRESSURE_data', function(data) {
+        $('#seperator2_psi').text(data.seperator2_psi);
+    });
+
+    $.getJSON('/get_pump3vacuum_data', function(data) {
+        vacuumData[0] = data.pump3vacuum; // Update vacuum data for pump 1
+    
+
+    $('#pump3vacuum').text(data.pump3vacuum);
+    });
+
+    $.getJSON('/get_VACUUM_3_SEPARATOR_PRESSURE_data', function(data) {
+        $('#seperator3_psi').text(data.seperator3_psi);
+    });
+
+    $.getJSON('/get_pump4vacuum_data', function(data) {
+        vacuumData[0] = data.pump4vacuum; // Update vacuum data for pump 1
+    
+
+    $('#pump4vacuum').text(data.pump4vacuum);
+    });
+
+    $.getJSON('/get_VACUUM_4_SEPARATOR_PRESSURE_data', function(data) {
+        $('#seperator4_psi').text(data.seperator4_psi);
+    });
+
+    $.getJSON('/get_pump5vacuum_data', function(data) {
+        vacuumData[0] = data.pump5vacuum; // Update vacuum data for pump 1
+    
+
+    $('#pump5vacuum').text(data.pump5vacuum);
+    });
+
+    $.getJSON('/get_VACUUM_5_SEPARATOR_PRESSURE_data', function(data) {
+        $('#seperator5_psi').text(data.seperator5_psi);
+    });
 }
 fetchPumpVacuumData();
 

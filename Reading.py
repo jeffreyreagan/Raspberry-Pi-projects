@@ -180,9 +180,11 @@ def toggle_pump_5():
 
 
 
-
-
-
+pump_1_status_description = ''
+pump_2_status_description = ''
+pump_3_status_description = ''
+pump_4_status_description = ''
+pump_5_status_description = ''
 
 def randomize_alarm_status():
     time.sleep(5)
@@ -191,22 +193,38 @@ def randomize_alarm_status():
     global pump_3_status_value
     global pump_4_status_value
     global pump_5_status_value
-    pump_1_status_description = ''
+    global pump_1_status_description
+    global pump_2_status_description
+    global pump_3_status_description
+    global pump_4_status_description
+    global pump_5_status_description
+    
     '''pump_1_status_value = random.choice([0, 1])'''
     '''pump_2_status_value = random.choice([0, 1])'''
     '''pump_3_status_value = random.choice([0, 1])'''
     '''pump_4_status_value = random.choice([0, 1])'''
     '''pump_5_status_value = random.choice([0, 1])'''
-    if pump_1_status_value == 0:
+    if pump_1_status_value == 0 and not pump_1_status_description:
         pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
-    if pump_2_status_value == 0:
+    if pump_2_status_value == 0 and not pump_2_status_description:
         pump_2_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
     elif pump_2_status_value == 1:
         pump_2_status_description = ''
-    return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description
-
+    if pump_3_status_value == 0 and not pump_3_status_description:
+        pump_3_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+    elif pump_3_status_value == 1:
+        pump_3_status_description = ''
+    if pump_4_status_value == 0 and not pump_4_status_description:
+        pump_4_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+    elif pump_4_status_value == 1:
+        pump_4_status_description = ''
+    if pump_5_status_value == 0 and not pump_5_status_description:
+        pump_5_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+    elif pump_5_status_value == 1:
+        pump_5_status_description = ''
+    return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description
 
 
 def read_alarm_tags_all_pumps(tag_names):
@@ -233,6 +251,9 @@ def update_circle_color():
     pump_4_status_value = pump_1_statuses_value[3]
     pump_5_status_value = pump_1_statuses_value[4]
     pump_2_status_description = pump_1_statuses_value[6]
+    pump_3_status_description = pump_1_statuses_value[7]
+    pump_4_status_description = pump_1_statuses_value[8]
+    pump_5_status_description = pump_1_statuses_value[9]
     try:
         
         # Simulate reading tag values
@@ -265,7 +286,7 @@ def update_circle_color():
             
         time.sleep(1)
         print("Returning pump statuses")
-        return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_description, pump_2_status_description
+        return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_description, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description
         
     except Exception as e:
         print(f"An error occurred: {e}")

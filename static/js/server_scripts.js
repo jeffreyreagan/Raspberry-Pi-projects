@@ -302,6 +302,9 @@ function checkAnimationStatus() {
             const pump_4_status_value = data[5];
             const pump_5_status_value = data[6];
             const pump_2_alarm_descriptions = data[8];
+            const pump_3_alarm_descriptions = data[9];
+            const pump_4_alarm_descriptions = data[10];
+            const pump_5_alarm_descriptions = data[11];
             $('#pump1alarmstatus').text(pump_1_status_value);
             $('#pump1_active_alarms').text(pump_1_alarm_descriptions);
             $('#pump3alarmstatus').text(pump_3_status_value);
@@ -310,6 +313,9 @@ function checkAnimationStatus() {
             console.log(data[3]);
             $('#pump2alarmstatus').text(pump_2_status_value);
             $('#pump2_active_alarms').text(pump_2_alarm_descriptions);
+            $('#pump3_active_alarms').text(pump_3_alarm_descriptions);
+            $('#pump4_active_alarms').text(pump_4_alarm_descriptions);
+            $('#pump5_active_alarms').text(pump_5_alarm_descriptions);
             // Log the response data (for debugging)
             if (animationstatuses[0].status === 'Animation 1 started' && animation_state_p1 !== 2) {
                 console.log("trying to start animation p_1");
@@ -524,7 +530,7 @@ function renderChart() {
         chart.data.datasets[0].data.push(calculateAverage()); // Add average vacuum as data point
 
         // Remove old data points if exceeding 30 minutes (1800 seconds)
-        if (chart.data.labels.length > 1800) {
+        if (chart.data.labels.length > 360) {
             chart.data.labels.shift(); // Remove the first label
             chart.data.datasets[0].data.shift(); // Remove the first data point
         }

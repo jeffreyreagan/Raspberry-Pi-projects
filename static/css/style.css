@@ -196,6 +196,15 @@ img {
   .hide {
     display: none;
   }
+
+  svg {
+    padding-bottom: 0px;
+  }
+
+  .chart {
+    width: 1600px;
+    height: 400px;
+  }
 @media (min-width: 1640px) {
 
 

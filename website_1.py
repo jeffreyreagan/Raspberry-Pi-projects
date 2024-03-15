@@ -307,10 +307,14 @@ def check_animation_status():
     circle_colors = circle_colors_tuple[0]
     pump_1_alarm_desciptions = circle_colors_tuple[6]
     pump_2_alarm_desciptions = circle_colors_tuple[7]
+    pump_3_alarm_desciptions = circle_colors_tuple[8]
+    pump_4_alarm_desciptions = circle_colors_tuple[9]
+    pump_5_alarm_desciptions = circle_colors_tuple[10]
     print(pump_1_alarm_desciptions)
     if circle_colors['pump1color'] == 'green':
         print("updating pump 1 status to green")
         results.append({'status': 'Animation 1 started'})
+        #sets alarm status to none
         pump_1_status_value = 0
         pump1stat = '1'
         print("updating pump 1 stat")
@@ -335,27 +339,33 @@ def check_animation_status():
         print("updating pump 3 status to green")
         results.append({'status': 'Animation 3 started'})
         pump3stat = '1'
+        pump_3_status_value = 0
     elif circle_colors['pump3color'] != 'green':
         results.append({'status': 'Animation 3 stopped'})
         print("updating pump 3 status to red")
         pump3stat = '0'
+        pump_3_status_value = 1
     if circle_colors['pump4color'] == 'green':
         results.append({'status': 'Animation 4 started'})
         print("updating pump 4 status to green")
         pump4stat = '1'
+        pump_4_status_value = 0
     elif circle_colors['pump4color'] != 'green':
         results.append({'status': 'Animation 4 stopped'})
         print("updating pump 4 status to red") 
         pump4stat = '0'
+        pump_4_status_value = 1
     if circle_colors['pump5color'] == 'green':
         results.append({'status': 'Animation 5 started'})
         print("updating pump 5 status to green")
         pump5stat = '1'
+        pump_5_status_value = 0
     elif circle_colors['pump5color'] != 'green':
         results.append({'status': 'Animation 5 stopped'})
         print("updating pump 5 status to red")   
         pump5stat = '0'
-    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions, pump_2_alarm_desciptions)
+        pump_5_status_value = 1
+    return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions, pump_2_alarm_desciptions, pump_3_alarm_desciptions, pump_4_alarm_desciptions, pump_5_alarm_desciptions)
 
 import json
 @app.route('/get_graph_data', methods=['GET'])

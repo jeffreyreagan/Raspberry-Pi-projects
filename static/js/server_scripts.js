@@ -7,11 +7,11 @@ $(document).ready(function() {
             success: function(response) {
                 // Update the button text and status display
                 if (response.status === 1) {
-                    $('#togglePump1Button').text('Turn Off Pump');
-                    $('#status').text('Pump is On');
+                    $('#togglePump1Button').text('Turn Off Pump 1');
+                    $('#status').text('Pump 1 is On');
                 } else {
-                    $('#togglePump1Button').text('Turn On Pump');
-                    $('#status').text('Pump is Off');
+                    $('#togglePump1Button').text('Turn On Pump 1');
+                    $('#status').text('Pump 1 is Off');
                 }
             },
             error: function(xhr, status, error) {
@@ -40,6 +40,7 @@ $(document).ready(function() {
 function fetchPump1VacuumData() {
     $.getJSON('/get_pump1vacuum_data', function(data) {
         $('#pump1vacuum').text(data.pump1vacuum);
+        vacuumData[0] = data.pump1vacuum; // Update vacuum data for pump 2
     });
     $.getJSON('/get_VACUUM_1_SEPARATOR_PRESSURE_data', function(data) {
         $('#seperator1_psi').text(data.seperator1_psi);
@@ -52,6 +53,7 @@ function fetchPump1VacuumData() {
 function fetchPump2VacuumData() {
     $.getJSON('/get_pump2vacuum_data', function(data) {
         $('#pump2vacuum').text(data.pump2vacuum);
+        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 1 GRAPH
     });
     $.getJSON('/get_VACUUM_2_SEPARATOR_PRESSURE_data', function(data) {
         $('#seperator2_psi').text(data.seperator2_psi);
@@ -331,3 +333,152 @@ animation_state_p2 = [];
 animation_state_p3 = [];
 animation_state_p4 = [];
 animation_state_p5 = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+let vacuumData = []; // Array to store vacuum data from each pump
+let chart; // Variable to store the Chart.js chart instance
+
+// Function to calculate the average vacuum
+function calculateAverage() {
+    let sum = 0;
+    vacuumData.forEach((vacuum) => {
+        sum += vacuum;
+    });
+    return sum / vacuumData.length;
+}
+
+// Function to fetch data from your JavaScript variables (replace with your own data retrieval method)
+function fetchPumpVacuumData() {
+    // Fetch vacuum data for pump 1
+    $.getJSON('/get_pump1vacuum_data', function(data) {
+        vacuumData[0] = data.pump1vacuum; // Update vacuum data for pump 1
+    });
+    // Fetch vacuum data for pump 2
+    $.getJSON('/get_pump2vacuum_data', function(data) {
+        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 2
+    });
+
+    // Fetch other relevant data if needed (e.g., separator pressure)
+    // Replace with your own data retrieval logic
+}
+
+function fetchGraphDataFromServer() {
+    return fetch('/get_graph_data')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch graph data');
+            }
+        })
+        .then(data => {
+            // Filter data to get only the entries within the last half-hour
+            const currentTime = new Date();
+            const halfHourAgo = new Date(currentTime.getTime() - 30 * 60 * 1000); // Half hour ago
+            const filteredData = data.filter(entry => new Date(entry.timestamp) >= halfHourAgo);
+
+            return filteredData; // Return the filtered data
+        })
+        .catch(error => {
+            console.error('Error fetching graph data:', error);
+            throw error; // Re-throw the error to propagate it further
+        });
+}
+
+
+// Function to render or update the chart
+function renderChart() {
+    // Update the Chart.js chart with the average vacuum value
+    if (chart) {
+        chart.data.labels.push(new Date().toLocaleTimeString()); // Add current time as label
+        chart.data.datasets[0].data.push(calculateAverage()); // Add average vacuum as data point
+
+        // Remove old data points if exceeding 30 minutes (1800 seconds)
+        if (chart.data.labels.length > 1800) {
+            chart.data.labels.shift(); // Remove the first label
+            chart.data.datasets[0].data.shift(); // Remove the first data point
+        }
+
+        chart.update(); // Update the chart
+    } else {
+        // Create the Chart.js chart
+        console.log('Creating new chart');
+        chart = new Chart('liveGraph', {
+            type: 'line',
+            data: {
+                labels: [], // Labels for x-axis (time)
+                datasets: [
+                    {
+                        label: 'Average Vacuum',
+                        data: [], // Data points for average vacuum
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                // Chart options (e.g., scales, tooltips, etc.)
+                // See Chart.js documentation for available options
+            }
+        });
+    }
+}
+
+// Function to continuously update data and render the chart
+function saveGraphDataToServer(data) {
+    const currentTime = new Date().toLocaleTimeString(); // Get current time
+
+    // Calculate average of the data
+    const average = calculateAverage();
+
+    // Create an object with timestamp and average data
+    const graphData = {
+        timestamp: currentTime,
+        data: average
+    };
+
+    fetch('/save_graph_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(graphData) // Send timestamp along with average data
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Graph data saved successfully');
+        } else {
+            console.error('Failed to save graph data:', response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Error saving graph data:', error);
+    });
+}
+
+function updateDataAndRenderChart() {
+    fetchPumpVacuumData(); // Fetch current vacuum data
+    fetchGraphDataFromServer(); // Fetch graph data from the server
+    setTimeout(() => {
+        renderChart(); // Render or update the chart
+        saveGraphDataToServer(vacuumData); // Send updated graph data to the server
+    }, 1000); // Wait for 1 second before rendering the chart
+    setTimeout(updateDataAndRenderChart, 5000); // Update every 5 seconds (adjust as needed)
+}
+
+
+
+// Initial call to start updating data and rendering the chart
+setTimeout(updateDataAndRenderChart, 1000);

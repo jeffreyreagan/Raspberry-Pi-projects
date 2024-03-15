@@ -223,6 +223,44 @@ def check_animation_status():
         print("updating pump 5 status to red")   
     return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions)
 
+import json
+@app.route('/get_graph_data', methods=['GET'])
+def get_graph_data():
+    try:
+        # Read graph data from the text file
+        file_path = 'graph_data.txt'
+        graph_data = []
+
+        with open(file_path, 'r') as file:
+            for line in file:
+                # Parse each line as JSON and append to the list
+                graph_data.append(json.loads(line.strip()))
+
+        print('Graph data retrieved from file:', graph_data)
+        return jsonify(graph_data), 200
+    except Exception as e:
+        print('Error retrieving graph data:', e)
+        return jsonify(error='Error retrieving graph data'), 500
+
+@app.route('/save_graph_data', methods=['POST'])
+def save_graph_data():
+    graph_data = request.json  # Assuming graph data is sent as JSON
+
+    # Convert graph data to a JSON string
+    json_data = json.dumps(graph_data)
+
+    # Write graph data to the text file with a newline character
+    file_path = 'graph_data.txt'
+    try:
+        with open(file_path, 'a') as file:
+            file.write(json_data + '\n')  # Add newline character
+        print('Graph data saved to file:', graph_data)
+        return jsonify(success=True), 200
+    except Exception as e:
+        print('Error saving graph data:', e)
+        return jsonify(error='Error saving graph data'), 500
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', debug=True, use_reloader=True)

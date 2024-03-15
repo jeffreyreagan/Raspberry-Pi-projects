@@ -2,6 +2,9 @@
 <html lang="en">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.0.0/luxon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/adapters/luxon.min.js"></script>
+
 
         <header>
             <h1>PLC/HMI/SCADA Experience</h1>
@@ -274,6 +277,17 @@
                     <script src="/static/js/server_scripts.js"></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                     
+
+                    
+                </div>
+                <div class="chart">
+                   <!-- Include Chart.js library -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+                    <!-- Include your custom JavaScript file -->
+                    <script src="server_scripts.js"></script>
+                    <canvas id="liveGraph" width="400" height="100" aria-label="Vacuum Average" role="img"></canvas>
+                   
+
                 </div>
                 <h3>Overview</h3>
                 <img id="ui_img" src="/static/images/UI.PNG" alt="UI" style="width:700px;height:250px;">

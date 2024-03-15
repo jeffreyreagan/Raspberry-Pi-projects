@@ -128,7 +128,7 @@ if (animation_state_p1 == 1) {
             animateCircle1(angle1);
         }, 50);
         animation_state_p1 = 2;
-        checkAnimationStatus();// Adjust the interval for smoother animation
+       // Adjust the interval for smoother animation
 }
 if (animation_state_p2 == 1) {
      // Exit function if animation is already running
@@ -141,7 +141,7 @@ if (animation_state_p2 == 1) {
             animateCircle2(angle2);
         }, 50);
         animation_state_p2 = 2;
-        checkAnimationStatus();// Adjust the interval for smoother animation
+       // Adjust the interval for smoother animation
 }
 if (animation_state_p3 == 1) {
     ; // Exit function if animation is already running
@@ -155,7 +155,7 @@ if (animation_state_p3 == 1) {
             animateCircle3(angle3);
         }, 50);
         animation_state_p3 = 2;
-        checkAnimationStatus();// Adjust the interval for smoother animation
+       // Adjust the interval for smoother animation
 }
 if (animation_state_p4 == 1) {
      // Exit function if animation is already running
@@ -168,7 +168,7 @@ if (animation_state_p4 == 1) {
             animateCircle4(angle4);
         }, 50);
         animation_state_p4 = 2;
-        checkAnimationStatus();// Adjust the interval for smoother animation
+       // Adjust the interval for smoother animation
 }
 if (animation_state_p5 == 1) {
      // Exit function if animation is already running
@@ -181,7 +181,7 @@ if (animation_state_p5 == 1) {
             animateCircle5(angle5);
         }, 50);
         animation_state_p5 = 2;
-        checkAnimationStatus();// Adjust the interval for smoother animation
+      // Adjust the interval for smoother animation
 }
 }
 // Function to stop the animation

@@ -8,7 +8,7 @@ import subprocess
 import datetime
 import platform
 import requests
-
+from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp
 #setup
 app = Flask(__name__)
 
@@ -404,7 +404,11 @@ def save_graph_data():
         print('Error saving graph data:', e)
         return jsonify(error='Error saving graph data'), 500
 
-
+@app.route('/get_pump_1_alarm_history', methods=['GET'])
+def get_pump_1_alarm_history():
+    global pump1alarmtimestamp
+    print(pump1alarmtimestamp,"pump1alarmtimestamp")
+    return jsonify(pump1alarmtimestamp)
 
 if __name__ == '__main__':
     app.run(host='localhost', debug=True, use_reloader=True)

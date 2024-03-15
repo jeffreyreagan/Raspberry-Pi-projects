@@ -607,3 +607,43 @@ function updateDataAndRenderChart() {
 
 // Initial call to start updating data and rendering the chart
 setTimeout(updateDataAndRenderChart, 1000);
+
+function openAlarmHistory(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "block";
+
+    // Fetch alarm data from the server
+    fetch('/get_pump_1_alarm_history')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch alarm data');
+            }
+        })
+        .then(data => {
+            // Update the content of the pump1alarmtimestamps <p> element with the fetched data
+            var pump1alarmtimestamps = document.getElementById("pump1alarmtimestamps");
+            pump1alarmtimestamps.textContent = JSON.stringify(data);
+        })
+        .catch(error => {
+            console.error('Error fetching alarm data:', error);
+        });
+}
+
+// Function to close the modal
+function closeAlarmHistory(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "none";
+}
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+    var modals = document.getElementsByClassName('modal');
+    for (var i = 0; i < modals.length; i++) {
+        var modal = modals[i];
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    
+}

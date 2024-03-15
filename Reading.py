@@ -1,5 +1,6 @@
 from pylogix import PLC
 import time
+import datetime
 from flask import jsonify
 # Function to read the PLC tags for vacuum and seperator pressure and return the values in a readable format
 
@@ -186,6 +187,12 @@ pump_3_status_description = ''
 pump_4_status_description = ''
 pump_5_status_description = ''
 
+pump1alarmtimestamp = []
+pump2alarmtimestamp = []
+pump3alarmtimestamp = []
+pump4alarmtimestamp = []
+pump5alarmtimestamp = []
+
 def randomize_alarm_status():
     time.sleep(5)
     global pump_1_status_value
@@ -198,33 +205,38 @@ def randomize_alarm_status():
     global pump_3_status_description
     global pump_4_status_description
     global pump_5_status_description
+    global pump1alarmtimestamp
+    global pump2alarmtimestamp
+    global pump3alarmtimestamp
+    global pump4alarmtimestamp
+    global pump5alarmtimestamp
     
-    '''pump_1_status_value = random.choice([0, 1])'''
-    '''pump_2_status_value = random.choice([0, 1])'''
-    '''pump_3_status_value = random.choice([0, 1])'''
-    '''pump_4_status_value = random.choice([0, 1])'''
-    '''pump_5_status_value = random.choice([0, 1])'''
     if pump_1_status_value == 0 and not pump_1_status_description:
         pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump1alarmtimestamp.append(datetime.datetime.now())
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
     if pump_2_status_value == 0 and not pump_2_status_description:
         pump_2_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump2alarmtimestamp.append(datetime.datetime.now())
     elif pump_2_status_value == 1:
         pump_2_status_description = ''
     if pump_3_status_value == 0 and not pump_3_status_description:
         pump_3_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump3alarmtimestamp.append(datetime.datetime.now())
     elif pump_3_status_value == 1:
         pump_3_status_description = ''
     if pump_4_status_value == 0 and not pump_4_status_description:
         pump_4_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump4alarmtimestamp.append(datetime.datetime.now())
     elif pump_4_status_value == 1:
         pump_4_status_description = ''
     if pump_5_status_value == 0 and not pump_5_status_description:
         pump_5_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump5alarmtimestamp.append(datetime.datetime.now())
     elif pump_5_status_value == 1:
         pump_5_status_description = ''
-    return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description
+    return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description, pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp
 
 
 def read_alarm_tags_all_pumps(tag_names):

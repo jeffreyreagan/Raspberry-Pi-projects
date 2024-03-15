@@ -108,7 +108,19 @@
                     </svg>
                     <h1>Pump 1 Control</h1>
                     <button id="togglePump1Button">Toggle Pump 1</button>
-                    <button id="alarmhistorypump1Button">Alarm History</button>
+                    <button id="alarmhistorypump1Button" onclick="openAlarmHistory('modalAlarmHistoryPump1')">Open Alarm History for Pump 1</button>
+
+<!-- The Modal -->
+                        <div id="modalAlarmHistoryPump1" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close" onclick="closeAlarmHistory('modalAlarmHistoryPump1')">&times;</span>
+                            <h2>Alarm History for Pump 1</h2>
+                            <p id="pump1alarmtimestamps"></p>
+                        </div>
+
+                        </div>
                     </div>
                     <div class="svg-container">
                         <p>Vacuum at Pump 2: <span id="pump2vacuum"></span></p>

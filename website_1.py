@@ -106,10 +106,10 @@ SCADA Simulation
 
 from flask import Flask, render_template, jsonify
 import time
-from Reading import read_plc_tag, update_circle_color, update_alarm_tags_all_pumps
+from Reading import read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 from pylogix import PLC
 import random
-from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value
+from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1
 
 def simulate_plc_data():
     # Simulate pump vacuum data
@@ -160,6 +160,16 @@ def get_VACUUM_2_SEPARATOR_PRESSURE_data():
 # Routes for pump 4 (similar structure as pump 2)
 
 # Routes for pump 5 (similar structure as pump 2)
+@app.route('/toggle_pump_1', methods=['POST'])
+def toggle_pump_1_route():
+    
+        # Call the toggle_pump_1 function from the reading.py file
+        result = toggle_pump_1()
+        print("should be toggling pump 1")
+        
+        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
+        return result
+
 
 
 '''Utilities'''

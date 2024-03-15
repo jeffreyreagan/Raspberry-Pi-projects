@@ -1,5 +1,6 @@
 from pylogix import PLC
 import time
+from flask import jsonify
 # Function to read the PLC tags for vacuum and seperator pressure and return the values in a readable format
 
 print("Does this print once?")
@@ -70,16 +71,40 @@ def read_plc_tag():
                     print(f"An error occurred: {e}")
 import random
 
-pump_1_status_value = ''
-pump_2_status_value = ''
-pump_3_status_value = ''
-pump_4_status_value = ''
-pump_5_status_value = ''
+pump_1_status_value = 0
+pump_2_status_value = 0
+pump_3_status_value = 0
+pump_4_status_value = 0
+pump_5_status_value = 0
+
+
+
+def toggle_pump_1():
+    global pump_1_status_value
+
+    # Toggle the pump status
+    pump_1_status_value = 1 - pump_1_status_value
+    print("should be changing pump 1 status to", pump_1_status_value)
+
+    # Simulate turning the pump on or off
+    if pump_1_status_value == 1:
+        # Simulate turning the pump on
+        time.sleep(2)  # Simulate a delay for turning on the pump
+        pump_1_status_description = "Pump is On"
+    else:
+        # Simulate turning the pump off
+        time.sleep(2)  # Simulate a delay for turning off the pump
+        pump_1_status_description = "Pump is Off"
+
+    return jsonify({'status': pump_1_status_value, 'description': pump_1_status_description})
+
+
 
 def randomize_alarm_status():
     time.sleep(5)
-    
-    pump_1_status_value = random.choice([0, 1])
+    global pump_1_status_value
+    pump_1_status_description = ''
+    '''pump_1_status_value = random.choice([0, 1])'''
     pump_2_status_value = random.choice([0, 1])
     pump_3_status_value = random.choice([0, 1])
     pump_4_status_value = random.choice([0, 1])
@@ -88,7 +113,7 @@ def randomize_alarm_status():
         pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
-    return pump_1_status_value, pump_2_status_value, pump_1_status_description, pump_3_status_value, pump_4_status_value, pump_5_status_value
+    return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value
 
 
 
@@ -109,12 +134,12 @@ import time
 def update_circle_color():
     circle_colors = {'pump1color': '', 'pump2color': '', 'pump3color': '', 'pump4color': '', 'pump5color': ''}  # Initialize colors
     pump_1_statuses_value = randomize_alarm_status()
-    pump_1_status_value = pump_1_statuses_value[0]
-    pump_1_status_description = pump_1_statuses_value[2]
+    pump_1_status_value = pump_1_statuses_value[5]
+    pump_1_status_description = pump_1_statuses_value[0]
     pump_2_status_value = pump_1_statuses_value[1]
-    pump_3_status_value = pump_1_statuses_value[3]
-    pump_4_status_value = pump_1_statuses_value[4]
-    pump_5_status_value = pump_1_statuses_value[5]
+    pump_3_status_value = pump_1_statuses_value[2]
+    pump_4_status_value = pump_1_statuses_value[3]
+    pump_5_status_value = pump_1_statuses_value[4]
     try:
         
         # Simulate reading tag values
@@ -123,7 +148,7 @@ def update_circle_color():
         # Update circle colors based on simulated tag values
         if pump_1_status_value == 1:
             circle_colors['pump1color'] = 'green'              
-        elif pump_1_status_value == 0:
+        elif pump_1_status_value != 1:
             circle_colors['pump1color'] = 'red'
         if pump_2_status_value == 1:
             circle_colors['pump2color'] = 'green'

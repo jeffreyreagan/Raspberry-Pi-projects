@@ -1,4 +1,27 @@
 $(document).ready(function() {
+    $('#togglePump1Button').on('click', function() {
+        // Call the server to toggle the pump status
+        $.ajax({
+            url: '/toggle_pump_1',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response.status === 1) {
+                    $('#togglePump1Button').text('Turn Off Pump');
+                    $('#status').text('Pump is On');
+                } else {
+                    $('#togglePump1Button').text('Turn On Pump');
+                    $('#status').text('Pump is Off');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump:', error);
+            }
+        });
+    });
+    
+    
+    
     function fetchPump1VacuumData() {
         $.getJSON('/get_pump1vacuum_data', function(data) {
             $('#pump1vacuum').text(data.pump1vacuum);
@@ -216,6 +239,7 @@ $(document).ready(function() {
                     const pump_1_status_value = data[2];
                     console.log(data[2]);
                     const pump_2_status_value = data[3];
+                    console.log(data[3]);
                     const pump_1_alarm_descriptions = data[7];
                     console.log(data[7]);
                     const pump_3_status_value = data[4];

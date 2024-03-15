@@ -83,6 +83,8 @@
                         <ellipse cx="145" cy="550" rx="36" ry="22" stroke="black" fill="white" transform="rotate(90 300 300)" ></ellipse>
                         <text x="25" y="95" fill="black">Exhaust</text>
                     </svg>
+                    <h1>Pump Control</h1>
+                    <button id="togglePump1Button">Toggle Pump 1</button>
                     </div>
                     <div class="svg-container">
                         <p>Vacuum at Pump 2: <span id="pump2vacuum"></span></p>
@@ -270,6 +272,7 @@
                     </div>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script src="/static/js/server_scripts.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                     
                 </div>
                 <h3>Overview</h3>
@@ -323,6 +326,7 @@
     
         <button id="page_3_button" onclick="changePage_3()">Page 3</button>
         <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
+
     
         <!DOCTYPE html>
         <html lang="en">

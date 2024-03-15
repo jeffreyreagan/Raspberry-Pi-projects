@@ -26,27 +26,13 @@ $(document).ready(function() {
  
 
     // Update data every second
-    setInterval(fetchPump1VacuumData, 5000);
+    
     setInterval(fetchPump2VacuumData, 5000);
     setInterval(checkAnimationStatus, 5000);
 
 
 
 });
-
-
-
-
-function fetchPump1VacuumData() {
-    $.getJSON('/get_pump1vacuum_data', function(data) {
-        $('#pump1vacuum').text(data.pump1vacuum);
-        vacuumData[0] = data.pump1vacuum; // Update vacuum data for pump 2
-    });
-    $.getJSON('/get_VACUUM_1_SEPARATOR_PRESSURE_data', function(data) {
-        $('#seperator1_psi').text(data.seperator1_psi);
-    });
-}
-
 
 
 
@@ -303,7 +289,7 @@ function checkAnimationStatus() {
 }
 
 //initial calling
-fetchPump1VacuumData();
+
 fetchPump2VacuumData();
 checkAnimationStatus();
 
@@ -363,6 +349,13 @@ function fetchPumpVacuumData() {
     // Fetch vacuum data for pump 1
     $.getJSON('/get_pump1vacuum_data', function(data) {
         vacuumData[0] = data.pump1vacuum; // Update vacuum data for pump 1
+    
+
+    $('#pump1vacuum').text(data.pump1vacuum);
+    });
+
+    $.getJSON('/get_VACUUM_1_SEPARATOR_PRESSURE_data', function(data) {
+        $('#seperator1_psi').text(data.seperator1_psi);
     });
     // Fetch vacuum data for pump 2
     $.getJSON('/get_pump2vacuum_data', function(data) {
@@ -372,6 +365,7 @@ function fetchPumpVacuumData() {
     // Fetch other relevant data if needed (e.g., separator pressure)
     // Replace with your own data retrieval logic
 }
+fetchPumpVacuumData();
 
 function fetchGraphDataFromServer() {
     return fetch('/get_graph_data')

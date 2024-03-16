@@ -234,6 +234,9 @@ img {
 #pump2alarmtimestamps {
   color: white;
 }
+.historymodalcontents {
+  color: aliceblue;
+}
 /* Close button */
 .close {
     color: #aaa;

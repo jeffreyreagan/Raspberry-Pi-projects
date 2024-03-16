@@ -603,7 +603,14 @@ function openAlarmHistory(modalId) {
         endpoint = '/get_pump_1_alarm_history';
     } else if (modalId === 'pump2alarm') {
         endpoint = '/get_pump_2_alarm_history';
+    } else if (modalId === 'pump3alarm') {
+        endpoint = '/get_pump_3_alarm_history';
+    } else if (modalId === 'pump4alarm') {
+        endpoint = '/get_pump_4_alarm_history';
+    } else if (modalId === 'pump5alarm') {
+        endpoint = '/get_pump_5_alarm_history';
     }
+
     // Add more conditions for other modals if needed
 
     // Fetch alarm data from the server

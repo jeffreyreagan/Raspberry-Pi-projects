@@ -10,7 +10,7 @@ import requests
 import time
 from pylogix import PLC
 import random
-from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump2alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
+from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump2alarmdescriptions, pump3alarmdescriptions, pump4alarmdescriptions, pump5alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 
 app = Flask(__name__)
 app.register_blueprint(main_bp)
@@ -366,6 +366,36 @@ def get_pump_2_alarm_history():
     data = {
         "timestamps": pump2alarmtimestamp,
         "descriptions": pump2alarmdescriptions
+    }
+    return jsonify(data)
+@app.route('/get_pump_3_alarm_history', methods=['GET'])
+def get_pump_3_alarm_history():
+    global pump3alarmtimestamp
+    global pump3alarmdescriptions
+    print(pump3alarmtimestamp,"pump3alarmtimestamp")
+    data = {
+        "timestamps": pump3alarmtimestamp,
+        "descriptions": pump3alarmdescriptions
+    }
+    return jsonify(data)
+@app.route('/get_pump_4_alarm_history', methods=['GET'])
+def get_pump_4_alarm_history():
+    global pump4alarmtimestamp
+    global pump4alarmdescriptions
+    print(pump4alarmtimestamp,"pump4alarmtimestamp")
+    data = {
+        "timestamps": pump4alarmtimestamp,
+        "descriptions": pump4alarmdescriptions
+    }
+    return jsonify(data)
+@app.route('/get_pump_5_alarm_history', methods=['GET'])
+def get_pump_5_alarm_history():
+    global pump5alarmtimestamp
+    global pump5alarmdescriptions
+    print(pump5alarmtimestamp,"pump5alarmtimestamp")
+    data = {
+        "timestamps": pump5alarmtimestamp,
+        "descriptions": pump5alarmdescriptions
     }
     return jsonify(data)
 if __name__ == '__main__':

@@ -161,6 +161,9 @@ pump5alarmtimestamp = []
 
 pump1alarmdescriptions = []
 pump2alarmdescriptions = []
+pump3alarmdescriptions = []
+pump4alarmdescriptions = []
+pump5alarmdescriptions = []
 
 def randomize_alarm_status():
     time.sleep(5)
@@ -197,16 +200,19 @@ def randomize_alarm_status():
     if pump_3_status_value == 0 and not pump_3_status_description:
         pump_3_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump3alarmtimestamp.append(datetime.datetime.now())
+        pump3alarmdescriptions.append(pump_3_status_description)
     elif pump_3_status_value == 1:
         pump_3_status_description = ''
     if pump_4_status_value == 0 and not pump_4_status_description:
         pump_4_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump4alarmtimestamp.append(datetime.datetime.now())
+        pump4alarmdescriptions.append(pump_4_status_description)
     elif pump_4_status_value == 1:
         pump_4_status_description = ''
     if pump_5_status_value == 0 and not pump_5_status_description:
         pump_5_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump5alarmtimestamp.append(datetime.datetime.now())
+        pump5alarmdescriptions.append(pump_5_status_description)
     elif pump_5_status_value == 1:
         pump_5_status_description = ''
     return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description, pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp

@@ -89,11 +89,9 @@ def toggle_pump_1():
     pump_1_status_value = 1 - pump_1_status_value
     print("should be changing pump 1 status to", pump_1_status_value)
     # Simulate turning the pump on or off
-    if pump_1_status_value == 1:
-        time.sleep(2)  
+    if pump_1_status_value == 1: 
         pump_1_status_description = "Pump is On"
     else:
-        time.sleep(2) 
         pump_1_status_description = "Pump is Off"
     return jsonify({'status': pump_1_status_value, 'description': pump_1_status_description})
 
@@ -102,10 +100,8 @@ def toggle_pump_2():
     pump_2_status_value = 1 - pump_2_status_value
     print("should be changing pump 2 status to", pump_2_status_value)
     if pump_2_status_value == 1:
-        time.sleep(2) 
         pump_2_status_description = "Pump 2 is On"
     else:
-        time.sleep(2) 
         pump_2_status_description = "Pump 2 is Off"
     return jsonify({'status': pump_2_status_value, 'description': pump_2_status_description})
 
@@ -113,11 +109,9 @@ def toggle_pump_3():
     global pump_3_status_value
     pump_3_status_value = 1 - pump_3_status_value
     print("should be changing pump 3 status to", pump_3_status_value)
-    if pump_3_status_value == 1:
-        time.sleep(2)  
+    if pump_3_status_value == 1:  
         pump_3_status_description = "Pump is On"
     else:
-        time.sleep(2)  
         pump_3_status_description = "Pump is Off"
     return jsonify({'status': pump_3_status_value, 'description': pump_3_status_description})
 
@@ -127,10 +121,8 @@ def toggle_pump_4():
     pump_4_status_value = 1 - pump_4_status_value
     print("should be changing pump 4 status to", pump_4_status_value)
     if pump_4_status_value == 1:
-        time.sleep(2) 
         pump_4_status_description = "Pump 4 is On"
     else:
-        time.sleep(2) 
         pump_4_status_description = "Pump 4 is Off"
     return jsonify({'status': pump_4_status_value, 'description': pump_4_status_description})
 
@@ -140,10 +132,8 @@ def toggle_pump_5():
     pump_5_status_value = 1 - pump_5_status_value
     print("should be changing pump 5 status to", pump_5_status_value)
     if pump_5_status_value == 1:
-        time.sleep(2)  
         pump_5_status_description = "Pump 5 is On"
     else:
-        time.sleep(2)
         pump_5_status_description = "Pump 5 is Off"
     return jsonify({'status': pump_5_status_value, 'description': pump_5_status_description})
 

@@ -114,7 +114,7 @@ $(document).ready(function() {
         });
     });
 
-    setInterval(checkAnimationStatus, 5000);
+    setInterval(checkAnimationStatus, 2000);
 
 
 

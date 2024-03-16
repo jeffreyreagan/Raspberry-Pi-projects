@@ -9,9 +9,11 @@ $(document).ready(function() {
                 if (response.status === 1) {
                     $('#togglePump1Button').text('Turn Off Pump 1');
                     $('#status').text('Pump 1 is On');
+                    openpump1valve()
                 } else {
                     $('#togglePump1Button').text('Turn On Pump 1');
                     $('#status').text('Pump 1 is Off');
+                    closepump1valve()
                 }
             },
             error: function(xhr, status, error) {
@@ -30,9 +32,11 @@ $(document).ready(function() {
                 if (response.status === 1) {
                     $('#togglePump2Button').text('Turn Off Pump 2');
                     $('#status').text('Pump 2 is On');
+                    openpump2valve()
                 } else {
                     $('#togglePump2Button').text('Turn On Pump 2');
                     $('#status').text('Pump 2 is Off');
+                    closepump2valve()
                 }
             },
             error: function(xhr, status, error) {
@@ -51,9 +55,11 @@ $(document).ready(function() {
                 if (response.status === 1) {
                     $('#togglePump3Button').text('Turn Off Pump 3');
                     $('#status').text('Pump 3 is On');
+                    openpump3valve()
                 } else {
                     $('#togglePump3Button').text('Turn On Pump 3');
                     $('#status').text('Pump 3 is Off');
+                    closepump3valve()
                 }
             },
             error: function(xhr, status, error) {
@@ -72,9 +78,11 @@ $(document).ready(function() {
                 if (response.status === 1) {
                     $('#togglePump4Button').text('Turn Off Pump 4');
                     $('#status').text('Pump 4 is On');
+                    openpump4valve()
                 } else {
                     $('#togglePump4Button').text('Turn On Pump 4');
                     $('#status').text('Pump 4 is Off');
+                    closepump4valve()
                 }
             },
             error: function(xhr, status, error) {
@@ -93,9 +101,11 @@ $(document).ready(function() {
                 if (response.status === 1) {
                     $('#togglePump5Button').text('Turn Off Pump 5');
                     $('#status').text('Pump 5 is On');
+                    openpump5valve()
                 } else {
                     $('#togglePump5Button').text('Turn On Pump 5');
                     $('#status').text('Pump 5 is Off');
+                    closepump5valve()
                 }
             },
             error: function(xhr, status, error) {
@@ -248,6 +258,7 @@ console.log("animation states before stopping, should be 0 for pump called to st
 if (animation_state_p1 == 0){;    
     clearInterval(interval1);
     console.log("stopping animation 1")
+    
     }
 if (animation_state_p2 == 0){;
     clearInterval(interval2)
@@ -457,6 +468,157 @@ function fetchPumpVacuumData() {
     });
 }
 fetchPumpVacuumData();
+
+
+
+
+
+function closepump1valve() {
+    var rect = document.getElementById('pump1valve');
+
+    // Get the current y position
+    var currentY = parseFloat(rect.getAttribute('y'));
+
+    // Move the rect element up by 20 pixels
+    var newY = currentY - 20;
+
+    // Set the new y position
+    rect.setAttribute('y', newY + 'px');
+
+    var rect2 = document.getElementById('pump1valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 - 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function openpump1valve() {
+    var rect = document.getElementById('pump1valve');
+    var currentY = parseFloat(rect.getAttribute('y'));
+    var newY = currentY + 20;
+    rect.setAttribute('y', newY + 'px');
+    var rect2 = document.getElementById('pump1valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 + 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+
+function closepump2valve() {
+    var rect = document.getElementById('pump2valve');
+
+    // Get the current y position
+    var currentY = parseFloat(rect.getAttribute('y'));
+
+    // Move the rect element up by 20 pixels
+    var newY = currentY - 20;
+
+    // Set the new y position
+    rect.setAttribute('y', newY + 'px');
+
+    var rect2 = document.getElementById('pump2valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 - 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function openpump2valve() {
+    var rect = document.getElementById('pump2valve');
+    var currentY = parseFloat(rect.getAttribute('y'));
+    var newY = currentY + 20;
+    rect.setAttribute('y', newY + 'px');
+    var rect2 = document.getElementById('pump2valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 + 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+
+function closepump3valve() {
+    var rect = document.getElementById('pump3valve');
+
+    // Get the current y position
+    var currentY = parseFloat(rect.getAttribute('y'));
+
+    // Move the rect element up by 20 pixels
+    var newY = currentY - 20;
+
+    // Set the new y position
+    rect.setAttribute('y', newY + 'px');
+
+    var rect2 = document.getElementById('pump3valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 - 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function openpump3valve() {
+    var rect = document.getElementById('pump3valve');
+    var currentY = parseFloat(rect.getAttribute('y'));
+    var newY = currentY + 20;
+    rect.setAttribute('y', newY + 'px');
+    var rect2 = document.getElementById('pump3valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 + 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+
+function closepump4valve() {
+    var rect = document.getElementById('pump4valve');
+
+    // Get the current y position
+    var currentY = parseFloat(rect.getAttribute('y'));
+
+    // Move the rect element up by 20 pixels
+    var newY = currentY - 20;
+
+    // Set the new y position
+    rect.setAttribute('y', newY + 'px');
+
+    var rect2 = document.getElementById('pump4valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 - 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function openpump4valve() {
+    var rect = document.getElementById('pump4valve');
+    var currentY = parseFloat(rect.getAttribute('y'));
+    var newY = currentY + 20;
+    rect.setAttribute('y', newY + 'px');
+    var rect2 = document.getElementById('pump4valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 + 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function closepump5valve() {
+    var rect = document.getElementById('pump5valve');
+
+    // Get the current y position
+    var currentY = parseFloat(rect.getAttribute('y'));
+
+    // Move the rect element up by 20 pixels
+    var newY = currentY - 20;
+
+    // Set the new y position
+    rect.setAttribute('y', newY + 'px');
+
+    var rect2 = document.getElementById('pump5valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 - 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+function openpump5valve() {
+    var rect = document.getElementById('pump5valve');
+    var currentY = parseFloat(rect.getAttribute('y'));
+    var newY = currentY + 20;
+    rect.setAttribute('y', newY + 'px');
+    var rect2 = document.getElementById('pump5valvestem');
+    var currentY2 = parseFloat(rect2.getAttribute('y'));
+    var newY2 = currentY2 + 20;
+    rect2.setAttribute('y', newY2 + 'px');
+}
+
+
+
+
+
+
+
+
 
 function fetchGraphDataFromServer() {
     return fetch('/get_graph_data')

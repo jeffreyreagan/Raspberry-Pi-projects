@@ -8,7 +8,7 @@ import subprocess
 import datetime
 import platform
 import requests
-from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp
+from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions
 #setup
 app = Flask(__name__)
 
@@ -293,7 +293,7 @@ def get_circle_color():
     circle_colors_tuple = update_circle_color()
     circle_colors = circle_colors_tuple[0]
     
-
+pump_1_alarm_desciptions = ''
 
 @app.route('/check_animation_status')
 def check_animation_status():
@@ -302,6 +302,7 @@ def check_animation_status():
     global pump3stat
     global pump4stat
     global pump5stat
+    global pump_1_alarm_desciptions
     results = []
     circle_colors_tuple = update_circle_color()
     circle_colors = circle_colors_tuple[0]
@@ -407,8 +408,12 @@ def save_graph_data():
 @app.route('/get_pump_1_alarm_history', methods=['GET'])
 def get_pump_1_alarm_history():
     global pump1alarmtimestamp
+    global pump1alarmdescriptions
     print(pump1alarmtimestamp,"pump1alarmtimestamp")
-    return jsonify(pump1alarmtimestamp)
-
+    data = {
+        "timestamps": pump1alarmtimestamp,
+        "descriptions": pump1alarmdescriptions
+    }
+    return jsonify(data)
 if __name__ == '__main__':
     app.run(host='localhost', debug=True, use_reloader=True)

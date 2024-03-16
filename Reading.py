@@ -193,6 +193,8 @@ pump3alarmtimestamp = []
 pump4alarmtimestamp = []
 pump5alarmtimestamp = []
 
+pump1alarmdescriptions = []
+
 def randomize_alarm_status():
     time.sleep(5)
     global pump_1_status_value
@@ -210,10 +212,12 @@ def randomize_alarm_status():
     global pump3alarmtimestamp
     global pump4alarmtimestamp
     global pump5alarmtimestamp
+    global pump1alarmdescriptions
     
     if pump_1_status_value == 0 and not pump_1_status_description:
         pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
         pump1alarmtimestamp.append(datetime.datetime.now())
+        pump1alarmdescriptions.append(pump_1_status_description)
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
     if pump_2_status_value == 0 and not pump_2_status_description:

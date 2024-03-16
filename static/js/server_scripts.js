@@ -622,9 +622,19 @@ function openAlarmHistory(modalId) {
             }
         })
         .then(data => {
-            // Update the content of the pump1alarmtimestamps <p> element with the fetched data
-            var pump1alarmtimestamps = document.getElementById("pump1alarmtimestamps");
-            pump1alarmtimestamps.textContent = JSON.stringify(data);
+            // Check if data contains timestamps and descriptions
+            if (data && data.timestamps && data.descriptions) {
+                // Construct the content string
+                var content = "";
+                for (var i = 0; i < data.timestamps.length; i++) {
+                    content += data.timestamps[i] + ": " + data.descriptions[i] + "<br>";
+                }
+                // Update the content of the pump1alarmtimestamps <p> element with the fetched data
+                var pump1alarmtimestamps = document.getElementById("pump1alarmtimestamps");
+                pump1alarmtimestamps.innerHTML = content;
+            } else {
+                console.error('Invalid data structure');
+            }
         })
         .catch(error => {
             console.error('Error fetching alarm data:', error);

@@ -1,5 +1,4 @@
 '''This program is meant for educational purposes. Do not use for other purposes. No Warranty of Any Kind. Thanks JR'''
-
 #imports 
 from flask import Flask, render_template, send_file, request, jsonify
 from routes import *
@@ -8,10 +7,12 @@ import subprocess
 import datetime
 import platform
 import requests
-from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions
-#setup
-app = Flask(__name__)
+import time
+from pylogix import PLC
+import random
+from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 
+app = Flask(__name__)
 app.register_blueprint(main_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(page_2_bp)
@@ -19,13 +20,15 @@ app.register_blueprint(page_3_bp)
 app.register_blueprint(page_4_bp)
 app.register_blueprint(page_5_bp)
 app.register_blueprint(page_6_bp)
-
 print("WEBSERVER starting Jeff")
 
-#index
-@app.route('/')
-
-#determine OS and gather temp data
+#assemble index
+@app.route('/index.html')
+def index():
+    print("Accessing index route.")
+    # Render HTML template with time and temperature
+    return render_template('index.html')
+#gather server Ip for client
 @app.route('/api/server_ip')
 def get_server_ip():
     # Fetch the public IP address using an external API
@@ -37,18 +40,8 @@ def get_server_ip():
             raise Exception('Failed to fetch IP address')
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
-    # Return the public IP address as JSON
     return jsonify({'server_ip': ip_address})
     
-#assemble index
-@app.route('/index.html')
-def index():
-    print("Accessing index route.")
-    # Render HTML template with time and temperature
-    return render_template('index.html')
-
-
 #API for random image generator
 @app.route('/api/get_random_image')
 def get_random_image():
@@ -94,12 +87,6 @@ git config --global user.name "Your Name
 SCADA Simulation
 '''
 
-from flask import Flask, render_template, jsonify
-import time
-from Reading import read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
-from pylogix import PLC
-import random
-from Reading import pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5
 pump1stat = ''
 pump2stat = ''
 pump3stat = ''
@@ -108,21 +95,14 @@ pump5stat = ''
 
 def simulate_plc_data():
     # Simulate pump vacuum data
-   
     pump_vacuum_data = [random.randint(1, 100) for _ in range(5)]
-    
-    # Simulate alarm status
-    
-    
     # Simulate separator pressure data
     separator_pressure_data = [random.uniform(0, 10) for _ in range(5)]
-    
     return pump_vacuum_data, separator_pressure_data
 
 # Routes for pump 1
 @app.route('/get_pump1vacuum_data')
 def get_pump1vacuum_data():
-    
     if pump1stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
         print("should be setting p1 vac to something")
@@ -131,11 +111,8 @@ def get_pump1vacuum_data():
         print("should be setting p1 vac to 0")
         return jsonify({'pump1vacuum': 0})
 
-    
-
 @app.route('/get_VACUUM_1_SEPARATOR_PRESSURE_data')
 def get_VACUUM_1_SEPARATOR_PRESSURE_data():
-  
     if pump1stat == '1':
         _, separator_pressure_data = simulate_plc_data()
         return jsonify({'seperator1_psi': separator_pressure_data[0]})
@@ -145,147 +122,105 @@ def get_VACUUM_1_SEPARATOR_PRESSURE_data():
 # Routes for pump 2
 @app.route('/get_pump2vacuum_data')
 def get_pump2vacuum_data():
-   
     if pump2stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
         return jsonify({'pump2vacuum': pump_vacuum_data[1]})
     else:
         return jsonify({'pump2vacuum': 0})
 
-
 @app.route('/get_VACUUM_2_SEPARATOR_PRESSURE_data')
 def get_VACUUM_2_SEPARATOR_PRESSURE_data():
-   
     if pump2stat == '1':
         _, separator_pressure_data = simulate_plc_data()
         return jsonify({'seperator2_psi': separator_pressure_data[1]})
     else:
         return jsonify({'seperator2_psi': 0})
 
-# Routes for pump 3 (similar structure as pump 2)
+# Routes for pump 3 
 @app.route('/get_pump3vacuum_data')
 def get_pump3vacuum_data():
-   
     if pump3stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
         return jsonify({'pump3vacuum': pump_vacuum_data[1]})
     else:
         return jsonify({'pump3vacuum': 0})
 
-
 @app.route('/get_VACUUM_3_SEPARATOR_PRESSURE_data')
 def get_VACUUM_3_SEPARATOR_PRESSURE_data():
-   
     if pump3stat == '1':
         _, separator_pressure_data = simulate_plc_data()
         return jsonify({'seperator3_psi': separator_pressure_data[1]})
     else:
         return jsonify({'seperator3_psi': 0})
 
-# Routes for pump 4 (similar structure as pump 2)
+# Routes for pump 4 
 @app.route('/get_pump4vacuum_data')
 def get_pump4vacuum_data():
-   
     if pump4stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
         return jsonify({'pump4vacuum': pump_vacuum_data[1]})
     else:
         return jsonify({'pump4vacuum': 0})
 
-
 @app.route('/get_VACUUM_4_SEPARATOR_PRESSURE_data')
 def get_VACUUM_4_SEPARATOR_PRESSURE_data():
-   
     if pump4stat == '1':
         _, separator_pressure_data = simulate_plc_data()
         return jsonify({'seperator4_psi': separator_pressure_data[1]})
     else:
         return jsonify({'seperator4_psi': 0})
 
-# Routes for pump 5 (similar structure as pump 2)
+# Routes for pump 5 
 @app.route('/get_pump5vacuum_data')
 def get_pump5vacuum_data():
-   
     if pump5stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
         return jsonify({'pump5vacuum': pump_vacuum_data[1]})
     else:
         return jsonify({'pump5vacuum': 0})
 
-
 @app.route('/get_VACUUM_5_SEPARATOR_PRESSURE_data')
 def get_VACUUM_5_SEPARATOR_PRESSURE_data():
-   
     if pump5stat == '1':
         _, separator_pressure_data = simulate_plc_data()
         return jsonify({'seperator5_psi': separator_pressure_data[1]})
     else:
         return jsonify({'seperator5_psi': 0})
 
-
-
-
-
 @app.route('/toggle_pump_1', methods=['POST'])
 def toggle_pump_1_route():
-    
         # Call the toggle_pump_1 function from the reading.py file
         result = toggle_pump_1()
         print("should be toggling pump 1")
-        
-        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
 
 @app.route('/toggle_pump_2', methods=['POST'])
 def toggle_pump_2_route():
-    
-        # Call the toggle_pump_1 function from the reading.py file
+        # Call the toggle_pump_2 function from the reading.py file
         result = toggle_pump_2()
         print("should be toggling pump 2")
-        
-        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
 
 @app.route('/toggle_pump_3', methods=['POST'])
 def toggle_pump_3_route():
-    
-        # Call the toggle_pump_1 function from the reading.py file
+        # Call the toggle_pump_3 function from the reading.py file
         result = toggle_pump_3()
         print("should be toggling pump 3")
-        
-        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
 
 @app.route('/toggle_pump_4', methods=['POST'])
 def toggle_pump_4_route():
-    
-        # Call the toggle_pump_1 function from the reading.py file
+        # Call the toggle_pump_4 function from the reading.py file
         result = toggle_pump_4()
         print("should be toggling pump 4")
-        
-        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
 
 @app.route('/toggle_pump_5', methods=['POST'])
 def toggle_pump_5_route():
-    
-        # Call the toggle_pump_1 function from the reading.py file
+        # Call the toggle_pump_5 function from the reading.py file
         result = toggle_pump_5()
         print("should be toggling pump 5")
-        
-        # Assuming `toggle_pump_1` returns a JSON response, no need for jsonify here
         return result
-
-
-
-
-
-
-
-
-
-
-
 
 '''Utilities'''
 @app.route('/get_circle_color')
@@ -390,10 +325,8 @@ def get_graph_data():
 @app.route('/save_graph_data', methods=['POST'])
 def save_graph_data():
     graph_data = request.json  # Assuming graph data is sent as JSON
-
     # Convert graph data to a JSON string
     json_data = json.dumps(graph_data)
-
     # Write graph data to the text file with a newline character
     file_path = 'graph_data.txt'
     try:
@@ -416,4 +349,4 @@ def get_pump_1_alarm_history():
     }
     return jsonify(data)
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True, use_reloader=True)
+    app.run(host='0.0.0.0', port = '5000', debug=True, use_reloader=True)

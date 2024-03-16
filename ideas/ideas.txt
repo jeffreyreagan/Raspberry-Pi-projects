@@ -1,0 +1,19 @@
+make alarms more interesting
+
+finish alarm history for all pumps
+
+improve scada layout and design
+
+
+
+
+
+
+
+
+Future project ideas:
+    Line Control SCADA (process control SCADA)
+
+
+use ipad to create HTML shapes?
+

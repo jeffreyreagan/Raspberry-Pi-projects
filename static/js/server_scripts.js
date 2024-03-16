@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#togglePump1Button').on('click', function() {
-        // Call the server to toggle the pump status
+        // Call the server to toggle pump 1 status
         $.ajax({
             url: '/toggle_pump_1',
             type: 'POST',
@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
 
     $('#togglePump2Button').on('click', function() {
-        // Call the server to toggle the pump status
+        // Call the server to toggle pump 2 status
         $.ajax({
             url: '/toggle_pump_2',
             type: 'POST',
@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
 
     $('#togglePump3Button').on('click', function() {
-        // Call the server to toggle the pump status
+        // Call the server to toggle pump 3 status
         $.ajax({
             url: '/toggle_pump_3',
             type: 'POST',
@@ -63,7 +63,7 @@ $(document).ready(function() {
     });
 
     $('#togglePump4Button').on('click', function() {
-        // Call the server to toggle the pump status
+        // Call the server to toggle pump 4 status
         $.ajax({
             url: '/toggle_pump_4',
             type: 'POST',
@@ -84,7 +84,7 @@ $(document).ready(function() {
     });
 
     $('#togglePump5Button').on('click', function() {
-        // Call the server to toggle the pump status
+        // Call the server to toggle pump 5 status
         $.ajax({
             url: '/toggle_pump_5',
             type: 'POST',
@@ -104,33 +104,11 @@ $(document).ready(function() {
         });
     });
 
-    
-    
-  
-    // Fetch data initially when the page loads
-    
- 
-
-    // Update data every second
-    
-    setInterval(fetchPump2VacuumData, 5000);
     setInterval(checkAnimationStatus, 5000);
 
 
 
 });
-
-
-
-function fetchPump2VacuumData() {
-    $.getJSON('/get_pump2vacuum_data', function(data) {
-        $('#pump2vacuum').text(data.pump2vacuum);
-        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 1 GRAPH
-    });
-    $.getJSON('/get_VACUUM_2_SEPARATOR_PRESSURE_data', function(data) {
-        $('#seperator2_psi').text(data.seperator2_psi);
-    });
-}
 
 function animateCircle1(angle1) {
     // Calculate the new position of the smaller circle
@@ -383,16 +361,7 @@ function checkAnimationStatus() {
 }
 
 //initial calling
-
-fetchPump2VacuumData();
 checkAnimationStatus();
-
-
-
-
-
-
-
 
 
 const smallerCircle1 = document.getElementById('pump1status');
@@ -416,16 +385,6 @@ animation_state_p5 = [];
 
 
 
-
-
-
-
-
-
-
-
-
-
 let vacuumData = []; // Array to store vacuum data from each pump
 let chart; // Variable to store the Chart.js chart instance
 
@@ -438,12 +397,11 @@ function calculateAverage() {
     return sum ;
 }
 
-// Function to fetch data from your JavaScript variables (replace with your own data retrieval method)
+// Function to fetch data from JavaScript variables 
 function fetchPumpVacuumData() {
     // Fetch vacuum data for pump 1
     $.getJSON('/get_pump1vacuum_data', function(data) {
-        vacuumData[0] = data.pump1vacuum; // Update vacuum data for pump 1
-    
+        vacuumData[0] = data.pump1vacuum; // Update vacuum chart data for pump 1
 
     $('#pump1vacuum').text(data.pump1vacuum);
     });
@@ -453,9 +411,8 @@ function fetchPumpVacuumData() {
     });
     // Fetch vacuum data for pump 2
     $.getJSON('/get_pump2vacuum_data', function(data) {
-        vacuumData[1] = data.pump2vacuum; // Update vacuum data for pump 1
+        vacuumData[1] = data.pump2vacuum; // Update vacuum chart data for pump 2
     
-
     $('#pump2vacuum').text(data.pump2vacuum);
     });
 
@@ -464,9 +421,8 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump3vacuum_data', function(data) {
-        vacuumData[2] = data.pump3vacuum; // Update vacuum data for pump 1
+        vacuumData[2] = data.pump3vacuum; // Update vacuum chart data for pump 3
     
-
     $('#pump3vacuum').text(data.pump3vacuum);
     });
 
@@ -475,8 +431,7 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump4vacuum_data', function(data) {
-        vacuumData[3] = data.pump4vacuum; // Update vacuum data for pump 1
-    
+        vacuumData[3] = data.pump4vacuum; // Update vacuum chart data for pump 4
 
     $('#pump4vacuum').text(data.pump4vacuum);
     });
@@ -486,8 +441,7 @@ function fetchPumpVacuumData() {
     });
 
     $.getJSON('/get_pump5vacuum_data', function(data) {
-        vacuumData[4] = data.pump5vacuum; // Update vacuum data for pump 1
-    
+        vacuumData[4] = data.pump5vacuum; // Update vacuum chart data for pump 5
 
     $('#pump5vacuum').text(data.pump5vacuum);
     });
@@ -520,7 +474,6 @@ function fetchGraphDataFromServer() {
             throw error; // Re-throw the error to propagate it further
         });
 }
-
 
 // Function to render or update the chart
 function renderChart() {
@@ -603,15 +556,13 @@ function updateDataAndRenderChart() {
     setTimeout(updateDataAndRenderChart, 5000); // Update every 5 seconds (adjust as needed)
 }
 
-
-
-// Initial call to start updating data and rendering the chart
+// Initial call to start updating data and rendering the chart. Had to add timeout for errors.
 setTimeout(updateDataAndRenderChart, 1000);
 
 function openAlarmHistory(modalId) {
     var modal = document.getElementById(modalId);
     modal.style.display = "block";
-
+    
     // Fetch alarm data from the server
     fetch('/get_pump_1_alarm_history')
         .then(response => {

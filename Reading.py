@@ -2,9 +2,6 @@ from pylogix import PLC
 import time
 import datetime
 from flask import jsonify
-# Function to read the PLC tags for vacuum and seperator pressure and return the values in a readable format
-
-print("Does this print once?")
 
 def read_plc_tag():
         try:
@@ -82,104 +79,67 @@ pump_5_status_value = 0
 
 def toggle_pump_1():
     global pump_1_status_value
-
-    # Toggle the pump status
+    # Toggling pump status
     pump_1_status_value = 1 - pump_1_status_value
     print("should be changing pump 1 status to", pump_1_status_value)
-
     # Simulate turning the pump on or off
     if pump_1_status_value == 1:
-        # Simulate turning the pump on
-        time.sleep(2)  # Simulate a delay for turning on the pump
+        time.sleep(2)  
         pump_1_status_description = "Pump is On"
     else:
-        # Simulate turning the pump off
-        time.sleep(2)  # Simulate a delay for turning off the pump
+        time.sleep(2) 
         pump_1_status_description = "Pump is Off"
-
     return jsonify({'status': pump_1_status_value, 'description': pump_1_status_description})
-
 
 def toggle_pump_2():
     global pump_2_status_value
-
-    # Toggle the pump status
     pump_2_status_value = 1 - pump_2_status_value
     print("should be changing pump 2 status to", pump_2_status_value)
-
-    # Simulate turning the pump on or off
     if pump_2_status_value == 1:
-        # Simulate turning the pump on
-        time.sleep(2)  # Simulate a delay for turning on the pump
+        time.sleep(2) 
         pump_2_status_description = "Pump 2 is On"
     else:
-        # Simulate turning the pump off
-        time.sleep(2)  # Simulate a delay for turning off the pump
+        time.sleep(2) 
         pump_2_status_description = "Pump 2 is Off"
-
     return jsonify({'status': pump_2_status_value, 'description': pump_2_status_description})
-
 
 def toggle_pump_3():
     global pump_3_status_value
-
-    # Toggle the pump status
     pump_3_status_value = 1 - pump_3_status_value
     print("should be changing pump 3 status to", pump_3_status_value)
-
-    # Simulate turning the pump on or off
     if pump_3_status_value == 1:
-        # Simulate turning the pump on
-        time.sleep(2)  # Simulate a delay for turning on the pump
+        time.sleep(2)  
         pump_3_status_description = "Pump is On"
     else:
-        # Simulate turning the pump off
-        time.sleep(2)  # Simulate a delay for turning off the pump
+        time.sleep(2)  
         pump_3_status_description = "Pump is Off"
-
     return jsonify({'status': pump_3_status_value, 'description': pump_3_status_description})
 
 
 def toggle_pump_4():
     global pump_4_status_value
-
-    # Toggle the pump status
     pump_4_status_value = 1 - pump_4_status_value
     print("should be changing pump 4 status to", pump_4_status_value)
-
-    # Simulate turning the pump on or off
     if pump_4_status_value == 1:
-        # Simulate turning the pump on
-        time.sleep(2)  # Simulate a delay for turning on the pump
+        time.sleep(2) 
         pump_4_status_description = "Pump 4 is On"
     else:
-        # Simulate turning the pump off
-        time.sleep(2)  # Simulate a delay for turning off the pump
+        time.sleep(2) 
         pump_4_status_description = "Pump 4 is Off"
-
     return jsonify({'status': pump_4_status_value, 'description': pump_4_status_description})
 
 
 def toggle_pump_5():
     global pump_5_status_value
-
-    # Toggle the pump status
     pump_5_status_value = 1 - pump_5_status_value
     print("should be changing pump 5 status to", pump_5_status_value)
-
-    # Simulate turning the pump on or off
     if pump_5_status_value == 1:
-        # Simulate turning the pump on
-        time.sleep(2)  # Simulate a delay for turning on the pump
+        time.sleep(2)  
         pump_5_status_description = "Pump 5 is On"
     else:
-        # Simulate turning the pump off
-        time.sleep(2)  # Simulate a delay for turning off the pump
+        time.sleep(2)
         pump_5_status_description = "Pump 5 is Off"
-
     return jsonify({'status': pump_5_status_value, 'description': pump_5_status_description})
-
-
 
 pump_1_status_description = ''
 pump_2_status_description = ''
@@ -215,33 +175,32 @@ def randomize_alarm_status():
     global pump1alarmdescriptions
     
     if pump_1_status_value == 0 and not pump_1_status_description:
-        pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Inlet Fault', 'Communication Loss', 'Pump Fault'])
         pump1alarmtimestamp.append(datetime.datetime.now())
         pump1alarmdescriptions.append(pump_1_status_description)
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
     if pump_2_status_value == 0 and not pump_2_status_description:
-        pump_2_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump_2_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
         pump2alarmtimestamp.append(datetime.datetime.now())
     elif pump_2_status_value == 1:
         pump_2_status_description = ''
     if pump_3_status_value == 0 and not pump_3_status_description:
-        pump_3_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump_3_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
         pump3alarmtimestamp.append(datetime.datetime.now())
     elif pump_3_status_value == 1:
         pump_3_status_description = ''
     if pump_4_status_value == 0 and not pump_4_status_description:
-        pump_4_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump_4_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
         pump4alarmtimestamp.append(datetime.datetime.now())
     elif pump_4_status_value == 1:
         pump_4_status_description = ''
     if pump_5_status_value == 0 and not pump_5_status_description:
-        pump_5_status_description = random.choice(['High Pressure', 'Low Pressure', 'Alarm'])
+        pump_5_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
         pump5alarmtimestamp.append(datetime.datetime.now())
     elif pump_5_status_value == 1:
         pump_5_status_description = ''
     return pump_1_status_description, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_value, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description, pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp
-
 
 def read_alarm_tags_all_pumps(tag_names):
     try:
@@ -271,10 +230,6 @@ def update_circle_color():
     pump_4_status_description = pump_1_statuses_value[8]
     pump_5_status_description = pump_1_statuses_value[9]
     try:
-        
-        # Simulate reading tag values
-        
-        
         # Update circle colors based on simulated tag values
         if pump_1_status_value == 1:
             circle_colors['pump1color'] = 'green'              
@@ -284,26 +239,22 @@ def update_circle_color():
             circle_colors['pump2color'] = 'green'
         elif pump_2_status_value == 0:
             circle_colors['pump2color'] = 'red'
-            
         if pump_3_status_value == 1:
             circle_colors['pump3color'] = 'green'
         elif pump_3_status_value == 0:
             circle_colors['pump3color'] = 'red'
-            
         if pump_4_status_value == 1:
             circle_colors['pump4color'] = 'green'
         elif pump_4_status_value == 0:
             circle_colors['pump4color'] = 'red'
-            
         if pump_5_status_value == 1:
             circle_colors['pump5color'] = 'green'
         elif pump_5_status_value == 0:
             circle_colors['pump5color'] = 'red'
-            
         time.sleep(1)
         print("Returning pump statuses")
         return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_description, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description
-        
+
     except Exception as e:
         print(f"An error occurred: {e}")
         return None

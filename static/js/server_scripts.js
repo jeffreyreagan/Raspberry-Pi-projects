@@ -110,6 +110,12 @@ $(document).ready(function() {
 
 });
 
+function simulatealarms() {
+    fetch('/simulate_alarms');
+    
+
+}
+
 function animateCircle1(angle1) {
     // Calculate the new position of the smaller circle
     const centerX = 160; // x-coordinate of the center of the larger circle
@@ -498,15 +504,43 @@ function renderChart() {
                 labels: [], // Labels for x-axis (time)
                 datasets: [
                     {
-                        label: 'Average Vacuum',
+                        label: 'Process Vacuum',
                         data: [], // Data points for average vacuum
                         fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
+                        borderColor: 'rgb(255, 0, 0)',
                         tension: 0.1
                     }
                 ]
             },
             options: {
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 20,
+                        bottom: 10
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'psi' // Label for y-axis
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        fontSize: 16 // Adjust the font size of the dataset label
+                    }
+                },
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Process Vacuum',
+                      font: {size: 30} // Adjust the font size of the chart title
+                    }
+                  }
                 // Chart options (e.g., scales, tooltips, etc.)
                 // See Chart.js documentation for available options
             }
@@ -563,8 +597,17 @@ function openAlarmHistory(modalId) {
     var modal = document.getElementById(modalId);
     modal.style.display = "block";
     
+    // Define the endpoint based on the modalId
+    var endpoint = '';
+    if (modalId === 'pump1alarm') {
+        endpoint = '/get_pump_1_alarm_history';
+    } else if (modalId === 'pump2alarm') {
+        endpoint = '/get_pump_2_alarm_history';
+    }
+    // Add more conditions for other modals if needed
+
     // Fetch alarm data from the server
-    fetch('/get_pump_1_alarm_history')
+    fetch(endpoint)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -580,9 +623,9 @@ function openAlarmHistory(modalId) {
                 for (var i = 0; i < data.timestamps.length; i++) {
                     content += data.timestamps[i] + ": " + data.descriptions[i] + "<br>";
                 }
-                // Update the content of the pump1alarmtimestamps <p> element with the fetched data
-                var pump1alarmtimestamps = document.getElementById("pump1alarmtimestamps");
-                pump1alarmtimestamps.innerHTML = content;
+                // Update the content of the timestamps element inside the specified modal
+                var timestampsElement = document.getElementById(modalId + "timestamps");
+                timestampsElement.innerHTML = content;
             } else {
                 console.error('Invalid data structure');
             }
@@ -591,7 +634,6 @@ function openAlarmHistory(modalId) {
             console.error('Error fetching alarm data:', error);
         });
 }
-
 // Function to close the modal
 function closeAlarmHistory(modalId) {
     var modal = document.getElementById(modalId);

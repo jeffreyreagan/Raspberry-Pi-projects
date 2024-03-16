@@ -10,7 +10,7 @@ import requests
 import time
 from pylogix import PLC
 import random
-from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
+from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump2alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 
 app = Flask(__name__)
 app.register_blueprint(main_bp)
@@ -93,11 +93,20 @@ pump3stat = ''
 pump4stat = ''
 pump5stat = ''
 
+storedpsip1 = ''
+
+
 def simulate_plc_data():
     # Simulate pump vacuum data
-    pump_vacuum_data = [random.randint(1, 100) for _ in range(5)]
-    # Simulate separator pressure data
-    separator_pressure_data = [random.uniform(0, 10) for _ in range(5)]
+    global storedpsip1
+    if storedpsip1 == '':
+        pump_vacuum_data = [random.randint(-5, -1) for _ in range(5)]
+        storedpsip1 = pump_vacuum_data[1]
+    else:
+        pump_vacuum_data = [random.randint(-35, -8) for _ in range(5)]
+        storedpsip1 = pump_vacuum_data[1]
+    # Simulate separator pressure data, rounded two places
+    separator_pressure_data = [round(random.uniform(1, 6), 2) for _ in range(5)]
     return pump_vacuum_data, separator_pressure_data
 
 # Routes for pump 1
@@ -346,6 +355,17 @@ def get_pump_1_alarm_history():
     data = {
         "timestamps": pump1alarmtimestamp,
         "descriptions": pump1alarmdescriptions
+    }
+    return jsonify(data)
+
+@app.route('/get_pump_2_alarm_history', methods=['GET'])
+def get_pump_2_alarm_history():
+    global pump2alarmtimestamp
+    global pump2alarmdescriptions
+    print(pump2alarmtimestamp,"pump2alarmtimestamp")
+    data = {
+        "timestamps": pump2alarmtimestamp,
+        "descriptions": pump2alarmdescriptions
     }
     return jsonify(data)
 if __name__ == '__main__':

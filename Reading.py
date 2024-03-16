@@ -69,13 +69,19 @@ def read_plc_tag():
                     print(f"An error occurred: {e}")
 import random
 
+
+# 0 is begginning state, just stopped. 1 is run, 2 is alarm triggered. 
 pump_1_status_value = 0
 pump_2_status_value = 0
 pump_3_status_value = 0
 pump_4_status_value = 0
 pump_5_status_value = 0
 
-
+'''def simulate_alarms_p1():
+    global pump_1_status_value
+    pump_1_status_value = 2
+    return pump_1_status_value
+'''
 
 def toggle_pump_1():
     global pump_1_status_value
@@ -154,6 +160,7 @@ pump4alarmtimestamp = []
 pump5alarmtimestamp = []
 
 pump1alarmdescriptions = []
+pump2alarmdescriptions = []
 
 def randomize_alarm_status():
     time.sleep(5)
@@ -173,30 +180,32 @@ def randomize_alarm_status():
     global pump4alarmtimestamp
     global pump5alarmtimestamp
     global pump1alarmdescriptions
+    global pump2alarmdescriptions
     
     if pump_1_status_value == 0 and not pump_1_status_description:
-        pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Inlet Fault', 'Communication Loss', 'Pump Fault'])
+        pump_1_status_description = random.choice(['High Pressure', 'Low Pressure', 'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump1alarmtimestamp.append(datetime.datetime.now())
         pump1alarmdescriptions.append(pump_1_status_description)
     elif pump_1_status_value == 1:
         pump_1_status_description = ''
     if pump_2_status_value == 0 and not pump_2_status_description:
-        pump_2_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
+        pump_2_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump2alarmtimestamp.append(datetime.datetime.now())
+        pump2alarmdescriptions.append(pump_2_status_description)
     elif pump_2_status_value == 1:
         pump_2_status_description = ''
     if pump_3_status_value == 0 and not pump_3_status_description:
-        pump_3_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
+        pump_3_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump3alarmtimestamp.append(datetime.datetime.now())
     elif pump_3_status_value == 1:
         pump_3_status_description = ''
     if pump_4_status_value == 0 and not pump_4_status_description:
-        pump_4_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
+        pump_4_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump4alarmtimestamp.append(datetime.datetime.now())
     elif pump_4_status_value == 1:
         pump_4_status_description = ''
     if pump_5_status_value == 0 and not pump_5_status_description:
-        pump_5_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump Fault'])
+        pump_5_status_description = random.choice(['High Pressure', 'Low Pressure',  'Inlet Fault', 'Communication Loss', 'Pump VFD Fault'])
         pump5alarmtimestamp.append(datetime.datetime.now())
     elif pump_5_status_value == 1:
         pump_5_status_description = ''

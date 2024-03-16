@@ -42,8 +42,9 @@
         <section class="content">
             <h2>Introduction</h2>
                 <p>Here I share insights into my professional journey within industrial automation, with a particular focus on Programmable Logic Controllers (PLCs), Human-Machine Interfaces (HMIs), and Supervisory Control and Data Acquisition (SCADA) systems.</p>
-                <p>My journey began at Alfred State, where I pursued and successfully completed an Associate's degree in Electrical Construction and Maintenance. This foundational education provided me with a comprehensive understanding of electrical engineering principles and methodologies, setting the stage for a career filled with innovation.</p>
-                <p>Transitioning from traditional relay logic systems to modern Programmable Logic Controllers (PLCs) was a turning point for my career. PLCs provided unparalleled flexibility and efficiency, simplifying control logic design and enabling rapid adjustments without extensive rewiring. Their modular design and user-friendly interfaces facilitated iterative development and real-time adjustments, in turn allowing innovation and adaptability. </p>
+                <p>My journey began at Alfred State, where I pursued and successfully completed an Associate's degree in Electrical Construction and Maintenance. It was here I found a passion for programming and automation. </p>
+                <p>Transitioning from traditional relay logic systems to modern Programmable Logic Controllers (PLCs) was a turning point early in my career. PLCs provide unparalleled flexibility and efficiency, simplifying control logic design and enabling rapid adjustments without extensive rewiring. </p>
+                <p>Along with PLCs, improved methods of monitoring and controlling processes were developed. Human machine Interfaces(HMIs) became common on the production floor. These interfaces communicate with the PLC and display realtime data, alarm history, input/output states, control parameters, and user-friendly representations of the machine. </p>
                 <p>PLCs facilitate seamless integration with robust industrial components, enabling efficient communication and coordination between different systems. These industrial computers hold and execute the program that controls the field devices(motors, pumps, solenoids) by interfacing directly with the field devices or indirectly through RIO(remote controllers typically held near field devices), VFDs(Variable Frequency Drives),Servo Drives,soft starts, and any other inputs/outputs conventional relay logic would allow.</p>
             <h2>Projects</h2>
                 <h3>Real-time Monitoring and Control Interface for Vacuum Pump Systems</h3>
@@ -67,8 +68,8 @@
                     <h1 style="color: green;">Vacuum Pump UI</h1>
                     </body>
                     <div class="svg-container">
-                    <p>Vacuum at Pump 1: <span id="pump1vacuum"></span> </p>
-                    <p>Seperator Pressure <span id="seperator1_psi"></span></p>
+                    <p>Vacuum at Pump 1: <span id="pump1vacuum"></span> psi</p>
+                    <p>Seperator Pressure <span id="seperator1_psi"></span> psi</p>
                     <p>Alarm: <span id="pump1alarmstatus"></span> Description:<span id="pump1_active_alarms"></span></p>
                     <svg width="250" height="225">
                     <!--Inlet Filter-->
@@ -108,14 +109,14 @@
                     </svg>
                     <h1>Pump 1 Control</h1>
                     <button id="togglePump1Button">Toggle Pump 1</button>
-                    <button id="alarmhistorypump1Button" onclick="openAlarmHistory('modalAlarmHistoryPump1')">Open Alarm History for Pump 1</button>
+                    <button id="alarmhistorypump1Button" onclick="openAlarmHistory('pump1alarm')">Open Alarm History for Pump 1</button>
 
 <!-- The Modal -->
-                        <div id="modalAlarmHistoryPump1" class="modal">
+                        <div id="pump1alarm" class="modal">
 
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <span class="close" onclick="closeAlarmHistory('modalAlarmHistoryPump1')">&times;</span>
+                            <span class="close" onclick="closeAlarmHistory('pump1alarm')">&times;</span>
                             <h2>Alarm History for Pump 1</h2>
                             <p id="pump1alarmtimestamps"></p>
                         </div>
@@ -169,6 +170,17 @@
                         </svg>
                         <h1>Pump 2 Control</h1>
                         <button id="togglePump2Button">Toggle Pump 2</button>
+                        <button id="alarmhistorypump2Button" onclick="openAlarmHistory('pump2alarm')">Open Alarm History for Pump 2</button>
+                        <div id="pump2alarm" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close" onclick="closeAlarmHistory('pump2alarm')">&times;</span>
+                                <h2>Alarm History for Pump 2</h2>
+                                <p id="pump2alarmtimestamps"></p>
+                            </div>
+    
+                            </div>
                     </div>
                     <div class="svg-container">
                         <p>Vacuum at Pump 3: <span id="pump3vacuum"></span> </p>

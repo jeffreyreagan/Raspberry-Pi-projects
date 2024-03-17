@@ -110,12 +110,21 @@ h3 {
 #scada1 {
   border: solid;
   background-color: #aaa;
-  width: 90%;
+  width: max-content;
+  height: max-content;
 }
 #vacuumchillerplchtml {
   display: block;
   width: fit-content;
   margin-left: 20px;
+}
+.chart {
+  width: 80%;
+  height: 50%;
+}
+#liveGraph {
+  width: 80%;
+  height: fit-content;
 }
 .scadadata {
   font-size: small;
@@ -245,10 +254,7 @@ img {
     height: 200px;
   }
 
-  #liveGraph {
-    width: 2155px;
-    height: 400px;
-  }
+  
 
 .navbar-nav1 {
   opacity: 1;

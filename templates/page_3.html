@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.0.0/luxon.min.js"></script>
+    
+    <header>
+        <div class="nav-home">
+            <nav>
+                <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+                <div class="navbar-nav">
+                    <ol class="navbar-nav1">
+                        <li><a href="index.html" style="text-decoration: none;">Home</a></li>
+                        <li><a href="page_2.html" style="text-decoration:none">PLC/HMI/SCADA programming and design</a></li>
+                        <li><a href="page_3.html" style="text-decoration:none">Python web development</a></li>
+                        <li><a href="page_4.html" style="text-decoration:none">News in Automation</a></li>
+                        <li><a href="page_5.html" style="text-decoration:none">Robotics</a></li>
+                        <li><a href="page_6.html" style="text-decoration:none">Hobbies</a></li>
+                        <li><a href="page_7.html" style="text-decoration:none">Contact Me</a></li>
+                    </ol>
+                </div>
+            </nav>
+        </div>
     <h1>This is Page 3!
     </h1>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <h1>Test for page 2 Button</h1>
     <button id="page_2_button" onclick="changePage_2()"> Go to Page 2 </button>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
     <button id="home_button" onclick="changePage_home()">Go home Button</button>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+
 
 
 </body>

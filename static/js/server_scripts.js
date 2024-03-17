@@ -704,7 +704,7 @@ function renderChart() {
                     title: {
                       display: true,
                       text: 'Process Vacuum',
-                      font: {size: 30} // Adjust the font size of the chart title
+                      font: {size: 10} // Adjust the font size of the chart title
                     }
                   }
                 // Chart options (e.g., scales, tooltips, etc.)

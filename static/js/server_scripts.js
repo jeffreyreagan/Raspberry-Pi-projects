@@ -643,6 +643,9 @@ function fetchGraphDataFromServer() {
         });
 }
 
+
+
+
 // Function to render or update the chart
 function renderChart() {
     // Update the Chart.js chart with the average vacuum value
@@ -693,7 +696,8 @@ function renderChart() {
                 },
                 legend: {
                     labels: {
-                        fontSize: 16 // Adjust the font size of the dataset label
+                        fontSize: 16,
+                        font: {size:16} // Adjust the font size of the dataset label
                     }
                 },
                 plugins: {

@@ -123,8 +123,9 @@ h3 {
   height: 50%;
 }
 #liveGraph {
-  width: 80%;
+  width: 100%;
   height: fit-content;
+  margin-left: 18rem;
 }
 .scadadata {
   font-size: small;
@@ -136,10 +137,13 @@ h2 {
     font-family: fantasy;
     font-variant-caps: petite-caps;
     font-size: xxx-large;
+    
+}
+
+.stick {
     position: sticky;
     top: 55px;
 }
-
 #welcome {
     color: red;
     text-align: center;
@@ -310,8 +314,10 @@ img {
 
 .svg-container {
   border: dotted;
-  border-color: black;
+  border-color: rgb(180,8,8);
   width: 300px;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 

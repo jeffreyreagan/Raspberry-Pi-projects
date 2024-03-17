@@ -156,7 +156,7 @@ pump4alarmdescriptions = []
 pump5alarmdescriptions = []
 
 def randomize_alarm_status():
-    time.sleep(5)
+    
     global pump_1_status_value
     global pump_2_status_value
     global pump_3_status_value
@@ -256,7 +256,6 @@ def update_circle_color():
             circle_colors['pump5color'] = 'green'
         elif pump_5_status_value == 0:
             circle_colors['pump5color'] = 'red'
-        time.sleep(1)
         print("Returning pump statuses")
         return circle_colors, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_status_description, pump_2_status_description, pump_3_status_description, pump_4_status_description, pump_5_status_description
 

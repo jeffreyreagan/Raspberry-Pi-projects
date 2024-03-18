@@ -96,34 +96,35 @@ const content = document.getElementById('content');
     var step; // Step value to be defined based on the device type
     
     // Function to animate the envelope's movement
-    function animateEnvelope() {
-        // Calculate the width of the window
-        var windowWidth = window.innerWidth;
-    
-        // Calculate the new position based on the direction and window width
-        var newPosition = currentPosition + direction * step * (windowWidth / 700); // 700 is the total width including margins
-    
-        // Check if the envelope has reached the right edge of the computer
-        if (newPosition >= windowWidth - 250 && direction === 1) {
-            popup.style.display = 'none';
-            direction = -1; // Change direction to move left
-        }
-    
-        // Check if the envelope has reached the left edge of the raspi
-        if (newPosition <= 0 && direction === -1) {
-            direction = 1;
-            popup.style.display = 'block'; // Change direction to move right
-            generateContent(); // Update content when the envelope reaches the left edge
-        }
-    
-        // Update the position of the envelope
-        currentPosition = newPosition;
-        envelope.style.marginLeft = currentPosition + "px";
-    
-        // Call animateEnvelope recursively to create continuous animation
-        requestAnimationFrame(animateEnvelope);
+
+function animateEnvelope() {
+    // Calculate the width of the viewport
+    var windowWidth = document.documentElement.clientWidth;
+    console.log('viewport width: ' + windowWidth);
+
+    // Calculate the new position based on the direction and window width
+    var newPosition = currentPosition + direction * step * (windowWidth / 700); // 700 is the total width including margins
+
+    // Check if the envelope has reached the right edge of the computer
+    if (newPosition >= windowWidth + 1050 && direction === 1) {
+        popup.style.display = 'none';
+        direction = -1; // Change direction to move left
     }
-    
+
+    // Check if the envelope has reached the left edge of the raspi
+    if (newPosition <= 0 && direction === -1) {
+        direction = 1;
+        popup.style.display = 'block'; // Change direction to move right
+        generateContent(); // Update content when the envelope reaches the left edge
+    }
+
+    // Update the position of the envelope
+    currentPosition = newPosition;
+    envelope.style.marginLeft = currentPosition + "px";
+
+    // Call animateEnvelope recursively to create continuous animation
+    requestAnimationFrame(animateEnvelope);
+}
     let intervalId;
     function generateContent() {
         clearInterval(intervalId);

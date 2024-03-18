@@ -340,6 +340,12 @@ img {
   background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value to control transparency */
 }
 @media (max-width: 1640px) {
+html {
+  zoom: .25;
+}
+body {
+  width: fit-content;
+}
 .navbar-nav {
   display: none;
 }
@@ -349,12 +355,24 @@ img {
     font-size: 20pt;
     opacity: .8;
 }
+
+.welcome {
+  width: 90%;
+}
   #raspi {
-    right: 0px;
     border: none;
-    position: absolute;
-    padding-bottom: 0px;
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 5%;
+    padding-right: 200px;
   
+  }
+  #envelope1 {
+    display: inline-block;
+  }
+  #computer {
+    display: inline-block;
   }
   #serverip {
     font-size: 10pt;

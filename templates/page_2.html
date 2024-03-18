@@ -111,9 +111,26 @@
                         <text x="25" y="95" fill="black">Exhaust</text>
                     </svg>
                     <h1>Pump 1 Control</h1>
+
+                    
+                    <div id="pump1data" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close" onclick="closeAlarmHistory('pump1data')">&times;</span>
+                            <script scr="/static/js/temp.js"></script>
+                            <h3>Data for Pump 1</h3>
+                            <p id="pump1datatimestamps" class="historymodalcontents"></p>
+                        </div>
+                    </div>
+
+
+                    <button id="datahistorypump1Button" onclick="openpumpdata('pump1data')">Data Pump 1</button>
+                    <script src="{{ url_for('static', filename='js/temp.js') }}"></script>
+
                     <button id="togglePump1Button">Toggle Pump 1</button>
                     <button id="alarmhistorypump1Button" onclick="openAlarmHistory('pump1alarm')">Alarm History Pump 1</button>
-
+                    
 <!-- The Modal -->
                         <div id="pump1alarm" class="modal">
 

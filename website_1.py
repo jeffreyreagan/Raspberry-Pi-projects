@@ -313,6 +313,13 @@ def check_animation_status():
     return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions, pump_2_alarm_desciptions, pump_3_alarm_desciptions, pump_4_alarm_desciptions, pump_5_alarm_desciptions)
 
 import json
+
+
+
+
+
+
+
 @app.route('/get_graph_data', methods=['GET'])
 def get_graph_data():
     try:
@@ -346,6 +353,32 @@ def save_graph_data():
     except Exception as e:
         print('Error saving graph data:', e)
         return jsonify(error='Error saving graph data'), 500
+    
+
+pump1currentdata = ['5','10','15']
+pump1frequencydata = ['50','60','70']
+pump1voltagedata = ['230','240','220']
+pump1wattagedata = ['500','550','600']
+pump1timestamp = []
+
+@app.route('/get_pump1_monitordata', methods=['GET'])
+def get_pump1_monitordata():
+    global pump1currentdata
+    global pump1frequencydata
+    global pump1voltagedata
+    global pump1wattagedata
+    global pump1alarmtimestamp
+    data = {
+        "timestamp": pump1alarmtimestamp,
+        "current": pump1currentdata,
+        "frequency": pump1frequencydata,
+        "voltage": pump1voltagedata,
+        "wattage": pump1wattagedata
+    }
+    print(data)
+    return jsonify(data)
+
+
 
 @app.route('/get_pump_1_alarm_history', methods=['GET'])
 def get_pump_1_alarm_history():

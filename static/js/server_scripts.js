@@ -402,17 +402,7 @@ animation_state_p5 = [];
 
 
 
-let vacuumData = []; // Array to store vacuum data from each pump
-let chart; // Variable to store the Chart.js chart instance
 
-// Function to calculate the average vacuum
-function calculateAverage() {
-    let sum = 0;
-    vacuumData.forEach((vacuum) => {
-        sum += vacuum;
-    });
-    return sum ;
-}
 
 // Function to fetch data from JavaScript variables 
 function fetchPumpVacuumData() {
@@ -617,7 +607,17 @@ function openpump5valve() {
 
 
 
+let vacuumData = []; // Array to store vacuum data from each pump
+let chart; // Variable to store the Chart.js chart instance
 
+// Function to calculate the average vacuum
+function calculateAverage() {
+    let sum = 0;
+    vacuumData.forEach((vacuum) => {
+        sum += vacuum;
+    });
+    return sum ;
+}
 
 
 function fetchGraphDataFromServer() {

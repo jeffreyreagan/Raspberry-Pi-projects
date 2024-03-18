@@ -102,11 +102,14 @@ function animateEnvelope() {
     var windowWidth = document.documentElement.clientWidth;
     console.log('viewport width: ' + windowWidth);
 
+    var raspiElement = document.getElementById('raspi');
+    var raspiPosition = raspiElement.getBoundingClientRect().left;
+
     // Calculate the new position based on the direction and window width
     var newPosition = currentPosition + direction * step * (windowWidth / 700); // 700 is the total width including margins
 
     // Check if the envelope has reached the right edge of the computer
-    if (newPosition >= windowWidth + 1050 && direction === 1) {
+    if (newPosition >= raspiPosition -200 && direction === 1) {
         popup.style.display = 'none';
         direction = -1; // Change direction to move left
     }
@@ -154,10 +157,10 @@ function animateEnvelope() {
     // Check if it's a mobile device or desktop and set the appropriate step value
     if (/Mobi/.test(navigator.userAgent)) {
         // Mobile device detected
-        step = 5; // Adjust step value for mobile
+        step = 9; // Adjust step value for mobile
     } else {
         // Desktop device detected
-        step = 1; // Adjust step value for desktop
+        step = 3; // Adjust step value for desktop
     }
     
     // Start the animation

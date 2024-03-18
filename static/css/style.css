@@ -321,7 +321,7 @@ img {
 }
 
 
-@media (min-width: 1640px) {
+@media (min-width: 1775px) {
 
 
     .navbar-toggler {
@@ -339,7 +339,7 @@ img {
 .transparent-background {
   background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value to control transparency */
 }
-@media (max-width: 1640px) {
+@media (max-width: 1775px) {
 html {
   zoom: .25;
 }

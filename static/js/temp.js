@@ -27,7 +27,7 @@ function openpumpdata(modalId) {
     // Update the chart every second
     setInterval(function() {
         fetchAndUpdateChart(endpoint);
-    }, 1000);
+    }, 5000);
 }
 
 // Function to fetch pump data from the server and update the chart

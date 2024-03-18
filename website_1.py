@@ -373,23 +373,17 @@ def update_pump_data():
     global pump1voltagedata
     global pump1wattagedata
     global pumpmastertimestamp  # Renamed variable
-    
-    while True:
         # Your code to update pump data here
-        pumpmastertimestamp.append(random.randint(1, 10))
-        pump1currentdata.append(random.randint(1, 10))
-        pump1frequencydata.append(random.randint(1, 10))
-        pump1voltagedata.append(random.randint(1, 10))
-        pump1wattagedata.append(random.randint(1, 10))
+    pumpmastertimestamp.append(datetime.datetime.now())
+    pump1currentdata.append(random.randint(1, 10))
+    pump1frequencydata.append(random.randint(1, 10))
+    pump1voltagedata.append(random.randint(1, 10))
+    pump1wattagedata.append(random.randint(1, 10))
         # Sleep for 1 second before updating again
-        time.sleep(1)
-
-# Start the polling thread
-polling_thread = threading.Thread(target=update_pump_data)
-polling_thread.start()
-
+       
 @app.route('/get_pump_1_monitordata', methods=['GET'])
 def get_pump_1_monitordata():
+    update_pump_data()
     global pump1currentdata
     global pump1frequencydata
     global pump1voltagedata

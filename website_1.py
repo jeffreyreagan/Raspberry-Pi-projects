@@ -355,21 +355,48 @@ def save_graph_data():
         return jsonify(error='Error saving graph data'), 500
     
 
-pump1currentdata = ['5','10','15']
-pump1frequencydata = ['50','60','70']
-pump1voltagedata = ['230','240','220']
-pump1wattagedata = ['500','550','600']
+pump1currentdata = []
+pump1frequencydata = []
+pump1voltagedata = []
+pump1wattagedata = []
 pump1timestamp = []
 
-@app.route('/get_pump1_monitordata', methods=['GET'])
-def get_pump1_monitordata():
+import threading
+import time
+
+pumpmastertimestamp = []  # Renamed variable
+
+# Function to update pump data in a separate thread
+def update_pump_data():
     global pump1currentdata
     global pump1frequencydata
     global pump1voltagedata
     global pump1wattagedata
-    global pump1alarmtimestamp
+    global pumpmastertimestamp  # Renamed variable
+    
+    while True:
+        # Your code to update pump data here
+        pumpmastertimestamp.append(random.randint(1, 10))
+        pump1currentdata.append(random.randint(1, 10))
+        pump1frequencydata.append(random.randint(1, 10))
+        pump1voltagedata.append(random.randint(1, 10))
+        pump1wattagedata.append(random.randint(1, 10))
+        # Sleep for 1 second before updating again
+        time.sleep(1)
+
+# Start the polling thread
+polling_thread = threading.Thread(target=update_pump_data)
+polling_thread.start()
+
+@app.route('/get_pump_1_monitordata', methods=['GET'])
+def get_pump_1_monitordata():
+    global pump1currentdata
+    global pump1frequencydata
+    global pump1voltagedata
+    global pump1wattagedata
+    global pumpmastertimestamp  # Renamed variable
     data = {
-        "timestamp": pump1alarmtimestamp,
+        "timestamps": pumpmastertimestamp,  # Renamed variable
         "current": pump1currentdata,
         "frequency": pump1frequencydata,
         "voltage": pump1voltagedata,

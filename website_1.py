@@ -375,10 +375,10 @@ def update_pump_data():
     global pumpmastertimestamp  # Renamed variable
         # Your code to update pump data here
     pumpmastertimestamp.append(datetime.datetime.now())
-    pump1currentdata.append(random.randint(1, 10))
-    pump1frequencydata.append(random.randint(1, 10))
-    pump1voltagedata.append(random.randint(1, 10))
-    pump1wattagedata.append(random.randint(1, 10))
+    pump1currentdata.append(random.randint(1, 8))
+    pump1frequencydata.append(random.randint(0, 60))
+    pump1voltagedata.append(random.randint(477, 484))
+    pump1wattagedata.append(random.randint(5, 10))
         # Sleep for 1 second before updating again
        
 @app.route('/get_pump_1_monitordata', methods=['GET'])

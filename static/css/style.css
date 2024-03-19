@@ -282,7 +282,7 @@ img {
     margin: 5% auto; /* 5% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
 }
 #alarmhistorypump1Button {
   width: 50%;
@@ -319,7 +319,10 @@ img {
   padding: 10px;
   border-radius: 20px;
 }
-
+#pumpChart {
+  width: 100% !important;
+  height: 100% !important;
+}
 
 @media (min-width: 1775px) {
 
@@ -341,7 +344,7 @@ img {
 }
 @media (max-width: 1775px) {
 html {
-  zoom: .25;
+  zoom: .35;
 }
 body {
   width: fit-content;
@@ -383,5 +386,14 @@ body {
     display: inline-block;
     font-size: 10pt;
     left:0px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  /* CSS styles for screens less than 500px wide */
+  /* Add your styles here */
+  html {
+    zoom: .25;
   }
 }

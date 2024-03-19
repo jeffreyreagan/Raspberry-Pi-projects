@@ -1,6 +1,11 @@
 // Define global variable for Chart.js instance
 var pumpChart;
-
+var ctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = new Chart(ctx).Line(lineChartData, {
+        responsive: true,
+        showTooltips: true,
+        multiTooltipTemplate: "<%= value %>",
+    });
 // Function to open the modal and start updating the chart
 function openpumpdata(modalId) {
     console.log('Opening pump data modal');
@@ -92,6 +97,11 @@ function updateChart(timestamps, current, frequency, voltage, wattage) {
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        enabled: true
                     }
                 }
             }

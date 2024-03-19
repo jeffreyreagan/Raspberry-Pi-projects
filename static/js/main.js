@@ -73,7 +73,7 @@ const content = document.getElementById('content');
             document.getElementById('time').innerText = data.time;
             document.getElementById('temperature').innerText = data.temperature;
         })
-        .catch(error => console.error('Error fetching data:', error));
+       
         
         fetch('/api/server_ip')
     .then(response => response.json()) // Parse JSON response

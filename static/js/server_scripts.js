@@ -709,7 +709,7 @@ function renderChart() {
                     tooltip: {
                         enabled: true,
                     }
-                  }
+                },
                 // Chart options (e.g., scales, tooltips, etc.)
                 // See Chart.js documentation for available options
             }

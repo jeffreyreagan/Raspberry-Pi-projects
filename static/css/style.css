@@ -1,6 +1,6 @@
 
 li {
-  font-family: cursive;
+  
   font-size: x-large;
 }
 
@@ -156,7 +156,7 @@ h2 {
 
 p {
     color: black;
-    font-family: cursive;
+    
     font-size: x-large;
 }
 
@@ -393,7 +393,13 @@ body {
 @media (max-width: 500px) {
   /* CSS styles for screens less than 500px wide */
   /* Add your styles here */
-  html {
-    zoom: .25;
-  }
+#vacuumchillerplchtml {
+  height: min-content;
+}
+#scada1 {
+  width: 100%;
+}
+.svg-container{
+  width: 300px;
+}
 }

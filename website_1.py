@@ -366,6 +366,12 @@ import time
 
 pumpmastertimestamp = []  # Renamed variable
 
+
+
+
+
+
+
 # Function to update pump data in a separate thread
 def update_pump_data():
     global pump1currentdata

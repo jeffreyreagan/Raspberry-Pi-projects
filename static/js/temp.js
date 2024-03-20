@@ -129,6 +129,7 @@ function updateChart(timestamps, current, frequency, voltage, wattage) {
 function closeAlarmHistory(modalId) {
     var modal = document.getElementById(modalId);
     modal.style.display = "none";
+    clearInterval(fetchAndUpdateChart)
 }
 
 // Close the modal when clicking outside of it
@@ -139,5 +140,158 @@ window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var pumptotalChart;
+var cctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = new Chart(cctx).Line(lineChartData, {
+        responsive: true,
+        showTooltips: true,
+        multiTooltipTemplate: "<%= value %>",
+    });
+// Function to open the modal and start updating the chart
+function openaveragepumpdata(modalId) {
+    console.log('Opening pump average data modal');
+    var cmodal = document.getElementById(modalId);
+    cmodal.style.display = "block";
+    
+    // Define the endpoint based on the modalId
+    var cendpoint = '';
+    if (modalId === 'getdatapumps') {
+        cendpoint = '/get_data_pumps';
+    } else if (modalId === 'pump2data') {
+        cendpoint = '/get_pump_2_monitordata';
+    } else if (modalId === 'pump3data') {
+        cendpoint = '/get_pump_3_monitordata';
+    } else if (modalId === 'pump4data') {
+        cendpoint = '/get_pump_4_monitordata';
+    } else if (modalId === 'pump5data') {
+        cendpoint = '/get_pump_5_monitordata';
+    }
+
+    // Fetch pump data from the server and update the chart
+    fetchAndUpdateChart2(cendpoint);
+  
+    // Update the chart every second
+    setInterval(function() {
+        fetchAndUpdateChart2(cendpoint);
+    }, 3000);
+}
+
+// Function to fetch pump data from the server and update the chart
+function fetchAndUpdateChart2(cendpoint) {
+    fetch(cendpoint)
+        .then(response => {
+            if (response.ok) {
+                console.log(response)
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch alarm data');
+            }
+        })
+        .then(data => {
+            // Check if data contains all required properties
+            console.log(data)
+            if (data && data.timestamps && data.psip1 && data.psip2 && data.psip3 && data.psip4 && data.psip5) {
+                // Update the chart with new data
+                updateChart2(data.timestamps, data.psip1, data.psip2, data.psip3, data.psip4, data.psip5);
+            } else {
+                console.error('Invalid data structure');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching alarm data:', error);
+        });
+}
+
+function updateChart2(timestamps, psip1, psip2, psip3, psip4, psip5) {
+    // Ensure the Chart.js instance is created
+    if (!pumptotalChart) {
+        var cctx = document.getElementById('pumptotalChart').getContext('2d');
+        pumptotalChart = new Chart(cctx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                        label: 'psip1',
+                        data: psip1,
+                        borderColor: 'rgba(255, 200, 132, 1)',
+                        borderWidth: 1
+                    },{
+                        label: 'psip2',
+                        data: psip2,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },{
+                        label: 'psip3',
+                        data: psip3,
+                        borderColor: 'rgba(255, 199, 32, 1)',
+                        borderWidth: 1
+                    },{
+                        label: 'psip4',
+                        data: psip4,
+                        borderColor: 'rgba(255, 19, 132, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'psip5',
+                        data: psip5,
+                        borderColor: 'rgba(255, 199, 1, 11)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+    } else {
+        // Update the chart with new data
+        pumptotalChart.data.labels = timestamps;
+        pumptotalChart.data.datasets[0].data = psip1;
+        pumptotalChart.data.datasets[1].data = psip2;
+        pumptotalChart.data.datasets[2].data = psip3;
+        pumptotalChart.data.datasets[3].data = psip4;
+        pumptotalChart.data.datasets[4].data = psip5;
+
+
+        // Remove old data points if exceeding 10 labels
+        if (pumptotalChart.data.labels.length > 60) {
+            pumptotalChart.data.labels = pumptotalChart.data.labels.slice(-60);
+            pumptotalChart.data.datasets.forEach(dataset => {
+                dataset.data = dataset.data.slice(-60);
+            });
+        }
+
+        pumptotalChart.update();
     }
 }

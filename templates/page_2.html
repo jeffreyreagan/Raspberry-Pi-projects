@@ -3,6 +3,7 @@
     <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.0.0/luxon.min.js"></script>
+    <script src="{{ url_for('static', filename='js/temp_2.js') }}"></script>
     <meta name="viewport" content="width=400"/>
 
     </head>
@@ -124,6 +125,22 @@
                     
                     <button id="datahistorypump1Button" onclick="openpumpdata('pump1data')">Data Pump 1</button>
                     <script src="{{ url_for('static', filename='js/temp.js') }}"></script>
+                    
+
+                    <div id="getdatapumps" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close" onclick="closeAlarmHistory('getdatapumps')">&times;</span>
+                            <h3>Data for All Pumps</h3>
+                            <canvas id="pumptotalChart" width="400" height="400"></canvas> <!-- Canvas for Chart.js chart -->
+                        </div>
+                    </div>
+                    
+                    <button id="allpumpsButton" onclick="openaveragepumpdata('getdatapumps')">Data All Pumps</button>
+                    <script src="{{ url_for('static', filename='js/temp_2.js') }}"></script>
+
+
+
 
                     <button class="pushbutton"id="togglePump1Button">Toggle Pump 1</button>
                     <button id="alarmhistorypump1Button" onclick="openAlarmHistory('pump1alarm')">Alarm History Pump 1</button>
@@ -400,6 +417,26 @@
 
                 </div>
             </div>
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
                 <h3>Overview</h3>
                 <img id="ui_img" src="/static/images/UI.PNG" alt="UI" style="width:700px;height:250px;">
                     <p class="p">As part of my project portfolio, I developed a real-time monitoring and control interface using Flask—a lightweight web framework in Python. This application provides a user-friendly interface for monitoring and controlling vacuum pump systems in industrial settings. Leveraging Flask's flexibility and simplicity, I designed a responsive web UI that communicates with a Programmable Logic Controller (PLC) to fetch real-time data and control parameters of multiple vacuum pumps.</p>

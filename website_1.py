@@ -93,18 +93,28 @@ pump3stat = ''
 pump4stat = ''
 pump5stat = ''
 
-storedpsip1 = ''
+storedpsip1 = []
+storedpsip2 = []
+storedpsip3 = []
+storedpsip4 = []
+storedpsip5 = []
+storedtime = []
 
 
+
+
+@app.route('/simulate_plc_data')
 def simulate_plc_data():
     # Simulate pump vacuum data
     global storedpsip1
+    global storedtime
+    print("storedpsip1 is: " + str(storedpsip1))
     if storedpsip1 == '':
         pump_vacuum_data = [random.randint(-5, -1) for _ in range(5)]
-        storedpsip1 = pump_vacuum_data[1]
+        storedtime.append(datetime.datetime.now())
     else:
         pump_vacuum_data = [random.randint(-35, -8) for _ in range(5)]
-        storedpsip1 = pump_vacuum_data[1]
+        storedtime.append(datetime.datetime.now())
     # Simulate separator pressure data, rounded two places
     separator_pressure_data = [round(random.uniform(1, 6), 2) for _ in range(5)]
     return pump_vacuum_data, separator_pressure_data
@@ -114,10 +124,10 @@ def simulate_plc_data():
 def get_pump1vacuum_data():
     if pump1stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
-        print("should be setting p1 vac to something")
+        storedpsip1.append(pump_vacuum_data[1]) 
         return jsonify({'pump1vacuum': pump_vacuum_data[1]})
     else:
-        print("should be setting p1 vac to 0")
+        storedpsip1.append(0) 
         return jsonify({'pump1vacuum': 0})
 
 @app.route('/get_VACUUM_1_SEPARATOR_PRESSURE_data')
@@ -133,8 +143,10 @@ def get_VACUUM_1_SEPARATOR_PRESSURE_data():
 def get_pump2vacuum_data():
     if pump2stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
+        storedpsip2.append(pump_vacuum_data[1])
         return jsonify({'pump2vacuum': pump_vacuum_data[1]})
     else:
+        storedpsip2.append(0)
         return jsonify({'pump2vacuum': 0})
 
 @app.route('/get_VACUUM_2_SEPARATOR_PRESSURE_data')
@@ -150,8 +162,10 @@ def get_VACUUM_2_SEPARATOR_PRESSURE_data():
 def get_pump3vacuum_data():
     if pump3stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
+        storedpsip3.append(pump_vacuum_data[1])
         return jsonify({'pump3vacuum': pump_vacuum_data[1]})
     else:
+        storedpsip3.append(0)
         return jsonify({'pump3vacuum': 0})
 
 @app.route('/get_VACUUM_3_SEPARATOR_PRESSURE_data')
@@ -167,8 +181,10 @@ def get_VACUUM_3_SEPARATOR_PRESSURE_data():
 def get_pump4vacuum_data():
     if pump4stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
+        storedpsip4.append(pump_vacuum_data[1])
         return jsonify({'pump4vacuum': pump_vacuum_data[1]})
     else:
+        storedpsip4.append(0)
         return jsonify({'pump4vacuum': 0})
 
 @app.route('/get_VACUUM_4_SEPARATOR_PRESSURE_data')
@@ -184,8 +200,10 @@ def get_VACUUM_4_SEPARATOR_PRESSURE_data():
 def get_pump5vacuum_data():
     if pump5stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
+        storedpsip5.append(pump_vacuum_data[1])
         return jsonify({'pump5vacuum': pump_vacuum_data[1]})
     else:
+        storedpsip5.append(0)
         return jsonify({'pump5vacuum': 0})
 
 @app.route('/get_VACUUM_5_SEPARATOR_PRESSURE_data')
@@ -314,12 +332,6 @@ def check_animation_status():
 
 import json
 
-
-
-
-
-
-
 @app.route('/get_graph_data', methods=['GET'])
 def get_graph_data():
     try:
@@ -343,11 +355,11 @@ def save_graph_data():
     graph_data = request.json  # Assuming graph data is sent as JSON
     # Convert graph data to a JSON string
     json_data = json.dumps(graph_data)
-    # Write graph data to the text file with a newline character
+    # Write graph data to the text file 
     file_path = 'graph_data.txt'
     try:
         with open(file_path, 'a') as file:
-            file.write(json_data + '\n')  # Add newline character
+            file.write(json_data + '\n')  
         print('Graph data saved to file:')
         return jsonify(success=True), 200
     except Exception as e:
@@ -359,18 +371,12 @@ pump1currentdata = []
 pump1frequencydata = []
 pump1voltagedata = []
 pump1wattagedata = []
-pump1timestamp = []
+#pump1timestamp = [] been renamed
 
 import threading
 import time
 
 pumpmastertimestamp = []  # Renamed variable
-
-
-
-
-
-
 
 def update_pump_data():
     global pump1currentdata
@@ -381,17 +387,17 @@ def update_pump_data():
     
     # Check if any list exceeds 120 length
     if len(pump1currentdata) > 120:
-        pump1currentdata = pump1currentdata[60:]  # Remove the first 60 elements
+        pump1currentdata = pump1currentdata[60:]  # keeping the list double overhead
     if len(pump1frequencydata) > 120:
-        pump1frequencydata = pump1frequencydata[60:]  # Remove the first 60 elements
+        pump1frequencydata = pump1frequencydata[60:] 
     if len(pump1voltagedata) > 120:
-        pump1voltagedata = pump1voltagedata[60:]  # Remove the first 60 elements
+        pump1voltagedata = pump1voltagedata[60:]  
     if len(pump1wattagedata) > 120:
-        pump1wattagedata = pump1wattagedata[60:]  # Remove the first 60 elements
+        pump1wattagedata = pump1wattagedata[60:]  
     if len(pumpmastertimestamp) > 120:
-        pumpmastertimestamp = pumpmastertimestamp[60:]  # Remove the first 60 elements
+        pumpmastertimestamp = pumpmastertimestamp[60:] 
     
-    # Your code to update pump data here
+    # SIMULATING PUMP DATA
     pumpmastertimestamp.append(datetime.datetime.now())
     pump1currentdata.append(random.randint(1, 8))
     pump1frequencydata.append(random.randint(0, 60))
@@ -407,7 +413,7 @@ def get_pump_1_monitordata():
     global pump1wattagedata
     global pumpmastertimestamp  # Renamed variable
     data = {
-        "timestamps": pumpmastertimestamp,  # Renamed variable
+        "timestamps": pumpmastertimestamp,  
         "current": pump1currentdata,
         "frequency": pump1frequencydata,
         "voltage": pump1voltagedata,
@@ -417,6 +423,23 @@ def get_pump_1_monitordata():
     return jsonify(data)
 
 
+@app.route('/get_data_pumps', methods=['GET'])
+def get_data_pumps():
+    global pumpmastertimestamp
+    global storedpsip1
+    global storedpsip2
+    global storedpsip3
+    global storedpsip4
+    global storedpsip5
+    data = {
+        "timestamps": pumpmastertimestamp,
+        "psip1": storedpsip1,
+        "psip2": storedpsip2,
+        "psip3": storedpsip3,
+        "psip4": storedpsip4,
+        "psip5": storedpsip5
+    }
+    return jsonify(data)
 
 @app.route('/get_pump_1_alarm_history', methods=['GET'])
 def get_pump_1_alarm_history():

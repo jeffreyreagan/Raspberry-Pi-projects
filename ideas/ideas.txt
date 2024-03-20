@@ -4,6 +4,7 @@ finish alarm history for all pumps
 
 improve scada layout and design
 
+add control panel (buttons/switches)
 
 
 

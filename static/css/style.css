@@ -118,6 +118,9 @@ h3 {
   width: fit-content;
   margin-left: 20px;
 }
+.pushbutton {
+  border-radius: 100%;
+}
 .chart {
   width: 80%;
   height: 50%;

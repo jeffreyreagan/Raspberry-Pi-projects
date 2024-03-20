@@ -610,6 +610,7 @@ function openpump5valve() {
 let vacuumData = []; // Array to store vacuum data from each pump
 let chart; // Variable to store the Chart.js chart instance
 
+
 // Function to calculate the average vacuum
 function calculateAverage() {
     let sum = 0;

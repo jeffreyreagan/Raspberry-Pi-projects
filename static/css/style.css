@@ -4,7 +4,10 @@ li {
   font-size: x-large;
 }
 
-
+h5 {
+  width: 50%;
+  text-align: center;
+}
 body {
     background-color: white;
     color: black;
@@ -109,6 +112,8 @@ h3 {
 }
 #scada1 {
   border: solid;
+  border-width: 10px;
+  border-color: slategray;
   background-color: #aaa;
   width: max-content;
   height: max-content;
@@ -140,12 +145,16 @@ h2 {
     font-family: fantasy;
     font-variant-caps: petite-caps;
     font-size: xxx-large;
+    border-width: 10px;
+    border-color: slategray;
     
 }
 
 .stick {
     position: sticky;
     top: 55px;
+    border-bottom: slategray;
+    border-width: 10px;
 }
 #welcome {
     color: red;

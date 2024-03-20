@@ -621,28 +621,28 @@ function calculateAverage() {
 }
 
 
-function fetchGraphDataFromServer() {
-    return fetch('/get_graph_data')
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Failed to fetch graph data');
-            }
-        })
-        .then(data => {
+//function fetchGraphDataFromServer() {
+  //  return fetch('/get_graph_data')
+    //    .then(response => {
+      //      if (response.ok) {
+        //        return response.json();
+          //  } else {
+            //    throw new Error('Failed to fetch graph data');
+            //}
+        //})
+        //.then(data => {
             // Filter data to get only the entries within the last half-hour
-            const currentTime = new Date();
-            const halfHourAgo = new Date(currentTime.getTime() - 30 * 60 * 1000); // Half hour ago
-            const filteredData = data.filter(entry => new Date(entry.timestamp) >= halfHourAgo);
+         //   const currentTime = new Date();
+          //  const halfHourAgo = new Date(currentTime.getTime() - 30 * 60 * 1000); // Half hour ago
+           // const filteredData = data.filter(entry => new Date(entry.timestamp) >= halfHourAgo);
 
-            return filteredData; // Return the filtered data
-        })
-        .catch(error => {
-            console.error('Error fetching graph data:', error);
-            throw error; // Re-throw the error to propagate it further
-        });
-}
+            //return filteredData; // Return the filtered data
+   //     })
+     //   .catch(error => {
+       //     console.error('Error fetching graph data:', error);
+         //   throw error; // Re-throw the error to propagate it further
+       // });
+//}
 
 
 
@@ -752,7 +752,7 @@ function saveGraphDataToServer(data) {
 
 function updateDataAndRenderChart() {
     fetchPumpVacuumData(); // Fetch current vacuum data
-    fetchGraphDataFromServer(); // Fetch graph data from the server
+     // Fetch graph data from the server
     setTimeout(() => {
         renderChart(); // Render or update the chart
         saveGraphDataToServer(vacuumData); // Send updated graph data to the server

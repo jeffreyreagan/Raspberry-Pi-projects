@@ -161,7 +161,7 @@ window.onclick = function(event) {
 
 
 
-
+//persistent ALL Pump Chart
 
 var pumptotalChart;
 var cctx = document.getElementById("canvas").getContext("2d");
@@ -192,11 +192,11 @@ function openaveragepumpdata(modalId) {
 
     // Fetch pump data from the server and update the chart
     fetchAndUpdateChart2(cendpoint);
-  
+    
     // Update the chart every second
     setInterval(function() {
         fetchAndUpdateChart2(cendpoint);
-    }, 3000);
+    }, 4000);
 }
 
 // Function to fetch pump data from the server and update the chart
@@ -234,29 +234,29 @@ function updateChart2(timestamps, psip1, psip2, psip3, psip4, psip5) {
             data: {
                 labels: timestamps,
                 datasets: [{
-                        label: 'psip1',
+                        label: 'Pump 1 psi',
                         data: psip1,
                         borderColor: 'rgba(255, 200, 132, 1)',
                         borderWidth: 1
                     },{
-                        label: 'psip2',
+                        label: 'Pump 2 psi',
                         data: psip2,
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderColor: 'rgba(44, 255, 23, 0.8)',
                         borderWidth: 1
                     },{
-                        label: 'psip3',
+                        label: 'Pump 3 psi',
                         data: psip3,
-                        borderColor: 'rgba(255, 199, 32, 1)',
+                        borderColor: 'rgba(23, 219, 255, 0.8)',
                         borderWidth: 1
                     },{
-                        label: 'psip4',
+                        label: 'Pump 4 psi',
                         data: psip4,
-                        borderColor: 'rgba(255, 19, 132, 1)',
+                        borderColor: 'rgba(214, 23, 255, 0.8)',
                         borderWidth: 1
                     }, {
-                        label: 'psip5',
+                        label: 'Pump 5 psi',
                         data: psip5,
-                        borderColor: 'rgba(255, 199, 1, 11)',
+                        borderColor: 'rgba(243, 255, 23, 0.8)',
                         borderWidth: 1
                     }
                 ]

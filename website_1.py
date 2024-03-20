@@ -99,7 +99,7 @@ storedpsip3 = []
 storedpsip4 = []
 storedpsip5 = []
 storedtime = []
-
+allpumpstimestamp = []
 
 
 
@@ -108,7 +108,7 @@ def simulate_plc_data():
     # Simulate pump vacuum data
     global storedpsip1
     global storedtime
-    print("storedpsip1 is: " + str(storedpsip1))
+    #print("storedpsip1 is: " + str(storedpsip1))
     if storedpsip1 == '':
         pump_vacuum_data = [random.randint(-5, -1) for _ in range(5)]
         storedtime.append(datetime.datetime.now())
@@ -124,10 +124,12 @@ def simulate_plc_data():
 def get_pump1vacuum_data():
     if pump1stat == '1':
         pump_vacuum_data, _ = simulate_plc_data()
-        storedpsip1.append(pump_vacuum_data[1]) 
+        storedpsip1.append(pump_vacuum_data[1])
+        allpumpstimestamp.append(datetime.datetime.now()) 
         return jsonify({'pump1vacuum': pump_vacuum_data[1]})
     else:
-        storedpsip1.append(0) 
+        storedpsip1.append(0)
+        allpumpstimestamp.append(datetime.datetime.now()) 
         return jsonify({'pump1vacuum': 0})
 
 @app.route('/get_VACUUM_1_SEPARATOR_PRESSURE_data')
@@ -218,35 +220,35 @@ def get_VACUUM_5_SEPARATOR_PRESSURE_data():
 def toggle_pump_1_route():
         # Call the toggle_pump_1 function from the reading.py file
         result = toggle_pump_1()
-        print("should be toggling pump 1")
+        #print("should be toggling pump 1")
         return result
 
 @app.route('/toggle_pump_2', methods=['POST'])
 def toggle_pump_2_route():
         # Call the toggle_pump_2 function from the reading.py file
         result = toggle_pump_2()
-        print("should be toggling pump 2")
+        #print("should be toggling pump 2")
         return result
 
 @app.route('/toggle_pump_3', methods=['POST'])
 def toggle_pump_3_route():
         # Call the toggle_pump_3 function from the reading.py file
         result = toggle_pump_3()
-        print("should be toggling pump 3")
+        #print("should be toggling pump 3")
         return result
 
 @app.route('/toggle_pump_4', methods=['POST'])
 def toggle_pump_4_route():
         # Call the toggle_pump_4 function from the reading.py file
         result = toggle_pump_4()
-        print("should be toggling pump 4")
+        #print("should be toggling pump 4")
         return result
 
 @app.route('/toggle_pump_5', methods=['POST'])
 def toggle_pump_5_route():
         # Call the toggle_pump_5 function from the reading.py file
         result = toggle_pump_5()
-        print("should be toggling pump 5")
+        #print("should be toggling pump 5")
         return result
 
 '''Utilities'''
@@ -273,59 +275,59 @@ def check_animation_status():
     pump_3_alarm_desciptions = circle_colors_tuple[8]
     pump_4_alarm_desciptions = circle_colors_tuple[9]
     pump_5_alarm_desciptions = circle_colors_tuple[10]
-    print(pump_1_alarm_desciptions)
+    #print(pump_1_alarm_desciptions)
     if circle_colors['pump1color'] == 'green':
-        print("updating pump 1 status to green")
+        #print("updating pump 1 status to green")
         results.append({'status': 'Animation 1 started'})
         #sets alarm status to none
         pump_1_status_value = 0
         pump1stat = '1'
-        print("updating pump 1 stat")
+        #print("updating pump 1 stat")
         
     elif circle_colors['pump1color'] != 'green':
         results.append({'status': 'Animation 1 stopped'})
-        print("updating pump 1 status to red")
+        #print("updating pump 1 status to red")
         pump_1_status_value = 1
         pump1stat = '0'
         
     if circle_colors['pump2color'] == 'green':
         results.append({'status': 'Animation 2 started'})
-        print("updating pump 2 status to green")
+        #print("updating pump 2 status to green")
         pump_2_status_value = 0
         pump2stat = '1'
     elif circle_colors['pump2color'] != 'green':
         results.append({'status': 'Animation 2 stopped'})
-        print("updating pump 2 status to red")
+        #print("updating pump 2 status to red")
         pump_2_status_value = 1
         pump2stat = '0'
     if circle_colors['pump3color'] == 'green':
-        print("updating pump 3 status to green")
+        #print("updating pump 3 status to green")
         results.append({'status': 'Animation 3 started'})
         pump3stat = '1'
         pump_3_status_value = 0
     elif circle_colors['pump3color'] != 'green':
         results.append({'status': 'Animation 3 stopped'})
-        print("updating pump 3 status to red")
+        #print("updating pump 3 status to red")
         pump3stat = '0'
         pump_3_status_value = 1
     if circle_colors['pump4color'] == 'green':
         results.append({'status': 'Animation 4 started'})
-        print("updating pump 4 status to green")
+        #print("updating pump 4 status to green")
         pump4stat = '1'
         pump_4_status_value = 0
     elif circle_colors['pump4color'] != 'green':
         results.append({'status': 'Animation 4 stopped'})
-        print("updating pump 4 status to red") 
+        #print("updating pump 4 status to red") 
         pump4stat = '0'
         pump_4_status_value = 1
     if circle_colors['pump5color'] == 'green':
         results.append({'status': 'Animation 5 started'})
-        print("updating pump 5 status to green")
+        #print("updating pump 5 status to green")
         pump5stat = '1'
         pump_5_status_value = 0
     elif circle_colors['pump5color'] != 'green':
         results.append({'status': 'Animation 5 stopped'})
-        print("updating pump 5 status to red")   
+        #print("updating pump 5 status to red")   
         pump5stat = '0'
         pump_5_status_value = 1
     return jsonify(results, circle_colors,pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, pump_1_alarm_desciptions, pump_2_alarm_desciptions, pump_3_alarm_desciptions, pump_4_alarm_desciptions, pump_5_alarm_desciptions)
@@ -344,7 +346,7 @@ def get_graph_data():
                 # Parse each line as JSON and append to the list
                 graph_data.append(json.loads(line.strip()))
 
-        print('Graph data retrieved from file:')
+        #print('Graph data retrieved from file:')
         return jsonify(graph_data), 200
     except Exception as e:
         print('Error retrieving graph data:', e)
@@ -419,20 +421,20 @@ def get_pump_1_monitordata():
         "voltage": pump1voltagedata,
         "wattage": pump1wattagedata
     }
-    print(data)
+    #print(data)
     return jsonify(data)
 
 
 @app.route('/get_data_pumps', methods=['GET'])
 def get_data_pumps():
-    global pumpmastertimestamp
+    global allpumpstimestamp
     global storedpsip1
     global storedpsip2
     global storedpsip3
     global storedpsip4
     global storedpsip5
     data = {
-        "timestamps": pumpmastertimestamp,
+        "timestamps": allpumpstimestamp,
         "psip1": storedpsip1,
         "psip2": storedpsip2,
         "psip3": storedpsip3,
@@ -445,7 +447,7 @@ def get_data_pumps():
 def get_pump_1_alarm_history():
     global pump1alarmtimestamp
     global pump1alarmdescriptions
-    print(pump1alarmtimestamp,"pump1alarmtimestamp")
+    #print(pump1alarmtimestamp,"pump1alarmtimestamp")
     data = {
         "timestamps": pump1alarmtimestamp,
         "descriptions": pump1alarmdescriptions
@@ -456,7 +458,7 @@ def get_pump_1_alarm_history():
 def get_pump_2_alarm_history():
     global pump2alarmtimestamp
     global pump2alarmdescriptions
-    print(pump2alarmtimestamp,"pump2alarmtimestamp")
+    #print(pump2alarmtimestamp,"pump2alarmtimestamp")
     data = {
         "timestamps": pump2alarmtimestamp,
         "descriptions": pump2alarmdescriptions
@@ -466,7 +468,7 @@ def get_pump_2_alarm_history():
 def get_pump_3_alarm_history():
     global pump3alarmtimestamp
     global pump3alarmdescriptions
-    print(pump3alarmtimestamp,"pump3alarmtimestamp")
+    #print(pump3alarmtimestamp,"pump3alarmtimestamp")
     data = {
         "timestamps": pump3alarmtimestamp,
         "descriptions": pump3alarmdescriptions
@@ -476,7 +478,7 @@ def get_pump_3_alarm_history():
 def get_pump_4_alarm_history():
     global pump4alarmtimestamp
     global pump4alarmdescriptions
-    print(pump4alarmtimestamp,"pump4alarmtimestamp")
+    #print(pump4alarmtimestamp,"pump4alarmtimestamp")
     data = {
         "timestamps": pump4alarmtimestamp,
         "descriptions": pump4alarmdescriptions
@@ -486,7 +488,7 @@ def get_pump_4_alarm_history():
 def get_pump_5_alarm_history():
     global pump5alarmtimestamp
     global pump5alarmdescriptions
-    print(pump5alarmtimestamp,"pump5alarmtimestamp")
+    #print(pump5alarmtimestamp,"pump5alarmtimestamp")
     data = {
         "timestamps": pump5alarmtimestamp,
         "descriptions": pump5alarmdescriptions

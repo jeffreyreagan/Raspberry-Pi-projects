@@ -32,7 +32,7 @@ function openpumpdata(modalId) {
     // Update the chart every second
     setInterval(function() {
         fetchAndUpdateChart(endpoint);
-    }, 5000);
+    }, 3000);
 }
 
 // Function to fetch pump data from the server and update the chart
@@ -59,7 +59,6 @@ function fetchAndUpdateChart(endpoint) {
         });
 }
 
-// Function to update the Chart.js chart
 function updateChart(timestamps, current, frequency, voltage, wattage) {
     // Ensure the Chart.js instance is created
     if (!pumpChart) {
@@ -69,29 +68,30 @@ function updateChart(timestamps, current, frequency, voltage, wattage) {
             data: {
                 labels: timestamps,
                 datasets: [{
-                    label: 'Current',
-                    data: current,
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Frequency',
-                    data: frequency,
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Voltage',
-                    data: voltage,
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Wattage',
-                    data: wattage,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
+                        label: 'Current',
+                        data: current,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Frequency',
+                        data: frequency,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Voltage',
+                        data: voltage,
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Wattage',
+                        data: wattage,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
                 scales: {
@@ -113,10 +113,18 @@ function updateChart(timestamps, current, frequency, voltage, wattage) {
         pumpChart.data.datasets[1].data = frequency;
         pumpChart.data.datasets[2].data = voltage;
         pumpChart.data.datasets[3].data = wattage;
+
+        // Remove old data points if exceeding 10 labels
+        if (pumpChart.data.labels.length > 60) {
+            pumpChart.data.labels = pumpChart.data.labels.slice(-60);
+            pumpChart.data.datasets.forEach(dataset => {
+                dataset.data = dataset.data.slice(-60);
+            });
+        }
+
         pumpChart.update();
     }
 }
-
 // Function to close the modal
 function closeAlarmHistory(modalId) {
     var modal = document.getElementById(modalId);

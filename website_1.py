@@ -372,20 +372,31 @@ pumpmastertimestamp = []  # Renamed variable
 
 
 
-# Function to update pump data in a separate thread
 def update_pump_data():
     global pump1currentdata
     global pump1frequencydata
     global pump1voltagedata
     global pump1wattagedata
-    global pumpmastertimestamp  # Renamed variable
-        # Your code to update pump data here
+    global pumpmastertimestamp
+    
+    # Check if any list exceeds 120 length
+    if len(pump1currentdata) > 120:
+        pump1currentdata = pump1currentdata[60:]  # Remove the first 60 elements
+    if len(pump1frequencydata) > 120:
+        pump1frequencydata = pump1frequencydata[60:]  # Remove the first 60 elements
+    if len(pump1voltagedata) > 120:
+        pump1voltagedata = pump1voltagedata[60:]  # Remove the first 60 elements
+    if len(pump1wattagedata) > 120:
+        pump1wattagedata = pump1wattagedata[60:]  # Remove the first 60 elements
+    if len(pumpmastertimestamp) > 120:
+        pumpmastertimestamp = pumpmastertimestamp[60:]  # Remove the first 60 elements
+    
+    # Your code to update pump data here
     pumpmastertimestamp.append(datetime.datetime.now())
     pump1currentdata.append(random.randint(1, 8))
     pump1frequencydata.append(random.randint(0, 60))
     pump1voltagedata.append(random.randint(477, 484))
     pump1wattagedata.append(random.randint(5, 10))
-        # Sleep for 1 second before updating again
        
 @app.route('/get_pump_1_monitordata', methods=['GET'])
 def get_pump_1_monitordata():

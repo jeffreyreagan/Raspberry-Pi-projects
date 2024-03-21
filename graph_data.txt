@@ -35503,3 +35503,5 @@
 {"timestamp": "6:54:00 PM", "data": -83}
 {"timestamp": "6:54:23 PM", "data": -75}
 {"timestamp": "6:54:31 PM", "data": -74}
+{"timestamp": "6:54:42 PM", "data": -78}
+{"timestamp": "6:54:49 PM", "data": -80}

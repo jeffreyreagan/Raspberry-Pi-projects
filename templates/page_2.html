@@ -113,6 +113,29 @@
                     </svg>
                     <h2>Pump 1 Control</h2>
 
+
+                    <h3>Set Pump Setpoint</h3>
+                        <label for="setpoint">Enter Setpoint:</label>
+                        <input type="number" id="setpoint" name="setpoint" required>
+                        <button onclick="setSetpoint()">Submit</button>
+                        <p id="message"></p>
+                        <script>
+                            function setSetpoint() {
+                                var setpoint = document.getElementById("setpoint").value;
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("POST", "/set_setpoint", true);
+                                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        document.getElementById("message").textContent = xhr.responseText;
+                                    }
+                                };
+                                xhr.send(JSON.stringify({ setpoint: setpoint }));
+                            }
+                        </script>
+
+
+
                     
                     <div id="pump1data" class="modal">
                         <!-- Modal content -->

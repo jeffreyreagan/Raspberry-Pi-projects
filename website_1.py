@@ -101,6 +101,7 @@ storedpsip5 = []
 storedtime = []
 allpumpstimestamp = []
 
+p1simpsi = int()
 
 
 @app.route('/simulate_plc_data')
@@ -119,19 +120,65 @@ def simulate_plc_data():
     separator_pressure_data = [round(random.uniform(1, 6), 2) for _ in range(5)]
     return pump_vacuum_data, separator_pressure_data
 
+pump1setpoint= None
 # Routes for pump 1
+@app.route('/set_setpoint', methods=['POST'])
+def set_setpoint():
+    global pump1setpoint
+    data = request.json
+    setpoint = data.get('setpoint')
+    print(float(setpoint))
+    pump1setpoint = float(setpoint)
+    return "Setpoint updated successfully."
+
 @app.route('/get_pump1vacuum_data')
 def get_pump1vacuum_data():
-    if pump1stat == '1':
-        pump_vacuum_data, _ = simulate_plc_data()
-        storedpsip1.append(pump_vacuum_data[1])
+    global p1simpsi
+    global pump1setpoint
+    if pump1stat == '1' and pump1setpoint is not None:
+        initial_value = 1
+        if p1simpsi <= pump1setpoint:
+             p1simpsi = p1simpsi + initial_value + random.randint(-2,4)
+             storedtime.append(datetime.datetime.now())
+        elif p1simpsi <= 0 and p1simpsi > pump1setpoint:
+             p1simpsi = p1simpsi - initial_value - random.randint(-2,5)
+             storedtime.append(datetime.datetime.now())
+        elif p1simpsi > 0:
+             p1simpsi = p1simpsi - initial_value - random.randint(-1,4)
+             storedtime.append(datetime.datetime.now())
+        storedpsip1.append(p1simpsi)
         allpumpstimestamp.append(datetime.datetime.now()) 
-        return jsonify({'pump1vacuum': pump_vacuum_data[1]})
-    else:
-        storedpsip1.append(0)
+        return jsonify({'pump1vacuum': p1simpsi})
+    elif pump1stat == '1' and pump1setpoint is None:
+        pump1setpoint = random.randint(-35,-30)
+        initial_value = 1
+        if p1simpsi <= pump1setpoint:
+             p1simpsi = p1simpsi + initial_value + random.randint(-2,4)
+             storedtime.append(datetime.datetime.now())
+        elif p1simpsi <= 0 and p1simpsi > pump1setpoint:
+             p1simpsi = p1simpsi - initial_value - random.randint(-2,5)
+             storedtime.append(datetime.datetime.now())
+        elif p1simpsi > 0:
+             p1simpsi = p1simpsi - initial_value - random.randint(-1,4)
+             storedtime.append(datetime.datetime.now())
+        storedpsip1.append(p1simpsi)
         allpumpstimestamp.append(datetime.datetime.now()) 
-        return jsonify({'pump1vacuum': 0})
-
+        return jsonify({'pump1vacuum': p1simpsi})
+    elif pump1stat == '0':
+        if p1simpsi < 6 and p1simpsi > -6:
+            p1simpsi = 0
+            storedpsip1.append(p1simpsi)
+            allpumpstimestamp.append(datetime.datetime.now())
+            return jsonify({'pump1vacuum': 0})
+        elif p1simpsi > 6:
+            p1simpsi = p1simpsi - random.randint(4,8)
+            storedpsip1.append(p1simpsi)
+            allpumpstimestamp.append(datetime.datetime.now()) 
+            return jsonify({'pump1vacuum': p1simpsi})
+        elif p1simpsi < -6:
+            p1simpsi = p1simpsi + random.randint(4,8)
+            storedpsip1.append(p1simpsi)
+            return jsonify({'pump1vacuum': p1simpsi})
 @app.route('/get_VACUUM_1_SEPARATOR_PRESSURE_data')
 def get_VACUUM_1_SEPARATOR_PRESSURE_data():
     if pump1stat == '1':

@@ -335,7 +335,13 @@ img {
   width: 100% !important;
   height: 100% !important;
 }
-
+.scadabuttoncontainer {
+  display: block;
+}
+.scadabuttons {
+  display: inline-block;
+  margin-bottom: 20px;
+}
 @media (min-width: 1775px) {
 
 

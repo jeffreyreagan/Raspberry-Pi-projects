@@ -8,13 +8,23 @@ add control panel (buttons/switches)
 
 
 
+display current setpoint, update on page load and after setSetpoint() for each pumps. Possibly using manual/auto modes. Display mode and make sure to store to python/server so page reloads function properly
 
-
-
+make a python function to see valve state, and send response to js on page reloads to verify position of valve.
 
 Future project ideas:
     Line Control SCADA (process control SCADA)
-
+    Power Plant - Nuclear, Solar, Hydro, Wind
 
 use ipad to create HTML shapes?
 
+pages:
+
+DECIDE ON FULL NETWORK SCREEN OR INDIVIDUAL. MAYBE BOTH, WHICH FIRST?
+    PLC IO DRIVES NETWORK
+
+        Single line diagrams of network, green if no comm fault. Red if comm fault.
+
+        Pictures, SVGs, or other method of displaying IO cards and field devices. SHOW IO and state ex> I:1/1 : 1 (green) ex> O:2/2 : 0 (red)
+
+        Drives: Show picture or SVG, show parameters in text, add button for feedback graph. Show drive faults.

@@ -156,7 +156,10 @@ window.onclick = function(event) {
 
 
 
-
+function openplcdata(modalId) {
+    var plcmodal = document.getElementById(modalId);
+    plcmodal.style.display = "block";
+}
 
 
 
@@ -170,6 +173,7 @@ var cctx = document.getElementById("canvas").getContext("2d");
         showTooltips: true,
         multiTooltipTemplate: "<%= value %>",
     });
+
 // Function to open the modal and start updating the chart
 function openaveragepumpdata(modalId) {
     console.log('Opening pump average data modal');

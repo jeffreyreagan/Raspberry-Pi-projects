@@ -495,7 +495,7 @@ function openpump1valve() {
 }
 
 //window.addEventListener('beforeunload', function(event) {
-    // Clear local storage when the browser is closed or refreshed
+     //Clear local storage when the browser is closed or refreshed
   //  localStorage.clear();
 //});
 window.onload = function() {

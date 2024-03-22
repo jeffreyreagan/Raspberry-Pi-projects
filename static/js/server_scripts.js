@@ -474,77 +474,142 @@ function closepump1valve() {
 
     // Set the new y position
     rect.setAttribute('y', newY + 'px');
-
+    localStorage.setItem('pump1valveY', newY);
     var rect2 = document.getElementById('pump1valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
     var newY2 = currentY2 - 20;
     rect2.setAttribute('y', newY2 + 'px');
+    localStorage.setItem('pump1valvestemY', newY2);
 }
 function openpump1valve() {
     var rect = document.getElementById('pump1valve');
     var currentY = parseFloat(rect.getAttribute('y'));
     var newY = currentY + 20;
     rect.setAttribute('y', newY + 'px');
+    localStorage.setItem('pump1valveY', newY);
     var rect2 = document.getElementById('pump1valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
     var newY2 = currentY2 + 20;
     rect2.setAttribute('y', newY2 + 'px');
+    localStorage.setItem('pump1valvestemY', newY2);
 }
+
+//window.addEventListener('beforeunload', function(event) {
+    // Clear local storage when the browser is closed or refreshed
+  //  localStorage.clear();
+//});
+window.onload = function() {
+    var newY = localStorage.getItem('pump1valveY');
+    if (newY !== null) {
+        document.getElementById('pump1valve').setAttribute('y', newY + 'px');
+    }
+
+    var newY2 = localStorage.getItem('pump1valvestemY');
+    if (newY2 !== null) {
+        document.getElementById('pump1valvestem').setAttribute('y', newY2 + 'px');
+    }
+
+    var newY3 = localStorage.getItem('pump2valveY');
+    if (newY3 !== null) {
+        document.getElementById('pump2valve').setAttribute('y', newY3 + 'px');
+    }
+
+    var newY4 = localStorage.getItem('pump2valvestemY');
+    if (newY4 !== null) {
+        document.getElementById('pump2valvestem').setAttribute('y', newY4 + 'px');
+    }
+
+    var newY5 = localStorage.getItem('pump3valveY');
+    if (newY5 !== null) {
+        document.getElementById('pump3valve').setAttribute('y', newY5 + 'px');
+    }
+
+    var newY6 = localStorage.getItem('pump3valvestemY');
+    if (newY6 !== null) {
+        document.getElementById('pump3valvestem').setAttribute('y', newY6 + 'px');
+    }
+
+    var newY7 = localStorage.getItem('pump4valveY');
+    if (newY7 !== null) {
+        document.getElementById('pump4valve').setAttribute('y', newY7 + 'px');
+    }
+
+    var newY8 = localStorage.getItem('pump4valvestemY');
+    if (newY8 !== null) {
+        document.getElementById('pump4valvestem').setAttribute('y', newY8 + 'px');
+    }
+
+    var newY9 = localStorage.getItem('pump5valveY');
+    if (newY9 !== null) {
+        document.getElementById('pump5valve').setAttribute('y', newY9 + 'px');
+    }
+
+    var newY10 = localStorage.getItem('pump5valvestemY');
+    if (newY10 !== null) {
+        document.getElementById('pump5valvestem').setAttribute('y', newY10 + 'px');
+    }
+}
+
 
 function closepump2valve() {
     var rect = document.getElementById('pump2valve');
-
     // Get the current y position
     var currentY = parseFloat(rect.getAttribute('y'));
-
     // Move the rect element up by 20 pixels
     var newY = currentY - 20;
-
     // Set the new y position
     rect.setAttribute('y', newY + 'px');
+    localStorage.setItem('pump2valveY', newY3);
+
 
     var rect2 = document.getElementById('pump2valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
     var newY2 = currentY2 - 20;
     rect2.setAttribute('y', newY2 + 'px');
+    localStorage.setItem('pump2valvestemY', newY4); //Update valve position on the server
 }
 function openpump2valve() {
     var rect = document.getElementById('pump2valve');
     var currentY = parseFloat(rect.getAttribute('y'));
-    var newY = currentY + 20;
-    rect.setAttribute('y', newY + 'px');
+    var newY3 = currentY + 20;
+    rect.setAttribute('y', newY3 + 'px');
+    localStorage.setItem('pump2valveY', newY3);
+
     var rect2 = document.getElementById('pump2valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
-    var newY2 = currentY2 + 20;
-    rect2.setAttribute('y', newY2 + 'px');
+    var newY4 = currentY2 + 20;
+    rect2.setAttribute('y', newY4 + 'px');
+    localStorage.setItem('pump2valvestemY', newY4);
 }
 
 function closepump3valve() {
     var rect = document.getElementById('pump3valve');
-
     // Get the current y position
     var currentY = parseFloat(rect.getAttribute('y'));
-
     // Move the rect element up by 20 pixels
     var newY = currentY - 20;
-
     // Set the new y position
     rect.setAttribute('y', newY + 'px');
+    localStorage.setItem('pump3valveY', newY5);
 
     var rect2 = document.getElementById('pump3valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
     var newY2 = currentY2 - 20;
     rect2.setAttribute('y', newY2 + 'px');
+    localStorage.setItem('pump3valvestemY', newY6);
 }
 function openpump3valve() {
     var rect = document.getElementById('pump3valve');
     var currentY = parseFloat(rect.getAttribute('y'));
-    var newY = currentY + 20;
-    rect.setAttribute('y', newY + 'px');
+    var newY5 = currentY + 20;
+    rect.setAttribute('y', newY5 + 'px');
+    localStorage.setItem('pump3valveY', newY5);
+
     var rect2 = document.getElementById('pump3valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
-    var newY2 = currentY2 + 20;
-    rect2.setAttribute('y', newY2 + 'px');
+    var newY6 = currentY2 + 20;
+    rect2.setAttribute('y', newY6 + 'px');
+    localStorage.setItem('pump3valvestemY', newY6);
 }
 
 function closepump4valve() {
@@ -567,39 +632,44 @@ function closepump4valve() {
 function openpump4valve() {
     var rect = document.getElementById('pump4valve');
     var currentY = parseFloat(rect.getAttribute('y'));
-    var newY = currentY + 20;
-    rect.setAttribute('y', newY + 'px');
+    var newY7 = currentY + 20;
+    rect.setAttribute('y', newY7 + 'px');
+    localStorage.setItem('pump4valveY', newY7);
+
     var rect2 = document.getElementById('pump4valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
-    var newY2 = currentY2 + 20;
-    rect2.setAttribute('y', newY2 + 'px');
+    var newY8 = currentY2 + 20;
+    rect2.setAttribute('y', newY8 + 'px');
+    localStorage.setItem('pump4valvestemY', newY8);
 }
 function closepump5valve() {
     var rect = document.getElementById('pump5valve');
-
     // Get the current y position
     var currentY = parseFloat(rect.getAttribute('y'));
-
     // Move the rect element up by 20 pixels
     var newY = currentY - 20;
-
     // Set the new y position
     rect.setAttribute('y', newY + 'px');
+    localStorage.setItem('pump5valveY', newY9);
 
     var rect2 = document.getElementById('pump5valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
     var newY2 = currentY2 - 20;
     rect2.setAttribute('y', newY2 + 'px');
+    localStorage.setItem('pump5valvestemY', newY10);
 }
 function openpump5valve() {
     var rect = document.getElementById('pump5valve');
     var currentY = parseFloat(rect.getAttribute('y'));
-    var newY = currentY + 20;
-    rect.setAttribute('y', newY + 'px');
+    var newY9 = currentY + 20;
+    rect.setAttribute('y', newY9 + 'px');
+    localStorage.setItem('pump5valveY', newY9);
+
     var rect2 = document.getElementById('pump5valvestem');
     var currentY2 = parseFloat(rect2.getAttribute('y'));
-    var newY2 = currentY2 + 20;
-    rect2.setAttribute('y', newY2 + 'px');
+    var newY10 = currentY2 + 20;
+    rect2.setAttribute('y', newY10 + 'px');
+    localStorage.setItem('pump5valvestemY', newY10);
 }
 
 

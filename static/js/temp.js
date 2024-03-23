@@ -9,7 +9,6 @@ var ctx = document.getElementById("canvas").getContext("2d");
 // Function to open the modal and start updating the chart
 
 function openpumpdata(modalId) {
-    console.log('Opening pump data modal');
     var modal = document.getElementById(modalId);
     modal.style.display = "block";
     
@@ -171,9 +170,6 @@ var pumptotalChartOutside;
 
 
 function openaveragepumpdata_outside() {
-    console.log('Opening pump average data modal');
-    
-    
     // Define the endpoint based on the modalId
     var ccendpoint = '/get_data_pumps';
     // Fetch pump data from the server and update the chart
@@ -242,7 +238,7 @@ function fetchAndUpdateChart3(ccendpoint) {
                             }, {
                                 label: 'Pump 5 psi',
                                 data: psip5,
-                                borderColor: 'rgba(243, 255, 23, 0.8)',
+                                borderColor: 'rgba(255, 0, 0, 0.8)',
                                 borderWidth: 1
                             }
                         ]
@@ -314,7 +310,6 @@ var cctx = document.getElementById("canvas").getContext("2d");
 
 // Function to open the modal and start updating the chart
 function openaveragepumpdata(modalId) {
-    console.log('Opening pump average data modal');
     var cmodal = document.getElementById(modalId);
     cmodal.style.display = "block";
     
@@ -398,7 +393,7 @@ function updateChart2(timestamps, psip1, psip2, psip3, psip4, psip5) {
                     }, {
                         label: 'Pump 5 psi',
                         data: psip5,
-                        borderColor: 'rgba(243, 255, 23, 0.8)',
+                        borderColor: 'rgba(255, 0, 0, 0.8)',
                         borderWidth: 1
                     }
                 ]

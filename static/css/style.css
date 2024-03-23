@@ -342,7 +342,7 @@ img {
 #chartContainer {
   display: block;
   width: 80% !important;
-  height: auto;
+  height: 50%;
   margin-left: 11rem;
 }
 .scadabuttoncontainer {

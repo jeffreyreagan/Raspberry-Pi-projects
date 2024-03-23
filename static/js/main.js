@@ -34,15 +34,13 @@ function showNavbarOnWideScreens() {
 function toggleNavbar() {
     var navbarNav1 = document.querySelector('.navbar-nav');
     
-    console.log('toggle navbar called');
     if (navbarNav1.style.display === 'block') {
         // If navbar-nav is currently shown, hide it
         navbarNav1.style.display = 'none';
-        console.log('should be hidden');
+        
     } else {
         // If navbar-nav is currently hidden, show it
         navbarNav1.style.display = 'block';
-        console.log('should be shown');
     } 
 }
 // Initial call to show navbar-nav on page load
@@ -68,7 +66,6 @@ const content = document.getElementById('content');
     fetch('/data')
         .then(response => response.json())
         .then(data => {
-            console.log('Received data:', data);
             // Update the HTML content with the received data
             document.getElementById('time').innerText = data.time;
             document.getElementById('temperature').innerText = data.temperature;
@@ -100,7 +97,6 @@ const content = document.getElementById('content');
 function animateEnvelope() {
     // Calculate the width of the viewport
     var windowWidth = document.documentElement.clientWidth;
-    console.log('viewport width: ' + windowWidth);
 
     var raspiElement = document.getElementById('raspi');
     var raspiPosition = raspiElement.getBoundingClientRect().left;

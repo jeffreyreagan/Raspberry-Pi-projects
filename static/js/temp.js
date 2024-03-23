@@ -207,83 +207,104 @@ function fetchAndUpdateChart3(ccendpoint) {
         });
 }
     // Function to initialize the chart outside the modal
-        function initializeChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
-            // Ensure the Chart.js instance is created
-            if (!pumptotalChartOutside) {
-                var ccctx = document.getElementById('pumptotalChartOutside').getContext('2d');
-                pumptotalChartOutside = new Chart(ccctx, {
-                    type: 'line',
-                    data: {
-                        labels: timestamps,
-                        datasets: [{
-                                label: 'Pump 1 psi',
-                                data: psip1,
-                                borderColor: 'rgba(255, 200, 132, 1)',
-                                borderWidth: 1
-                            },{
-                                label: 'Pump 2 psi',
-                                data: psip2,
-                                borderColor: 'rgba(44, 255, 23, 0.8)',
-                                borderWidth: 1
-                            },{
-                                label: 'Pump 3 psi',
-                                data: psip3,
-                                borderColor: 'rgba(23, 219, 255, 0.8)',
-                                borderWidth: 1
-                            },{
-                                label: 'Pump 4 psi',
-                                data: psip4,
-                                borderColor: 'rgba(214, 23, 255, 0.8)',
-                                borderWidth: 1
-                            }, {
-                                label: 'Pump 5 psi',
-                                data: psip5,
-                                borderColor: 'rgba(255, 0, 0, 0.8)',
-                                borderWidth: 1
-                            }
-                        ]
+    function initializeChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
+        // Ensure the Chart.js instance is created
+        if (!pumptotalChartOutside) {
+            var ccctx = document.getElementById('pumptotalChartOutside').getContext('2d');
+            pumptotalChartOutside = new Chart(ccctx, {
+                type: 'line',
+                data: {
+                    labels: timestamps.slice(-60), // Display only the last 60 labels initially
+                    datasets: [{
+                            label: 'Pump 1 psi',
+                            data: psip1.slice(-60), // Display only the last 60 data points initially
+                            borderColor: 'rgba(255, 200, 132, 1)',
+                            borderWidth: 1
+                        },{
+                            label: 'Pump 2 psi',
+                            data: psip2.slice(-60), // Display only the last 60 data points initially
+                            borderColor: 'rgba(44, 255, 23, 0.8)',
+                            borderWidth: 1
+                        },{
+                            label: 'Pump 3 psi',
+                            data: psip3.slice(-60), // Display only the last 60 data points initially
+                            borderColor: 'rgba(23, 219, 255, 0.8)',
+                            borderWidth: 1
+                        },{
+                            label: 'Pump 4 psi',
+                            data: psip4.slice(-60), // Display only the last 60 data points initially
+                            borderColor: 'rgba(214, 23, 255, 0.8)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Pump 5 psi',
+                            data: psip5.slice(-60), // Display only the last 60 data points initially
+                            borderColor: 'rgba(255, 0, 0, 0.8)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            tooltip: {
-                                enabled: true
-                            }
+                    plugins: {
+                        tooltip: {
+                            enabled: true
                         }
                     }
-                });
-            } else {
-                // Update the chart with new data
-                pumptotalChartOutside.data.labels = timestamps;
-                pumptotalChartOutside.data.datasets[0].data = psip1;
-                pumptotalChartOutside.data.datasets[1].data = psip2;
-                pumptotalChartOutside.data.datasets[2].data = psip3;
-                pumptotalChartOutside.data.datasets[3].data = psip4;
-                pumptotalChartOutside.data.datasets[4].data = psip5;
-        
-        
-                // Remove old data points if exceeding 10 labels
-                if (pumptotalChartOutside.data.labels.length > 60) {
-                    pumptotalChartOutside.data.labels = pumptotalChartOutside.data.labels.slice(-60);
-                    pumptotalChartOutside.data.datasets.forEach(dataset => {
-                        dataset.data = dataset.data.slice(-60);
-                    });
                 }
-        
-                pumptotalChartOutside.update();
-            }
+            });
+        } else {
+            // Update the chart with new data
+            pumptotalChartOutside.data.labels = timestamps.slice(-10);
+            pumptotalChartOutside.data.datasets[0].data = psip1.slice(-10);
+            pumptotalChartOutside.data.datasets[1].data = psip2.slice(-10);
+            pumptotalChartOutside.data.datasets[2].data = psip3.slice(-10);
+            pumptotalChartOutside.data.datasets[3].data = psip4.slice(-10);
+            pumptotalChartOutside.data.datasets[4].data = psip5.slice(-10);
+    
+            pumptotalChartOutside.update();
         }
+    }
 
-    // Call the initializeChartOutsideModal function
 
-    // Start updating the chart after 3 seconds
+    function scrollLeft() {
+        // Shift the displayed labels to the left by 10 positions
+        var currentLabels = pumptotalChartOutside.data.labels;
+        var newLabels = currentLabels.slice(10); // Remove the first 10 labels
+        pumptotalChartOutside.data.labels = newLabels;
+        
+        // Shift the corresponding data points as well
+        pumptotalChartOutside.data.datasets.forEach(dataset => {
+            dataset.data = dataset.data.slice(10);
+        });
+    
+        pumptotalChartOutside.update(); // Update the chart
+    }
+    
+    // Function to handle click on the right arrow button
+    function scrollRight() {
+        // Shift the displayed labels to the right by 10 positions
+        var currentLabels = pumptotalChartOutside.data.labels;
+        var newLabels = currentLabels.slice(-5); // Keep the last 50 labels
+        pumptotalChartOutside.data.labels = newLabels;
+    
+        // Shift the corresponding data points as well
+        pumptotalChartOutside.data.datasets.forEach(dataset => {
+            dataset.data = dataset.data.slice(-5);
+        });
+    
+        pumptotalChartOutside.update(); // Update the chart
+    }
+    
+    // Add event listeners to the left and right arrow buttons
+    document.getElementById('leftArrow').addEventListener('click', scrollLeft);
+    document.getElementById('rightArrow').addEventListener('click', scrollRight);
 
-// Wait for 3 seconds before initializing and updating the chart
-// Wait for 3 seconds before starting updates
+
+
 
 
 

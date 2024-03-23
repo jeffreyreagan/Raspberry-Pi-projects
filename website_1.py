@@ -172,7 +172,7 @@ def get_pump1vacuum_data():
         allpumpstimestamp.append(datetime.datetime.now()) 
         return jsonify({'pump1vacuum': p1simpsi})
     elif pump1stat == '0':
-        if p1simpsi < 6 and p1simpsi > -6:
+        if p1simpsi <= 6 and p1simpsi >= -6:
             p1simpsi = 0
             storedpsip1.append(p1simpsi)
             allpumpstimestamp.append(datetime.datetime.now())
@@ -223,7 +223,7 @@ def get_pump2vacuum_data():
         storedpsip2.append(p2simpsi)
         return jsonify({'pump2vacuum': p2simpsi})
     elif pump2stat == '0':
-        if p2simpsi < 6 and p2simpsi > -6:
+        if p2simpsi <= 6 and p2simpsi >= -6:
             p2simpsi = 0
             storedpsip2.append(p2simpsi)
             return jsonify({'pump2vacuum': 0})
@@ -272,7 +272,7 @@ def get_pump3vacuum_data():
         storedpsip3.append(p3simpsi)
         return jsonify({'pump3vacuum': p3simpsi})
     elif pump3stat == '0':
-        if p3simpsi < 6 and p3simpsi > -6:
+        if p3simpsi <= 6 and p3simpsi >= -6:
             p3simpsi = 0
             storedpsip3.append(p3simpsi)
             return jsonify({'pump3vacuum': 0})
@@ -321,7 +321,7 @@ def get_pump4vacuum_data():
         storedpsip4.append(p4simpsi)
         return jsonify({'pump4vacuum': p4simpsi})
     elif pump4stat == '0':
-        if p4simpsi < 6 and p4simpsi > -6:
+        if p4simpsi <= 6 and p4simpsi >= -6:
             p4simpsi = 0
             storedpsip4.append(p4simpsi)
             return jsonify({'pump4vacuum': 0})
@@ -331,7 +331,7 @@ def get_pump4vacuum_data():
             return jsonify({'pump4vacuum': p4simpsi})
         elif p4simpsi < -6:
             p4simpsi = p4simpsi + random.randint(4,8)
-            storedpsip2.append(p4simpsi)
+            storedpsip4.append(p4simpsi)
             return jsonify({'pump2vacuum': p4simpsi})
 
 @app.route('/get_VACUUM_4_SEPARATOR_PRESSURE_data')
@@ -369,15 +369,15 @@ def get_pump5vacuum_data():
         storedpsip5.append(p5simpsi)
         return jsonify({'pump5vacuum': p5simpsi})
     elif pump5stat == '0':
-        if p5simpsi < 6 and p5simpsi > -6:
+        if p5simpsi <= 6 and p5simpsi >= -6:
             p5simpsi = 0
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': 0})
-        elif p5simpsi >= 6:
+        elif p5simpsi > 6:
             p5simpsi = p5simpsi - random.randint(4,8)
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': p5simpsi})
-        elif p5simpsi <= -6:
+        elif p5simpsi < -6:
             p5simpsi = p5simpsi + random.randint(4,8)
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': p5simpsi})

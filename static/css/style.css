@@ -425,3 +425,19 @@ body {
 .scada2 {
   background-color: slategray;
 }
+
+.intro {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#JeffreyReagan {
+  display: block;
+  border-color: rgb(180, 8, 8);
+  border-width: 5px;
+}
+#crownlist {
+  display: block;
+}
+#firstofpage {
+  margin-top: 55px;
+}

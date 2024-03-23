@@ -17,6 +17,10 @@ Future project ideas:
     Power Plant - Nuclear, Solar, Hydro, Wind
 
 use ipad to create HTML shapes?
+        PLC cards   
+        Drives 
+        Schematics
+
 
 pages:
 

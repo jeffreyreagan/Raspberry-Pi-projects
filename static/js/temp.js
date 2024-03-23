@@ -142,93 +142,149 @@ window.onclick = function(event) {
             modal.style.display = "none";
         }
     }
-}
+};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ccctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = new Chart(ccctx).Line(lineChartData, {
+        responsive: true,
+        showTooltips: true,
+        multiTooltipTemplate: "<%= value %>",
+    });
+
+// Initial call to start updating data and rendering the chart. Had to add timeout for errors.
 var pumptotalChartOutside;
 
-// Initialize the chart outside the modal
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM content loaded');
 
-    // Function to initialize the chart outside the modal
-    function initializeChartOutsideModal() {
-        console.log('Initializing pump total chart outside modal');
-        var ctx = document.getElementById('pumptotalChartOutside').getContext('2d');
-        pumptotalChartOutside = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Pump 1 psi',
-                    data: [],
-                    borderColor: 'rgba(255, 200, 132, 1)',
-                    borderWidth: 1
-                },{
-                    label: 'Pump 2 psi',
-                    data: [],
-                    borderColor: 'rgba(44, 255, 23, 0.8)',
-                    borderWidth: 1
-                },{
-                    label: 'Pump 3 psi',
-                    data: [],
-                    borderColor: 'rgba(23, 219, 255, 0.8)',
-                    borderWidth: 1
-                },{
-                    label: 'Pump 4 psi',
-                    data: [],
-                    borderColor: 'rgba(214, 23, 255, 0.8)',
-                    borderWidth: 1
-                }, {
-                    label: 'Pump 5 psi',
-                    data: [],
-                    borderColor: 'rgba(243, 255, 23, 0.8)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    }
 
-    // Call the initializeChartOutsideModal function
-    initializeChartOutsideModal();
 
-    // Start updating the chart after 3 seconds
-    setTimeout(updateDataAndRenderChart, 3000);
-});
-
-// Function to update the chart outside the modal
-function updateChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
-    // Update the chart data
-    pumptotalChartOutside.data.labels = timestamps;
-    pumptotalChartOutside.data.datasets[0].data = psip1;
-    pumptotalChartOutside.data.datasets[1].data = psip2;
-    pumptotalChartOutside.data.datasets[2].data = psip3;
-    pumptotalChartOutside.data.datasets[3].data = psip4;
-    pumptotalChartOutside.data.datasets[4].data = psip5;
-
-    // Remove old data points if exceeding 60 labels
-    if (pumptotalChartOutside.data.labels.length > 60) {
-        pumptotalChartOutside.data.labels = pumptotalChartOutside.data.labels.slice(-60);
-        pumptotalChartOutside.data.datasets.forEach(dataset => {
-            dataset.data = dataset.data.slice(-60);
-        });
-    }
-
-    // Update the chart
-    pumptotalChartOutside.update();
-
-    // Schedule the next update after 1 second
-    setTimeout(updateDataAndRenderChart, 1000);
+function openaveragepumpdata_outside() {
+    console.log('Opening pump average data modal');
+    
+    
+    // Define the endpoint based on the modalId
+    var ccendpoint = '/get_data_pumps';
+    // Fetch pump data from the server and update the chart
+    fetchAndUpdateChart3(ccendpoint);
+    
+    // Update the chart every second
+    setInterval(function() {
+        fetchAndUpdateChart3(ccendpoint);
+    }, 4000);
 }
 
+// Function to fetch pump data from the server and update the chart
+function fetchAndUpdateChart3(ccendpoint) {
+    fetch(ccendpoint)
+        .then(response => {
+            if (response.ok) {
+                console.log(response)
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch alarm data');
+            }
+        })
+        .then(data => {
+            // Check if data contains all required properties
+            console.log(data)
+            if (data && data.timestamps && data.psip1 && data.psip2 && data.psip3 && data.psip4 && data.psip5) {
+                // Update the chart with new data
+                initializeChartOutsideModal(data.timestamps, data.psip1, data.psip2, data.psip3, data.psip4, data.psip5);
+            } else {
+                console.error('Invalid data structure');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching alarm data:', error);
+        });
+}
+    // Function to initialize the chart outside the modal
+        function initializeChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
+            // Ensure the Chart.js instance is created
+            if (!pumptotalChartOutside) {
+                var ccctx = document.getElementById('pumptotalChartOutside').getContext('2d');
+                pumptotalChartOutside = new Chart(ccctx, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps,
+                        datasets: [{
+                                label: 'Pump 1 psi',
+                                data: psip1,
+                                borderColor: 'rgba(255, 200, 132, 1)',
+                                borderWidth: 1
+                            },{
+                                label: 'Pump 2 psi',
+                                data: psip2,
+                                borderColor: 'rgba(44, 255, 23, 0.8)',
+                                borderWidth: 1
+                            },{
+                                label: 'Pump 3 psi',
+                                data: psip3,
+                                borderColor: 'rgba(23, 219, 255, 0.8)',
+                                borderWidth: 1
+                            },{
+                                label: 'Pump 4 psi',
+                                data: psip4,
+                                borderColor: 'rgba(214, 23, 255, 0.8)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Pump 5 psi',
+                                data: psip5,
+                                borderColor: 'rgba(243, 255, 23, 0.8)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                enabled: true
+                            }
+                        }
+                    }
+                });
+            } else {
+                // Update the chart with new data
+                pumptotalChartOutside.data.labels = timestamps;
+                pumptotalChartOutside.data.datasets[0].data = psip1;
+                pumptotalChartOutside.data.datasets[1].data = psip2;
+                pumptotalChartOutside.data.datasets[2].data = psip3;
+                pumptotalChartOutside.data.datasets[3].data = psip4;
+                pumptotalChartOutside.data.datasets[4].data = psip5;
+        
+        
+                // Remove old data points if exceeding 10 labels
+                if (pumptotalChartOutside.data.labels.length > 60) {
+                    pumptotalChartOutside.data.labels = pumptotalChartOutside.data.labels.slice(-60);
+                    pumptotalChartOutside.data.datasets.forEach(dataset => {
+                        dataset.data = dataset.data.slice(-60);
+                    });
+                }
+        
+                pumptotalChartOutside.update();
+            }
+        }
+
+    // Call the initializeChartOutsideModal function
+
+    // Start updating the chart after 3 seconds
 
 // Wait for 3 seconds before initializing and updating the chart
 // Wait for 3 seconds before starting updates

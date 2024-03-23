@@ -335,6 +335,16 @@ img {
   width: 100% !important;
   height: 100% !important;
 }
+#pumptotalChartOutside {
+  display: block !important;
+  background-color: aaa;
+}
+#chartContainer {
+  display: block;
+  width: 80% !important;
+  height: auto;
+  margin-left: 11rem;
+}
 .scadabuttoncontainer {
   display: block;
 }

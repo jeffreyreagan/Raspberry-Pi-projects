@@ -373,15 +373,16 @@ def get_pump5vacuum_data():
             p5simpsi = 0
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': 0})
-        elif p5simpsi > 6:
+        elif p5simpsi >= 6:
             p5simpsi = p5simpsi - random.randint(4,8)
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': p5simpsi})
-        elif p5simpsi < -6:
+        elif p5simpsi <= -6:
             p5simpsi = p5simpsi + random.randint(4,8)
             storedpsip5.append(p5simpsi)
             return jsonify({'pump5vacuum': p5simpsi})
-
+    else:
+        return jsonify({'pump5vacuum': 0})
 @app.route('/get_VACUUM_5_SEPARATOR_PRESSURE_data')
 def get_VACUUM_5_SEPARATOR_PRESSURE_data():
     if pump5stat == '1':

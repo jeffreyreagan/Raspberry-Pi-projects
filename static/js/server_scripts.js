@@ -500,6 +500,7 @@ window.addEventListener('beforeunload', function(event) {
 });
 window.onload = function() {
     var newY = localStorage.getItem('pump1valveY');
+    openaveragepumpdata_outside();
     if (newY !== null) {
         document.getElementById('pump1valve').setAttribute('y', newY + 'px');
     }
@@ -770,7 +771,7 @@ function renderChart() {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Process Vacuum',
+                      text: 'Total Process Vacuum',
                       font: {size: 25} // Adjust the font size of the chart title
                     },
                     tooltip: {

@@ -449,8 +449,8 @@
                 <div id="chartContainer">
                     <h3 style="text-align: center;">All Pump Vacuum (psi)</h3>
                     <canvas class='' id="pumptotalChartOutside" width="600" height="300"></canvas>
-                    <button id="leftArrow" onclick="scrollLeft()"><</button>
-                    <button id="rightArrow" onclick="scrollRight()">></button> <!-- Canvas for Chart.js chart -->
+                    <button id="leftArrow" onclick="scrollleft(fetchedData.timestamps, fetchedData.psip1, fetchedData.psip2, fetchedData.psip3, fetchedData.psip4, fetchedData.psip5)">-</button>
+                    <button id="rightArrow" onclick="scrollRight(fetchedData.timestamps, fetchedData.psip1, fetchedData.psip2, fetchedData.psip3, fetchedData.psip4, fetchedData.psip5)">+</button> <!-- Canvas for Chart.js chart -->
                     <script src="/static/js/temp.js"></script>
                 </div>
                 <script src="/static/js/temp.js"></script>

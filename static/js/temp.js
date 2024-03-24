@@ -155,7 +155,6 @@ window.onclick = function(event) {
 
 
 
-
 var ccctx = document.getElementById("canvas").getContext("2d");
     window.myLine = new Chart(ccctx).Line(lineChartData, {
         responsive: true,
@@ -181,21 +180,23 @@ function openaveragepumpdata_outside() {
     }, 4000);
 }
 
+
+
+
 // Function to fetch pump data from the server and update the chart
 function fetchAndUpdateChart3(ccendpoint) {
     fetch(ccendpoint)
         .then(response => {
             if (response.ok) {
-                console.log(response)
                 return response.json();
             } else {
                 throw new Error('Failed to fetch alarm data');
             }
         })
         .then(data => {
-            // Check if data contains all required properties
-            console.log(data)
             if (data && data.timestamps && data.psip1 && data.psip2 && data.psip3 && data.psip4 && data.psip5) {
+                // Store the fetched data
+                fetchedData = data;
                 // Update the chart with new data
                 initializeChartOutsideModal(data.timestamps, data.psip1, data.psip2, data.psip3, data.psip4, data.psip5);
             } else {
@@ -206,108 +207,101 @@ function fetchAndUpdateChart3(ccendpoint) {
             console.error('Error fetching alarm data:', error);
         });
 }
-    // Function to initialize the chart outside the modal
-    function initializeChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
-        // Ensure the Chart.js instance is created
-        if (!pumptotalChartOutside) {
-            var ccctx = document.getElementById('pumptotalChartOutside').getContext('2d');
-            pumptotalChartOutside = new Chart(ccctx, {
-                type: 'line',
-                data: {
-                    labels: timestamps.slice(-60), // Display only the last 60 labels initially
-                    datasets: [{
-                            label: 'Pump 1 psi',
-                            data: psip1.slice(-60), // Display only the last 60 data points initially
-                            borderColor: 'rgba(255, 200, 132, 1)',
-                            borderWidth: 1
-                        },{
-                            label: 'Pump 2 psi',
-                            data: psip2.slice(-60), // Display only the last 60 data points initially
-                            borderColor: 'rgba(44, 255, 23, 0.8)',
-                            borderWidth: 1
-                        },{
-                            label: 'Pump 3 psi',
-                            data: psip3.slice(-60), // Display only the last 60 data points initially
-                            borderColor: 'rgba(23, 219, 255, 0.8)',
-                            borderWidth: 1
-                        },{
-                            label: 'Pump 4 psi',
-                            data: psip4.slice(-60), // Display only the last 60 data points initially
-                            borderColor: 'rgba(214, 23, 255, 0.8)',
-                            borderWidth: 1
-                        }, {
-                            label: 'Pump 5 psi',
-                            data: psip5.slice(-60), // Display only the last 60 data points initially
-                            borderColor: 'rgba(255, 0, 0, 0.8)',
-                            borderWidth: 1
-                        }
-                    ]
+
+ // Current index of the first data point displayed
+var numDataPoints = 5; 
+console.log(currentIndexx);
+// Function to initialize the chart outside the modal
+function initializeChartOutsideModal(timestamps, psip1, psip2, psip3, psip4, psip5) {
+    // Ensure the Chart.js instance is created
+    if (!pumptotalChartOutside) {
+        var ccctx = document.getElementById('pumptotalChartOutside').getContext('2d');
+        pumptotalChartOutside = new Chart(ccctx, {
+            type: 'line',
+            data: {
+                labels: timestamps.slice(-60), // Display only the last 60 labels initially
+                datasets: [{
+                    label: 'Pump 1 psi',
+                    data: psip1.slice(-60), // Display only the last 60 data points initially
+                    borderColor: 'rgba(255, 200, 132, 1)',
+                    borderWidth: 1
+                },{
+                    label: 'Pump 2 psi',
+                    data: psip2.slice(-60), // Display only the last 60 data points initially
+                    borderColor: 'rgba(44, 255, 23, 0.8)',
+                    borderWidth: 1
+                },{
+                    label: 'Pump 3 psi',
+                    data: psip3.slice(-60), // Display only the last 60 data points initially
+                    borderColor: 'rgba(23, 219, 255, 0.8)',
+                    borderWidth: 1
+                },{
+                    label: 'Pump 4 psi',
+                    data: psip4.slice(-60), // Display only the last 60 data points initially
+                    borderColor: 'rgba(214, 23, 255, 0.8)',
+                    borderWidth: 1
+                }, {
+                    label: 'Pump 5 psi',
+                    data: psip5.slice(-60), // Display only the last 60 data points initially
+                    borderColor: 'rgba(255, 0, 0, 0.8)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            enabled: true
-                        }
+                plugins: {
+                    tooltip: {
+                        enabled: true
                     }
                 }
-            });
-        } else {
-            // Update the chart with new data
-            pumptotalChartOutside.data.labels = timestamps.slice(-10);
-            pumptotalChartOutside.data.datasets[0].data = psip1.slice(-10);
-            pumptotalChartOutside.data.datasets[1].data = psip2.slice(-10);
-            pumptotalChartOutside.data.datasets[2].data = psip3.slice(-10);
-            pumptotalChartOutside.data.datasets[3].data = psip4.slice(-10);
-            pumptotalChartOutside.data.datasets[4].data = psip5.slice(-10);
-    
-            pumptotalChartOutside.update();
-        }
-    }
-
-
-    function scrollLeft() {
-        // Shift the displayed labels to the left by 10 positions
-        var currentLabels = pumptotalChartOutside.data.labels;
-        var newLabels = currentLabels.slice(10); // Remove the first 10 labels
-        pumptotalChartOutside.data.labels = newLabels;
-        
-        // Shift the corresponding data points as well
-        pumptotalChartOutside.data.datasets.forEach(dataset => {
-            dataset.data = dataset.data.slice(10);
+            }
         });
-    
-        pumptotalChartOutside.update(); // Update the chart
+    } else {
+        // Update the chart with new data
+        updateChartData(timestamps, psip1, psip2, psip3, psip4, psip5);
     }
+}
+
+// Function to update chart data when scrolling left
+function scrollRight(timestamps, psip1, psip2, psip3, psip4, psip5) {
+    currentIndexx += 10; // Move forward by 10 data points
+    console.log(currentIndexx);
+    updateChartData(timestamps, psip1, psip2, psip3, psip4, psip5);
+}
+
+function scrollleft(timestamps, psip1, psip2, psip3, psip4, psip5) {
+    currentIndexx -= 10; // Move back by 10 data points
+    console.log(currentIndexx);
+    updateChartData(timestamps, psip1, psip2, psip3, psip4, psip5);
+}
+
+// Function to update chart data
+function updateChartData(timestamps, psip1, psip2, psip3, psip4, psip5) {
+    pumptotalChartOutside.data.labels = timestamps.slice(currentIndexx);
+    pumptotalChartOutside.data.datasets[0].data = psip1.slice(currentIndexx);
+    pumptotalChartOutside.data.datasets[1].data = psip2.slice(currentIndexx);
+    pumptotalChartOutside.data.datasets[2].data = psip3.slice(currentIndexx);
+    pumptotalChartOutside.data.datasets[3].data = psip4.slice(currentIndexx);
+    pumptotalChartOutside.data.datasets[4].data = psip5.slice(currentIndexx);
+    console.log('should be updating')
+    console.log(currentIndexx)
+    pumptotalChartOutside.update();
+}
     
-    // Function to handle click on the right arrow button
-    function scrollRight() {
-        // Shift the displayed labels to the right by 10 positions
-        var currentLabels = pumptotalChartOutside.data.labels;
-        var newLabels = currentLabels.slice(-5); // Keep the last 50 labels
-        pumptotalChartOutside.data.labels = newLabels;
-    
-        // Shift the corresponding data points as well
-        pumptotalChartOutside.data.datasets.forEach(dataset => {
-            dataset.data = dataset.data.slice(-5);
-        });
-    
-        pumptotalChartOutside.update(); // Update the chart
-    }
     
     // Add event listeners to the left and right arrow buttons
-    document.getElementById('leftArrow').addEventListener('click', scrollLeft);
+    document.getElementById('leftArrow').addEventListener('click', scrollleft);
     document.getElementById('rightArrow').addEventListener('click', scrollRight);
 
 
 
 
 
-
+var fetchedData = null;
 
 
 

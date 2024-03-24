@@ -491,12 +491,13 @@ function openpump1valve() {
     rect2.setAttribute('y', newY2 + 'px');
     
 }
-
+let currentIndexx = -10;
 window.addEventListener('beforeunload', function(event) {
      //Clear local storage when the browser is closed or refreshed
     localStorage.clear();
 });
 window.onload = function() {
+    
     var newY = localStorage.getItem('pump1valveY');
     openaveragepumpdata_outside();
     if (newY !== null) {

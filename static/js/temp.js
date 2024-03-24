@@ -451,31 +451,3 @@ function updateChart2(timestamps, psip1, psip2, psip3, psip4, psip5) {
 
 
 
-function animateSVG() {
-    // Show the first shape
-    document.getElementById('initialwindmill').style.display = 'block';
-    // Hide other shapes
-    document.getElementById('windmill2').style.display = 'none';
-    document.getElementById('windmill3').style.display = 'none';
-    document.getElementById('windmill4').style.display = 'none';
-
-    // Transition to the second shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill2').style.display = 'block';
-        document.getElementById('initialwindmill').style.display = 'none';
-    }, 250); // Adjust the delay as needed
-
-    // Transition to the third shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill3').style.display = 'block';
-        document.getElementById('windmill2').style.display = 'none';
-    }, 500); // Adjust the delay as needed
-
-    // Transition to the fourth shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill4').style.display = 'block';
-        document.getElementById('windmill3').style.display = 'none';
-    }, 750); // Adjust the delay as needed
-}
-
-

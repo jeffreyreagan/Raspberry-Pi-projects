@@ -548,11 +548,58 @@ window.onload = function() {
     if (newY10 !== null) {
         document.getElementById('pump5valvestem').setAttribute('y', newY10 + 'px');
     }
-    setInterval(animateSVG, 1000); // Adjust the interval as needed
+
+    document.getElementById('initialwindmill').style.display = 'block';
+    // Hide other shapes
+    document.getElementById('windmill2').style.display = 'none';
+    document.getElementById('windmill3').style.display = 'none';
+    document.getElementById('windmill4').style.display = 'none';
+    startAnimationsvg();
+     // Adjust the interval as needed
 
     // Call animateSVG immediately to start the animation
-    animateSVG();
+    
 }
+
+let animationInterval;
+
+
+function startAnimationsvg() {
+    animationInterval = setInterval(animateSVG, 1000); // Adjust interval as needed
+}
+
+function stopAnimationsvg() {
+    clearInterval(animationInterval);
+}
+
+function animateSVG() {
+    // Show the first shape
+    document.getElementById('initialwindmill').style.display = 'block';
+    // Hide other shapes
+    document.getElementById('windmill2').style.display = 'none';
+    document.getElementById('windmill3').style.display = 'none';
+    document.getElementById('windmill4').style.display = 'none';
+
+    // Transition to the second shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill2').style.display = 'block';
+        document.getElementById('initialwindmill').style.display = 'none';
+    }, 250); // Adjust the delay as needed
+
+    // Transition to the third shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill3').style.display = 'block';
+        document.getElementById('windmill2').style.display = 'none';
+    }, 500); // Adjust the delay as needed
+
+    // Transition to the fourth shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill4').style.display = 'block';
+        document.getElementById('windmill3').style.display = 'none';
+    }, 750); // Adjust the delay as needed
+}
+
+
 
 
 function closepump2valve() {

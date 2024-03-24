@@ -499,7 +499,7 @@ window.addEventListener('beforeunload', function(event) {
 window.onload = function() {
     
     var newY = localStorage.getItem('pump1valveY');
-    openaveragepumpdata_outside();
+    setTimeout(openaveragepumpdata_outside(),5000);
     if (newY !== null) {
         document.getElementById('pump1valve').setAttribute('y', newY + 'px');
     }
@@ -548,6 +548,10 @@ window.onload = function() {
     if (newY10 !== null) {
         document.getElementById('pump5valvestem').setAttribute('y', newY10 + 'px');
     }
+    setInterval(animateSVG, 1000); // Adjust the interval as needed
+
+    // Call animateSVG immediately to start the animation
+    animateSVG();
 }
 
 

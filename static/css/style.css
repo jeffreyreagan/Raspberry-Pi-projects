@@ -451,3 +451,10 @@ body {
 #firstofpage {
   margin-top: 55px;
 }
+
+#windmillsvg {
+  height: 600px;
+}
+.windmillsvg {
+  height: 600px;
+}

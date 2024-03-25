@@ -537,23 +537,23 @@ body {
   transform-origin: center bottom;
 }
 .lowersheetarms {
-  transition: height 5s ease-in-out;
+  transition: height 2s ease-in-out;
 }
 .lowercups {
-  transition: transform 5s ease-in-out;
+  transition: transform 2s ease-in-out;
   transform: translate(0px, 40px);
   transform-origin: center bottom;
 }
 .raisesheetarms {
-  transition: height 5s ease-in-out;
+  transition: height 2s ease-in-out;
 }
 .pickupsheet {
-  transition: transform 5s ease-in-out;
+  transition: transform 2s ease-in-out;
   transform: translate(0px, 0px);
   transform-origin: center bottom;
 }
 .sheetpickedup {
-  transition: transform 5s ease-in-out;
+  transition: transform 2s ease-in-out;
   transform: translate(0px, -40px);
   transform-origin: center bottom;
 }
@@ -570,5 +570,26 @@ body {
 .sweepadjustment1 {
   transition: transform 5s ease-in-out;
   transform: translate(-105px, 0px);
+  transform-origin: center bottom;
+}
+
+.sheetdroppedlayer1 {
+  transition: transform 2s ease-in-out;
+  transform: translate(105px, 1px);
+  transform-origin: center bottom;
+}
+.lowercupsoverpallet {
+  transition: transform 2s ease-in-out;
+  transform: translate(0px, 35px);
+  transform-origin: center bottom;
+}
+.raisecups {
+  transition: transform 2s ease-in-out;
+  transform: translate(0px, 0px);
+  transform-origin: center bottom;
+}
+.secondlayersweep {
+  transition: transform 5s ease-in-out;
+  transform: translate(-160px, 0px);
   transform-origin: center bottom;
 }

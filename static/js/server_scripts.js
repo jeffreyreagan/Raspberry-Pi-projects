@@ -1049,6 +1049,45 @@ function carriagetoplacesheet() {
     carriage.classList.add('carriagetoplacesheet')
     document.getElementById('sheet').classList.add('sheetplacedonfirstlayer')
 }
+function carriagesheetdroplayer1() {
+    cuparm1 = document.getElementById('cuparm1');
+    cuparm2 = document.getElementById('cuparm2');
+    cuparm1.classList.add('lowersheetarms')
+    cuparm2.classList.add('lowersheetarms')
+    cup1 = document.getElementById('cup1');
+    cup2 = document.getElementById('cup2');
+    cup1.classList.add('lowercupsoverpallet')
+    cup2.classList.add('lowercupsoverpallet')
+    cuparm1.setAttribute('height', '45px');
+    cuparm2.setAttribute('height', '45px');
+    sheet = document.getElementById('sheet')
+    sheet.classList.remove('sheetpickedup','sheetplacedonfirstlayer')
+    sheet.classList.add('sheetdroppedlayer1')
+}
+function raisecupsandarms() {
+    cuparm1 = document.getElementById('cuparm1');
+    cuparm2 = document.getElementById('cuparm2');
+    cuparm1.classList.add('raisesheetarms')
+    cuparm2.classList.add('raisesheetarms')
+    cuparm1.setAttribute('height', '10px');
+    cuparm2.setAttribute('height', '10px');
+    cup1 = document.getElementById('cup1');
+    cup2 = document.getElementById('cup2');
+    cup1.classList.add('raisecups')
+    cup2.classList.add('raisecups')
+}
+
+
+
+
+
+function secondsweep() {
+    var sweep = document.getElementById('sweep');
+    var secondlayer = document.getElementById('second_layer');
+    sweep.classList.remove('carriagetoplacesheet')
+    sweep.classList.add('firstlayersweep');
+    secondlayer.classList.add('secondlayersweep');
+}
 setTimeout(raisepallethoist, 1000);
 setTimeout(grabfirstpallet, 6000);
 setTimeout(carriagetakespallet, 11000);
@@ -1059,5 +1098,8 @@ setTimeout(firstsweep, 31000);
 setTimeout(hoistdowntosecondlayer, 36000)
 setTimeout(conveyormovement, 36000)
 setTimeout(lowersheetarms, 41000)
-setTimeout(pickupsheet, 46000)
-setTimeout(carriagetoplacesheet, 51000)
+setTimeout(pickupsheet, 43000)
+setTimeout(carriagetoplacesheet, 45000)
+setTimeout(carriagesheetdroplayer1, 50000)
+setTimeout(raisecupsandarms, 52000)
+setTimeout(secondsweep, 55000)

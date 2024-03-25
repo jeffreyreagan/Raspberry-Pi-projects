@@ -115,7 +115,23 @@ $(document).ready(function() {
     });
 
     setInterval(checkAnimationStatus, 2000);
+    function updatepump1setdisplay() {
+        $.ajax({
+            url: '/updatepump1setdisplay',
+            method: 'GET',
+            success: function(response) {
+                var setpointValue = response.pump1set !== null ? response.pump1set : 0;
+                var setpointText = 'Pump 1 setpoint: ' + setpointValue + ' psi';
+                $('#setpoint1display').text(setpointText);
+            }
+        });
+    }
 
+    // Update variable every 5 seconds
+    setInterval(updatepump1setdisplay, 2000);
+
+    // Initial update
+    updatepump1setdisplay();
 
 
 });
@@ -944,3 +960,29 @@ window.onclick = function(event) {
     }
     
 }
+
+function raisepallethoist() {
+    var pallethoist = document.getElementById('pallethoist');
+    
+    
+    pallethoist.classList.add('lowerpallethoist');
+    
+}
+function grabfirstpallet() {
+    var pallethoist = document.getElementById('pallethoist');
+    var firstpallet = document.getElementById('firstpallet');
+    ;
+    pallethoist.classList.add('grabfirstpallet');
+    firstpallet.classList.add('palletgettingrabbed');
+}
+function carriagetakespallet() {
+    var pallethoist = document.getElementById('pallethoist');
+    var firstpallet = document.getElementById('firstpallet');
+    var carriage = document.getElementById('carriage');
+    
+    firstpallet.classList.add('carriagetakespallet');
+    carriage.classList.add('carriagetakingpallet');
+}
+setTimeout(raisepallethoist, 1000);
+setTimeout(grabfirstpallet, 6000);
+setTimeout(carriagetakespallet, 11000);

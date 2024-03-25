@@ -459,3 +459,35 @@ body {
   height: 400px;
   width: 350px;
 }
+
+#palletizer {
+  width: 800px;
+  height: 800px;
+}
+
+.lowerpallethoist {
+  transition: transform 5s ease-in-out;
+  transform: translate(0, 15px);
+  transform-origin: center bottom;
+}
+
+.grabfirstpallet {
+  transition: transform 5s ease-in-out;
+  transform: translate(0, -65px);
+  transform-origin: center bottom;
+}
+.palletgettingrabbed {
+  transition: transform 5s ease-in-out;
+  transform: translate(0, -80px);
+  transform-origin: center bottom;
+}
+.carriagetakespallet {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, -80px);
+  transform-origin: center bottom;
+}
+.carriagetakingpallet {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, 0);
+  transform-origin: center bottom;
+}

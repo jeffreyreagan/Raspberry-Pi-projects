@@ -129,9 +129,11 @@
                         <text x="25" y="95" fill="black">Exhaust</text>
                     </svg>
                     <h2>Pump 1 Control</h2>
-
+                    <p id="setpoint1display"></p>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
                     <h3>Set Pump Setpoint</h3>
+                        
                         <label for="setpoint">Enter Setpoint:</label>
                         <input type="number" id="setpoint" name="setpoint" required>
                         <button onclick="setSetpoint()">Submit</button>
@@ -560,7 +562,176 @@
             
                 </div>
             
-            
+            <div id="palletizer">
+                <svg id="palletizer" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+
+                    <g>
+                     <title>Layer 1</title>
+                     <rect stroke="#000" id="svg_1" height="41.32482" width="10" y="246.4274" x="288.48765" fill="#fff"/>
+                     <rect id="svg_2" height="6.43142" width="209.76326" y="240.43664" x="388.65353" stroke="#000" fill="#fff"/>
+                     <g stroke="null" id="svg_5">
+                      <path stroke="#000" id="svg_3" d="m389.24058,224.46202l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 392.336 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_4" cy="225.88055" cx="392.3358" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_38">
+                      <path stroke="#000" id="svg_36" d="m482.75947,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 485.855 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_37" cy="225.88055" cx="485.85468" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_41">
+                      <path stroke="#000" id="svg_39" d="m474.3625,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 477.458 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_40" cy="225.88055" cx="477.45771" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_44">
+                      <path stroke="#000" id="svg_42" d="m499.84176,224.17248l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 502.938 225.591)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_43" cy="225.59102" cx="502.93697" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_47">
+                      <path stroke="#000" id="svg_45" d="m491.44479,224.17248l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 494.541 225.591)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_46" cy="225.59102" cx="494.54" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_50">
+                      <path stroke="#000" id="svg_48" d="m516.92405,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 520.02 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_49" cy="225.88055" cx="520.01926" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_53">
+                      <path stroke="#000" id="svg_51" d="m508.52708,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 511.623 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_52" cy="225.88055" cx="511.62229" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_56">
+                      <path stroke="#000" id="svg_54" d="m533.71681,224.46202l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 536.813 225.88)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_55" cy="225.88055" cx="536.81202" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_59">
+                      <path stroke="#000" id="svg_57" d="m525.31984,224.46202l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 528.416 225.88)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_58" cy="225.88055" cx="528.41505" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_62">
+                      <path stroke="#000" id="svg_60" d="m550.7991,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 553.895 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_61" cy="226.17008" cx="553.89431" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_65">
+                      <path stroke="#000" id="svg_63" d="m542.40213,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 545.497 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_64" cy="226.17008" cx="545.49734" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_68">
+                      <path stroke="#000" id="svg_66" d="m567.88139,224.46202l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 570.977 225.88)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_67" cy="225.88055" cx="570.9766" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_71">
+                      <path stroke="#000" id="svg_69" d="m559.48442,224.46202l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 562.581 225.88)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_70" cy="225.88055" cx="562.57963" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_74">
+                      <path stroke="#000" id="svg_72" d="m584.96368,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 588.06 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_73" cy="226.17008" cx="588.05889" fill="#fff"/>
+                     </g>
+                     <g stroke="null" id="svg_77">
+                      <path stroke="#000" id="svg_75" d="m576.56671,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 579.662 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_76" cy="226.17008" cx="579.66192" fill="#fff"/>
+                     </g>
+                     <rect stroke="#000" id="svg_78" height="11.79413" width="403.71558" y="159.76708" x="196.96709" fill="#fff"/>
+                     <ellipse stroke="#000" ry="13.20818" rx="13.68962" id="svg_79" cy="158.10231" cx="601.90622" fill="#fff"/>
+                     <path id="svg_81" d="m199.89183,248.99452l75.79834,0l0,30.43847l-75.79834,0l0,-30.43847z" opacity="undefined" stroke="#000" fill="#fff"/>
+                     //sheet 
+                     <rect id="sheet" height="2.70357" width="75.15933" y="243.85751" x="200.13557" stroke="#000" fill="#fff"/>
+                
+                     <rect stroke="#000" id="svg_83" height="69.79661" width="10" y="247.24207" x="388.67193" fill="#fff"/>
+                     <rect id="svg_88" height="0.48552" width="0" y="184.80499" x="416.38968" stroke="#000" fill="#fff"/>
+                     <ellipse stroke="#000" ry="13.92116" rx="13.2041" id="svg_90" cy="254.38785" cx="598.40136" fill="#fff"/>
+                     <rect stroke="#000" id="svg_92" height="8.80663" width="75.79834" y="427.4513" x="199.43904" fill="#fff"/>
+                     <rect stroke="#000" id="svg_93" height="8.80663" width="75.79834" y="407.63754" x="199.43904" fill="#fff"/>
+                     <rect stroke="#000" id="svg_94" height="8.80663" width="75.79834" y="398.03944" x="199.40163" fill="#fff"/>
+                     <rect stroke="#000" id="svg_96" height="8.80663" width="75.79834" y="417.64735" x="199.30513" fill="#fff"/>
+                     //firstpallet
+                     <rect stroke="#000" id="firstpallet" height="8.80663" width="75.79834" y="388.77764" x="199.56492" fill="#fff"/>
+                     
+                     <rect stroke="#000" id="svg_98" height="109.46229" width="10" y="328.2904" x="288.97785" fill="#fff"/>
+                     <rect stroke="#000" id="svg_102" height="190.21533" width="10" y="248.37416" x="176.00729" fill="#fff"/>
+                     <line id="svg_103" y2="320.08284" x2="188.28373" y1="436.40067" x1="189.12055" stroke="#000" fill="none"/>
+                     <line id="svg_104" y2="320.91966" x2="285.77314" y1="437.23749" x1="286.60996" stroke="#000" fill="none"/>
+                     //pallet hoist 
+                     <g id="pallethoist">
+                      <g id="svg_107">
+                       <rect id="svg_100" height="1.96079" width="10.78435" y="376.38685" x="194.50862" stroke="#000" fill="#fff"/>
+                       <rect id="svg_106" height="6.5963" width="4.74934" y="373.43759" x="189.04302" stroke="#000" fill="none"/>
+                      </g>
+                      <g id="svg_108">
+                       <rect id="svg_101" height="1.96079" width="10.78435" y="375.55003" x="269.40391" stroke="#000" fill="#fff"/>
+                       <rect id="svg_105" height="6.5963" width="4.74934" y="373.37718" x="280.86354" stroke="#000" fill="none"/>
+                      </g>
+                     </g>
+                     <g stroke="null" id="svg_32">
+                      <path stroke="#000" id="svg_30" d="m465.67718,224.17248l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                      <ellipse transform="rotate(2.57573 468.773 225.591)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_31" cy="225.59102" cx="468.77239" fill="#fff"/>
+                     </g>
+                     <rect stroke="#000" id="svg_116" height="11.83434" width="430.76995" y="439.0545" x="166.2731" fill="#fff"/>
+                     <ellipse stroke="#000" ry="13.92116" rx="13.2041" id="svg_117" cy="453.79646" cx="384.79153" fill="#fff"/>
+                     <ellipse stroke="#000" ry="13.92116" rx="13.2041" id="svg_118" cy="453.20474" cx="494.25918" fill="#fff"/>
+                     <ellipse stroke="#000" ry="13.92116" rx="13.2041" id="svg_119" cy="452.02131" cx="596.62621" fill="#fff"/>
+                     //sweep 
+                     <g id="sweep">
+                      <rect stroke="#000" id="svg_87" height="33.0156" width="4.36971" y="190.61666" x="390.12064" fill="#fff"/>
+                      <rect stroke="#000" id="svg_89" height="32.53008" width="4.36971" y="189.7629" x="458.71946" fill="#fff"/>
+                      <rect stroke="#000" id="svg_91" height="23.30513" width="142.58676" y="166.82601" x="340.95339" fill="#fff"/>
+                      <rect id="svg_123" height="10.71428" width="4.01785" y="190.01836" x="345.82818" stroke="#000" fill="#fff"/>
+                      <rect stroke="#000" id="svg_124" height="10.71428" width="4.01785" y="190.09025" x="357.00076" fill="#fff"/>
+                      <ellipse stroke="#000" ry="2.61628" rx="4.26462" id="svg_125" cy="201.542" cx="348.06617" fill="#fff"/>
+                      <ellipse stroke="#000" ry="2.61628" rx="4.26462" id="svg_126" cy="201.542" cx="359.16069" fill="#fff"/>
+                     </g>
+                     //carriage
+                     <g id="carriage">
+                      <rect id="svg_113" height="2.55474" width="87.59124" y="314.9635" x="194.07186" stroke="#000" fill="#fff"/>
+                      <rect id="svg_114" height="6.20438" width="16.78832" y="313.13869" x="201.45985" stroke="#000" fill="#fff"/>
+                      <rect id="svg_115" height="6.20438" width="16.78832" y="312.40876" x="252.91971" stroke="#000" fill="#fff"/>
+                     </g>
+                     //main hoist
+                     <g id="svg_133">
+                      <rect id="svg_131" height="4.95868" width="18.18182" y="431.81824" x="305.37194" stroke="#000" fill="#fff"/>
+                      <rect id="svg_132" height="4.95868" width="18.18182" y="431.68572" x="363.03423" stroke="#000" fill="#fff"/>
+                     </g>
+                     //first layer
+                     <g id="first_layer">
+                            <g stroke="null" id="svg_8">
+                            <path stroke="#000" id="svg_6" d="m397.63756,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 400.733 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_7" cy="225.88055" cx="400.73277" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_11">
+                            <path stroke="#000" id="svg_9" d="m389.24058,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 392.336 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_10" cy="225.88055" cx="392.3358" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_14">
+                            <path stroke="#000" id="svg_12" d="m414.71984,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 417.815 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_13" cy="226.17008" cx="417.81506" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_17">
+                            <path stroke="#000" id="svg_15" d="m406.32287,224.75155l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 409.418 226.17)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_16" cy="226.17008" cx="409.41808" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_20">
+                            <path stroke="#000" id="svg_18" d="m431.80213,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 434.897 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_19" cy="225.88055" cx="434.89735" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_23">
+                            <path stroke="#000" id="svg_21" d="m423.40516,224.46201l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 426.5 225.881)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_22" cy="225.88055" cx="426.50037" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_26">
+                            <path stroke="#000" id="svg_24" d="m448.88442,224.75154l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 451.979 226.171)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_25" cy="226.17008" cx="451.97963" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_29">
+                            <path stroke="#000" id="svg_27" d="m440.48745,224.75154l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 443.582 226.171)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_28" cy="226.17008" cx="443.58266" fill="#fff"/>
+                            </g>
+                            <g stroke="null" id="svg_35">
+                            <path stroke="#000" id="svg_33" d="m457.28021,224.17248l6.41077,0l0,14.84174l-6.41077,0l0,-14.84174z" opacity="undefined" fill="#fff"/>
+                            <ellipse transform="rotate(2.57573 460.376 225.591)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_34" cy="225.59102" cx="460.37542" fill="#fff"/>
+                            </g>
+                            </g>
+                    </g>
+                   </svg>
+                   
+            </div>
         </section>
         
         <footer>

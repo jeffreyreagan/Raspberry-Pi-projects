@@ -53,6 +53,9 @@ def get_random_image():
 def page_2():
     return render_template('page_2.html')
 
+@app.route('/updatepump1setdisplay')
+def updatepump1setdisplay():
+    return jsonify(pump1set=pump1setpoint)
 #Page 3
 @app.route('/page_3.html')
 def page_3_bp():
@@ -670,4 +673,4 @@ def get_pump_5_alarm_history():
     }
     return jsonify(data)
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000', debug=True, use_reloader=True)
+    app.run(host='127.0.0.1', debug=True, use_reloader=True)

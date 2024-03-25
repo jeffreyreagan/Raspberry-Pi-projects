@@ -1088,6 +1088,17 @@ function secondsweep() {
     sweep.classList.add('firstlayersweep');
     secondlayer.classList.add('secondlayersweep');
 }
+
+function conveyormovement2() {
+    document.getElementById('third_layer').classList.add('conveyormovement2')
+    document.getElementById('fourth_layer').classList.add('conveyormovement2')
+    document.getElementById('sweep').classList.add('sweepadjustment1')
+    document.getElementById('second_layer').classList.add('lowersecondlayer')
+    document.getElementById('first_layer').classList.add('firstlayerdown2')
+    document.getElementById('sheet').classList.add('lowersheet2')
+    document.getElementById('firstpallet').classList.add('palletlowerdown2')
+    document.getElementById('mainhoist').classList.add('hoistdowntothirdlayer')
+}
 setTimeout(raisepallethoist, 1000);
 setTimeout(grabfirstpallet, 6000);
 setTimeout(carriagetakespallet, 11000);
@@ -1103,3 +1114,4 @@ setTimeout(carriagetoplacesheet, 45000)
 setTimeout(carriagesheetdroplayer1, 50000)
 setTimeout(raisecupsandarms, 52000)
 setTimeout(secondsweep, 55000)
+setTimeout(conveyormovement2, 60000)

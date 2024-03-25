@@ -593,3 +593,35 @@ body {
   transform: translate(-160px, 0px);
   transform-origin: center bottom;
 }
+
+.conveyormovement2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-150px, 0px);
+  transform-origin: center bottom;
+}
+
+.hoistdowntothirdlayer {
+  transition: transform 5s ease-in-out;
+  transform: translate(0px, -145px);
+  transform-origin: center bottom;
+}
+.firstlayerdown2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-85px, 40px);
+  transform-origin: center bottom;
+}
+.palletlowerdown2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, -110px);
+  transform-origin: center bottom;
+}
+.lowersheet2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, 22px);
+  transform-origin: center bottom;
+}
+.lowersecondlayer {
+  transition: transform 5s ease-in-out;
+  transform: translate(-160px, 22px);
+  transform-origin: center bottom;
+}

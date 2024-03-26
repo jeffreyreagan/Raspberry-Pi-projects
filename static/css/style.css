@@ -554,7 +554,7 @@ body {
 }
 .sheetpickedup {
   transition: transform 2s ease-in-out;
-  transform: translate(0px, -40px);
+  transform: translate(0px, -35px);
   transform-origin: center bottom;
 }
 .carriagetoplacesheet {
@@ -564,7 +564,7 @@ body {
 }
 .sheetplacedonfirstlayer {
   transition: transform 5s ease-in-out;
-  transform: translate(105px, -40px);
+  transform: translate(105px, -35px);
   transform-origin: center bottom;
 }
 .sweepadjustment1 {
@@ -596,10 +596,9 @@ body {
 
 .conveyormovement2 {
   transition: transform 5s ease-in-out;
-  transform: translate(-150px, 0px);
+  transform: translate(-153px, 0px);
   transform-origin: center bottom;
 }
-
 .hoistdowntothirdlayer {
   transition: transform 5s ease-in-out;
   transform: translate(0px, -145px);
@@ -615,13 +614,107 @@ body {
   transform: translate(105px, -110px);
   transform-origin: center bottom;
 }
+
+.lowersecondlayer {
+  transition: transform 5s ease-in-out;
+  transform: translate(-160px, 22px);
+  transform-origin: center bottom;
+}
+.thirdlayersweep {
+  transition: transform 5s ease-in-out;
+  transform: translate(-237px, 0px);
+  transform-origin: center bottom;
+}
+.conveyormovement3 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-228px, 0px);
+  transform-origin: center bottom;
+}
+
+
+
+.hoistdowntofourthlayer {
+  transition: transform 5s ease-in-out;
+  transform: translate(0px, -125px);
+  transform-origin: center bottom;
+}
+.firstlayerdown3 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-85px, 60px);
+  transform-origin: center bottom;
+}
+.palletlowerdown3 {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, -90px);
+  transform-origin: center bottom;
+}
 .lowersheet2 {
   transition: transform 5s ease-in-out;
   transform: translate(105px, 22px);
   transform-origin: center bottom;
 }
-.lowersecondlayer {
+.lowersheet2_2 {
   transition: transform 5s ease-in-out;
-  transform: translate(-160px, 22px);
+  transform: translate(105px, 42px);
+  transform-origin: center bottom;
+}
+.lowersheet3  {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, 62px);
+  transform-origin: center bottom;
+}
+.lowerthirdlayer1 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-238px, 22px);
+  transform-origin: center bottom;
+}
+.lowersecondlayer2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-160px, 42px);
+  transform-origin: center bottom;
+}
+.sheetplacedonsecondlayer {
+  transition: transform 2s ease-in-out;
+    transform: translate(105px, 1px);
+    transform-origin: center bottom;
+}
+.fourthlayersweep {
+  transition: transform 5s ease-in-out;
+  transform: translate(-312px, 0px);
+  transform-origin: center bottom;
+}
+.lowerfourthlayer1 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-310px, 22px);
+  transform-origin: center bottom;
+}
+.lowerthirdlayer2 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-238px, 42px);
+  transform-origin: center bottom;
+}
+.lowersecondlayer3 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-160px, 62px);
+  transform-origin: center bottom;
+}
+.firstlayerdown4 {
+  transition: transform 5s ease-in-out;
+  transform: translate(-85px, 80px);            
+  transform-origin: center bottom;
+}
+.lowersheet4 {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, 82px);
+  transform-origin: center bottom;
+}
+.palletlowerdown4 {
+  transition: transform 5s ease-in-out;
+  transform: translate(105px, -70px);
+  transform-origin: center bottom;
+}
+.hoistdowntofifthlayer {
+  transition: transform 5s ease-in-out;
+  transform: translate(0px, -105px);
   transform-origin: center bottom;
 }

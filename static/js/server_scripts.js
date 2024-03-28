@@ -962,6 +962,7 @@ window.onclick = function(event) {
 }
 
 function raisepallethoist() {
+    if (!stopFlag) {
     var pallethoist = document.getElementById('pallethoist');
     document.getElementById('sheet2').style.display = "none";
     document.getElementById('sheet3').style.display = "none";
@@ -969,15 +970,17 @@ function raisepallethoist() {
     
     pallethoist.classList.add('lowerpallethoist');
     
-}
+}}
 function grabfirstpallet() {
+    if (!stopFlag) {
     var pallethoist = document.getElementById('pallethoist');
     var firstpallet = document.getElementById('firstpallet');
     ;
     pallethoist.classList.add('grabfirstpallet');
     firstpallet.classList.add('palletgettingrabbed');
-}
+}}
 function carriagetakespallet() {
+    if (!stopFlag) {
     var pallethoist = document.getElementById('pallethoist');
     var firstpallet = document.getElementById('firstpallet');
     var carriage = document.getElementById('carriage');
@@ -985,43 +988,52 @@ function carriagetakespallet() {
     firstpallet.classList.add('carriagetakespallet');
     carriage.classList.add('carriagetakingpallet');
 }
+}
 function mainhoistgetpallet() {
+    if (!stopFlag) {
     var firstpallet = document.getElementById('firstpallet');
     var carriage = document.getElementById('carriage');
     var mainhoist = document.getElementById('mainhoist');
     mainhoist.classList.add('mainhoistgetpallet');
-}
+}}
 function carriageretract() {
+    if (!stopFlag) {
     var carriage = document.getElementById('carriage');
     carriage.classList.add('carriageretract');
-}
+}}
 function mainhoistraisingpallet() {
+    if (!stopFlag) {
     var mainhoist = document.getElementById('mainhoist');
     var firstpallet = document.getElementById('firstpallet');
     firstpallet.classList.add('palletraisingwithhoist');
     mainhoist.classList.add('mainhoistraisingpallet');
-}
+}}
 function firstsweep() {
+    if (!stopFlag) {
     var sweep = document.getElementById('sweep');
     var firstlayer = document.getElementById('first_layer');
     sweep.classList.add('firstlayersweep');
     firstlayer.classList.add('firstlayersweep');
-}
+}}
 function hoistdowntosecondlayer() {
+    if (!stopFlag) {
     var mainhoist = document.getElementById('mainhoist')
     var firstlayer = document.getElementById('first_layer')
     var firstpallet = document.getElementById('firstpallet')
     mainhoist.classList.add('hoistdowntosecondlayer')
     firstlayer.classList.add('firstlayerdown1')
     firstpallet.classList.add('palletlowerdown1')
-}
+}}
 function conveyormovement() {
+    if (!stopFlag) {
     document.getElementById('second_layer').classList.add('conveyormovement')
     document.getElementById('third_layer').classList.add('conveyormovement')
     document.getElementById('fourth_layer').classList.add('conveyormovement')
     document.getElementById('sweep').classList.add('sweepadjustment1')
 }
+}
 function lowersheetarms(){
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cup1 = document.getElementById('cup1');
     cup2 = document.getElementById('cup2');
@@ -1032,8 +1044,9 @@ function lowersheetarms(){
     cuparm2.setAttribute('height', '50px');
     cup1.classList.add('lowercups')
     cup2.classList.add('lowercups')
-}
+}}
 function pickupsheet() {
+    if (!stopFlag) {
     document.getElementById('cuparm1').classList.add('raisesheetarms')
     document.getElementById('cuparm2').classList.add('raisesheetarms')
     document.getElementById('cup1').classList.add('pickupsheet')
@@ -1041,17 +1054,20 @@ function pickupsheet() {
     document.getElementById('sheet').classList.add('sheetpickedup')
     cuparm1.setAttribute('height', '10px');
     cuparm2.setAttribute('height', '10px');
-
+    }
 }
 
 function carriagetoplacesheet() {
+    if (!stopFlag) {
     carriage = document.getElementById('sweep')
     carriage.classList.remove('sweepadjustment1')
     carriage.classList.remove('conveyormovement')
     carriage.classList.add('carriagetoplacesheet')
     document.getElementById('sheet').classList.add('sheetplacedonfirstlayer')
 }
+}
 function carriagesheetdroplayer1() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
     cuparm1.classList.add('lowersheetarms')
@@ -1065,8 +1081,9 @@ function carriagesheetdroplayer1() {
     sheet = document.getElementById('sheet')
     sheet.classList.remove('sheetpickedup','sheetplacedonfirstlayer')
     sheet.classList.add('sheetdroppedlayer1')
-}
+}}
 function raisecupsandarms() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
     cuparm1.classList.add('raisesheetarms')
@@ -1078,16 +1095,19 @@ function raisecupsandarms() {
     cup1.classList.add('raisecups')
     cup2.classList.add('raisecups')
 }
+}
 
 function secondsweep() {
+    if (!stopFlag) {
     var sweep = document.getElementById('sweep');
     var secondlayer = document.getElementById('second_layer');
     sweep.classList.remove('carriagetoplacesheet')
     sweep.classList.add('firstlayersweep');
     secondlayer.classList.add('secondlayersweep');
 }
-
+}
 function conveyormovement2() {
+    if (!stopFlag) {
     document.getElementById('third_layer').classList.add('conveyormovement2')
     document.getElementById('fourth_layer').classList.add('conveyormovement2')
     document.getElementById('sweep').classList.add('sweepadjustment1')
@@ -1098,8 +1118,9 @@ function conveyormovement2() {
     document.getElementById('mainhoist').classList.add('hoistdowntothirdlayer')
     document.getElementById('fifth-layer').classList.add('conveyormovement')
 }
-
+}
 function lowersheetarms2() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cup1 = document.getElementById('cup1');
     cup2 = document.getElementById('cup2');
@@ -1117,7 +1138,9 @@ function lowersheetarms2() {
     console.log('done')
     sheet2.style.display = 'block'
 }
+}
 function pickupsheet2() {
+    if (!stopFlag) {
     sheet2 = document.getElementById('sheet2')
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
@@ -1135,15 +1158,18 @@ function pickupsheet2() {
     cuparm2.setAttribute('height', '10px');
     sheet2.classList.add('sheetpickedup')
 }
-
+}
 function carriagetoplacesheet2() {
+    if (!stopFlag) {
     carriage = document.getElementById('sweep')
     carriage.classList.remove('sweepadjustment1')
     carriage.classList.remove('conveyormovement')
     carriage.classList.add('carriagetoplacesheet')
     document.getElementById('sheet2').classList.add('sheetplacedonfirstlayer')
 }
+}
 function carriagesheetdroplayer2() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
     cuparm1.classList.add('lowersheetarms')
@@ -1158,7 +1184,9 @@ function carriagesheetdroplayer2() {
     sheet2.classList.remove('sheetpickedup','sheetplacedonfirstlayer')
     sheet2.classList.add('sheetdroppedlayer1')
 }
+}
 function thirdsweep() {
+    if (!stopFlag) {
     var sweep = document.getElementById('sweep');
     var thirdlayer = document.getElementById('third_layer');
     sweep.classList.remove('carriagetoplacesheet')
@@ -1166,11 +1194,13 @@ function thirdsweep() {
     thirdlayer.classList.remove('conveyormovement2')
     thirdlayer.classList.add('thirdlayersweep');
 }
+}
 function conveyormovement3() {
     
     
 }
 function hoistdownfourthlayer(){
+    if (!stopFlag) {
     document.getElementById('fourth_layer').classList.add('conveyormovement3')
     document.getElementById('fifth-layer').classList.add('conveyormovement2')
     document.getElementById('sweep').classList.add('sweepadjustment1')
@@ -1183,11 +1213,12 @@ function hoistdownfourthlayer(){
     document.getElementById('mainhoist').classList.add('hoistdowntofourthlayer')
     document.getElementById('sheet2').classList.add('lowersheet2')
 } 
-
+}
 
 
 
 function lowersheetarms3() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cup1 = document.getElementById('cup1');
     cup2 = document.getElementById('cup2');
@@ -1205,7 +1236,9 @@ function lowersheetarms3() {
     console.log('done')
     sheet3.style.display = 'block'
 }
+}
 function pickupsheet3() {
+    if (!stopFlag) {
     sheet2 = document.getElementById('sheet2')
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
@@ -1223,14 +1256,18 @@ function pickupsheet3() {
     cuparm2.setAttribute('height', '10px');
     sheet3.classList.add('sheetpickedup')
 }
+}
 function carriagetoplacesheet3() {
+    if (!stopFlag) {
     carriage = document.getElementById('sweep')
     carriage.classList.remove('sweepadjustment1')
     carriage.classList.remove('conveyormovement')
     carriage.classList.add('carriagetoplacesheet')
     document.getElementById('sheet3').classList.add('sheetplacedonfirstlayer')
 }
+}
 function carriagesheetdroplayer3() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
     cuparm1.classList.add('lowersheetarms')
@@ -1245,7 +1282,9 @@ function carriagesheetdroplayer3() {
     sheet3.classList.remove('sheetpickedup','sheetplacedonfirstlayer')
     sheet3.classList.add('sheetplacedonsecondlayer')
 }
+}
 function fourthsweep() {
+    if (!stopFlag) {
     var sweep = document.getElementById('sweep');
     var fourthlayer = document.getElementById('fourth_layer');
     sweep.classList.remove('carriagetoplacesheet')
@@ -1254,7 +1293,9 @@ function fourthsweep() {
     fourthlayer.classList.remove('conveyormovement3')
     fourthlayer.classList.add('fourthlayersweep');
 }
+}
 function hoistdownfifthlayer() {
+    if (!stopFlag) {
     console.log('running fifth')
     document.getElementById('fifth-layer').classList.add('conveyormovement3')
     document.getElementById('sweep').classList.add('sweepadjustment1')
@@ -1269,9 +1310,10 @@ function hoistdownfifthlayer() {
     document.getElementById('sheet2').classList.add('lowersheet2_2')
     document.getElementById('sheet3').classList.remove('sheetplacedonsecondlayer')
     document.getElementById('sheet3').classList.add('lowersheet2')
-    
+    }
 }
 function lowersheetarms4() {
+    if (!stopFlag) {
     cuparm1 = document.getElementById('cuparm1');
     cup1 = document.getElementById('cup1');
     cup2 = document.getElementById('cup2');
@@ -1288,36 +1330,194 @@ function lowersheetarms4() {
     cup2.classList.add('lowercups')
     console.log('done')
     sheet4.style.display = 'block'
+    document.getElementById('resetpalletizerbutton').style.display = 'block'
+}
+}
+function resetpalletizerpostion() {
+    
+    document.getElementById('mainhoist').classList.add('originalposition')
+    document.getElementById('firstpallet').classList.add('originalposition')
+    document.getElementById('sheet').classList.add('originalposition')
+    document.getElementById('second_layer').classList.add('originalposition')
+    document.getElementById('third_layer').classList.add('originalposition')
+    document.getElementById('fourth_layer').classList.add('originalposition')
+    document.getElementById('first_layer').classList.add('originalposition')
+    document.getElementById('sheet2').classList.add('originalposition')
+    document.getElementById('sheet3').classList.add('originalposition')
+    document.getElementById('sheet4').classList.add('originalposition')
+    document.getElementById('sweep').classList.add('originalposition')
+    document.getElementById('cup1').classList.add('originalposition')
+    document.getElementById('cup2').classList.add('originalposition')
+    document.getElementById('cuparm1').classList.add('originalposition')
+    document.getElementById('cuparm2').classList.add('originalposition')
+    document.getElementById('fifth-layer').classList.add('originalposition')
+    document.getElementById('pallethoist').classList.add('originalposition')
+    
+}
+let stopFlag = false; // Flag to stop the routine
+
+function startPalletizer() {
+    stopFlag = false;
+    
+    document.getElementById('mainhoist').classList.remove('originalposition');
+    document.getElementById('firstpallet').classList.remove('originalposition');
+    document.getElementById('sheet').classList.remove('originalposition');
+    document.getElementById('second_layer').classList.remove('originalposition');
+    document.getElementById('third_layer').classList.remove('originalposition');
+    document.getElementById('fourth_layer').classList.remove('originalposition');
+    document.getElementById('first_layer').classList.remove('originalposition');
+    document.getElementById('sheet2').classList.remove('originalposition');
+    document.getElementById('sheet3').classList.remove('originalposition');
+    document.getElementById('sheet4').classList.remove('originalposition');
+    document.getElementById('sweep').classList.remove('originalposition');
+    document.getElementById('cup1').classList.remove('originalposition');
+    document.getElementById('cup2').classList.remove('originalposition');
+    document.getElementById('cuparm1').classList.remove('originalposition');
+    document.getElementById('cuparm2').classList.remove('originalposition');
+    document.getElementById('fifth-layer').classList.remove('originalposition');
+    document.getElementById('pallethoist').classList.remove('originalposition');
+
+    setTimeout(raisepallethoist, 1000);
+    setTimeout(grabfirstpallet, 6000);
+    setTimeout(carriagetakespallet, 11000);
+    setTimeout(mainhoistgetpallet, 16000);
+    setTimeout(carriageretract, 21000);
+    setTimeout(mainhoistraisingpallet, 26000);
+    setTimeout(firstsweep, 31000);
+    setTimeout(hoistdowntosecondlayer, 36000)
+    setTimeout(conveyormovement, 36000)
+    setTimeout(lowersheetarms, 41000)
+    setTimeout(pickupsheet, 43000)
+    setTimeout(carriagetoplacesheet, 45000)
+    setTimeout(carriagesheetdroplayer1, 50000)
+    setTimeout(raisecupsandarms, 52000)
+    setTimeout(secondsweep, 55000)
+    setTimeout(conveyormovement2, 60000)
+    setTimeout(lowersheetarms2, 65000)
+    setTimeout(pickupsheet2, 67000)
+    setTimeout(carriagetoplacesheet2, 69000)
+    setTimeout(carriagesheetdroplayer2, 74000)
+    setTimeout(raisecupsandarms, 76000)
+    setTimeout(thirdsweep, 79000)
+    setTimeout(hoistdownfourthlayer, 84000)
+    setTimeout(lowersheetarms3, 89000)
+    setTimeout(pickupsheet3, 91000)
+    setTimeout(carriagetoplacesheet3, 93000)
+    setTimeout(carriagesheetdroplayer3, 98000)
+    setTimeout(raisecupsandarms, 100000)
+    setTimeout(fourthsweep, 102000)
+    setTimeout(hoistdownfifthlayer, 107000)
+    setTimeout(lowersheetarms4, 109000)
+    setTimeout(resetpalletizerpostion, 110000)
 }
 
-setTimeout(raisepallethoist, 1000);
-setTimeout(grabfirstpallet, 6000);
-setTimeout(carriagetakespallet, 11000);
-setTimeout(mainhoistgetpallet, 16000);
-setTimeout(carriageretract, 21000);
-setTimeout(mainhoistraisingpallet, 26000);
-setTimeout(firstsweep, 31000);
-setTimeout(hoistdowntosecondlayer, 36000)
-setTimeout(conveyormovement, 36000)
-setTimeout(lowersheetarms, 41000)
-setTimeout(pickupsheet, 43000)
-setTimeout(carriagetoplacesheet, 45000)
-setTimeout(carriagesheetdroplayer1, 50000)
-setTimeout(raisecupsandarms, 52000)
-setTimeout(secondsweep, 55000)
-setTimeout(conveyormovement2, 60000)
-setTimeout(lowersheetarms2, 65000)
-setTimeout(pickupsheet2, 67000)
-setTimeout(carriagetoplacesheet2, 69000)
-setTimeout(carriagesheetdroplayer2, 74000)
-setTimeout(raisecupsandarms, 76000)
-setTimeout(thirdsweep, 79000)
-setTimeout(hoistdownfourthlayer, 84000)
-setTimeout(lowersheetarms3, 89000)
-setTimeout(pickupsheet3, 91000)
-setTimeout(carriagetoplacesheet3, 93000)
-setTimeout(carriagesheetdroplayer3, 98000)
-setTimeout(raisecupsandarms, 100000)
-setTimeout(fourthsweep, 102000)
-setTimeout(hoistdownfifthlayer, 107000)
-setTimeout(lowersheetarms4, 109000)
+// Function to stop the palletizer routine
+function stopPalletizer() {
+    stopFlag = true;
+    resetpalletizerpostion();
+}
+
+// Function to manually control each step
+function manualControl(step) {
+    stopFlag = true; // Stop the routine
+    switch (step) {
+        case 1:
+            raisepallethoist();
+            break;
+        case 2:
+            grabfirstpallet();
+            break;
+        case 3:
+            carriagetakespallet();
+            break;
+        case 4:
+            mainhoistgetpallet();
+            break;
+        case 5:
+            carriageretract();
+            break;
+        case 6:
+            mainhoistraisingpallet();
+            break;
+        case 7:
+            firstsweep();
+            break;
+        case 8:
+            hoistdowntosecondlayer();
+            break;
+        case 9:
+            conveyormovement();
+            break;
+        case 10:
+            lowersheetarms();
+            break;
+        case 11:
+            pickupsheet();
+            break;
+        case 12:
+            carriagetoplacesheet();
+            break;
+        case 13:
+            carriagesheetdroplayer1();
+            break;
+        case 14:
+            raisecupsandarms();
+            break;
+        case 15:
+            secondsweep();
+            break;
+        case 16:
+            conveyormovement2();
+            break;
+        case 17:
+            lowersheetarms2();
+            break;
+        case 18:
+            pickupsheet2();
+            break;
+        case 19:
+            carriagetoplacesheet2();
+            break;
+        case 20:
+            carriagesheetdroplayer2();
+            break;
+        case 21:
+            raisecupsandarms();
+            break;
+        case 22:
+            thirdsweep();
+            break;
+        case 23:
+            hoistdownfourthlayer();
+            break;
+        case 24:
+            lowersheetarms3();
+            break;
+        case 25:
+            pickupsheet3();
+            break;
+        case 26:
+            carriagetoplacesheet3();
+            break;
+        case 27:
+            carriagesheetdroplayer3();
+            break;
+        case 28:
+            raisecupsandarms();
+            break;
+        case 29:
+            fourthsweep();
+            break;
+        case 30:
+            hoistdownfifthlayer();
+            break;
+        case 31:
+            lowersheetarms4();
+            break;
+        case 32:
+            resetpalletizerposition();
+            break;
+        default:
+            break;
+    }
+}

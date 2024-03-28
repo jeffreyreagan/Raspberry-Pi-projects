@@ -147,6 +147,7 @@ h2 {
     font-size: xxx-large;
     border-width: 10px;
     border-color: slategray;
+    border-top-style: groove;
     
 }
 
@@ -188,7 +189,7 @@ strong {
 
 button {
     background-color: red;
-    color: black;
+    color: white;
     padding: 10px;
     border: none;
     margin-top: 10px;
@@ -243,13 +244,14 @@ img {
   }
   .nav-home li a{
     display: block;
+    font-weight: bolder;
     font-size: 20pt;
-    color: rgb(255, 0, 0);
+    color: rgb(180, 8, 8);
     padding: 14px 16px;
     text-align: center;
   }
   .nav-home ol {
-    background-color: rgb(192, 191, 191);
+    background-color: #aaa;
     text-align: center;
     padding: 0;
     margin: 0;
@@ -352,8 +354,10 @@ img {
   display: inline-block;
   margin-bottom: 20px;
 }
-@media (min-width: 1775px) {
-
+@media (min-width: 775px) {
+html {
+  zoom: .75;
+}
 
     .navbar-toggler {
         display: none;
@@ -370,12 +374,16 @@ img {
 .transparent-background {
   background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value to control transparency */
 }
-@media (max-width: 1775px) {
+@media (max-width: 775px) {
 html {
-  zoom: .35;
+  zoom: .15;
 }
 body {
   width: fit-content;
+}
+svg {
+  width: 300px;
+  height: 200px
 }
 .navbar-nav {
   display: none;
@@ -409,16 +417,21 @@ body {
     font-size: 10pt;
     display: inline-block;
     right:0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   #clientip {
     display: inline-block;
     font-size: 10pt;
     left:0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-}
-
-
-@media (max-width: 500px) {
+  h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  #setpoint {
+    display: block;
+    width: fit-content;
+  }
   /* CSS styles for screens less than 500px wide */
   /* Add your styles here */
 #vacuumchillerplchtml {
@@ -428,9 +441,18 @@ body {
   width: 100%;
 }
 .svg-container{
-  width: 300px;
+  width: 500px;
+}
+.scadadata {
+  font-size: 8pt;
 }
 }
+
+
+
+
+
+
 
 .scada2 {
   background-color: slategray;
@@ -462,7 +484,7 @@ body {
 
 #palletizer {
   width: 620px;
-  height: 800px;
+  height: 500px;
 }
 
 .lowerpallethoist {
@@ -716,5 +738,13 @@ body {
 .hoistdowntofifthlayer {
   transition: transform 5s ease-in-out;
   transform: translate(0px, -105px);
+  transform-origin: center bottom;
+}
+#sweeplabel {
+  display: flex;
+  margin-left: 800px;
+}
+.originalposition {
+  transform: translate(0px, 0px) !important;
   transform-origin: center bottom;
 }

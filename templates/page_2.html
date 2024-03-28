@@ -84,7 +84,7 @@
                     <div class="scadabuttoncontainer">
                         <button id="allpumpsButton" class="scadabuttons" onclick="openaveragepumpdata('getdatapumps')">All Pump Vacuum</button>
                         <script src="{{ url_for('static', filename='js/temp_2.js') }}"></script>
-                        <button id="plcdata" class="scadabuttons" onclick="openplcdata('getdataplc')">PLC IO</button>
+                        <button id="plcdata" class="scadabuttons" onclick="openplcdata('getdataplc')">PLC I/O</button>
                     </body>
                     </div>
                     <div class="svg-container">
@@ -618,6 +618,7 @@
                       <rect stroke="#000" id="svg_87" height="33.0156" width="4.36971" y="190.61666" x="390.12064" fill="#fff"/>
                       <rect stroke="#000" id="svg_89" height="32.53008" width="4.36971" y="189.7629" x="458.71946" fill="#fff"/>
                       <rect stroke="#000" id="svg_91" height="23.30513" width="200.58676" y="166.82601" x="300.95339" fill="#fff"/>
+                      <text id="sweeplabel" dy="185" dx="390">Sweep</text>
                       //cup arms
                       <rect id="cuparm1" height="10.71428" width="4.01785" y="190.01836" x="325.82818" stroke="#000" fill="#fff"/>
                       <rect stroke="#000" id="cuparm2" height="10.71428" width="4.01785" y="190.09025" x="347.00076" fill="#fff"/>
@@ -630,11 +631,13 @@
                       <rect id="svg_113" height="2.55474" width="87.59124" y="314.9635" x="194.07186" stroke="#000" fill="#fff"/>
                       <rect id="svg_114" height="6.20438" width="16.78832" y="313.13869" x="201.45985" stroke="#000" fill="#fff"/>
                       <rect id="svg_115" height="6.20438" width="16.78832" y="312.40876" x="252.91971" stroke="#000" fill="#fff"/>
+                      <text id="carriagelabel" dy="335" dx="205">Carriage</text>
                      </g>
                      //main hoist
                      <g id="mainhoist">
                       <rect id="svg_131" height="4.95868" width="18.18182" y="431.81824" x="305.37194" stroke="#000" fill="#fff"/>
                       <rect id="svg_132" height="4.95868" width="18.18182" y="431.68572" x="363.03423" stroke="#000" fill="#fff"/>
+                      <text id="mainhoistlabel" dy="455" dx="305">Main Hoist</text>
                      </g>
                      //first layer
                      <g id="first_layer">
@@ -832,6 +835,10 @@
                        </g>
                    </svg>
                   
+            </div>
+            <div id="palletizercontrols">
+                <button onclick="startPalletizer()">Start Palletizer</button>
+                <button id="resetpalletizerbutton" onclick="stopPalletizer()">Reset Palletizer</button>
             </div>
         </section>
         

@@ -22,10 +22,60 @@ app.register_blueprint(page_5_bp)
 app.register_blueprint(page_6_bp)
 print("WEBSERVER starting Jeff")
 
+
+def get_location(ip_address):
+    # Replace 'YOUR_API_KEY' with your actual API key
+    url = f'https://api.ipgeolocation.io/ipgeo?apiKey=055b36340e9a4adfac0733c6d113d808&ip={ip_address}'
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        return data
+    except Exception as e:
+        print(f"Error retrieving location data: {e}")
+        return None
+
+# Function to log request information along with geolocation
+def log_request(ip_address, http_method, request_url, user_agent, referrer):
+    if ip_address == '127.0.0.1':
+        return
+    
+    location_data = get_location(ip_address)
+    
+    if location_data:
+        country = location_data.get('country_name')
+        city = location_data.get('city')
+        latitude = location_data.get('latitude')
+        longitude = location_data.get('longitude')
+    else:
+        # If location data is not available, set to None
+        country = city = latitude = longitude = None
+    
+    with open('ideas/ip_log.txt', 'a') as file:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        file.write(f'Timestamp: {timestamp}\n')
+        file.write(f'IP Address: {ip_address}\n')
+        file.write(f'Country: {country}\n')
+        file.write(f'City: {city}\n')
+        file.write(f'Latitude: {latitude}\n')
+        file.write(f'Longitude: {longitude}\n')
+        file.write(f'HTTP Method: {http_method}\n')
+        file.write(f'Request URL: {request_url}\n')
+        file.write(f'User-Agent: {user_agent}\n')
+        file.write(f'Referrer: {referrer}\n')
+        file.write('\n')
 #assemble index
 @app.route('/index.html')
 def index():
     print("Accessing index route.")
+    ip_address = request.remote_addr
+    http_method = request.method
+    request_url = request.url
+    user_agent = request.headers.get('User-Agent')
+    referrer = request.headers.get('Referer')
+    
+    log_request(ip_address, http_method, request_url, user_agent, referrer)
+    print(ip_address)
     # Render HTML template with time and temperature
     return render_template('index.html')
 #gather server Ip for client
@@ -51,6 +101,14 @@ def get_random_image():
 #Page 2
 @app.route('/page_2.html')
 def page_2():
+    ip_address = request.remote_addr
+    http_method = request.method
+    request_url = request.url
+    user_agent = request.headers.get('User-Agent')
+    referrer = request.headers.get('Referer')
+    
+    log_request(ip_address, http_method, request_url, user_agent, referrer)
+    print(ip_address)
     return render_template('page_2.html')
 
 @app.route('/updatepump1setdisplay')
@@ -516,16 +574,16 @@ import json
 def get_graph_data():
     try:
         # Read graph data from the text file
-        file_path = 'graph_data.txt'
+        '''file_path = 'graph_data.txt'
         graph_data = []
 
         with open(file_path, 'r') as file:
             for line in file:
                 # Parse each line as JSON and append to the list
-                graph_data.append(json.loads(line.strip()))
+                graph_data.append(json.loads(line.strip()))'''
 
-        #print('Graph data retrieved from file:')
-        return jsonify(graph_data), 200
+        print('Graph data retrieved from file:')
+        
     except Exception as e:
         print('Error retrieving graph data:', e)
         return jsonify(error='Error retrieving graph data'), 500
@@ -673,4 +731,4 @@ def get_pump_5_alarm_history():
     }
     return jsonify(data)
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, use_reloader=True)
+    app.run(host='0.0.0.0', port='5000', debug=False, use_reloader=True)

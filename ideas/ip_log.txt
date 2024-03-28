@@ -1,0 +1,56 @@
+2024-03-27 22:38:46 - IP Address: 127.0.0.1
+2024-03-27 22:39:00 - IP Address: 127.0.0.1
+Timestamp: 2024-03-27 22:46:54
+IP Address: 127.0.0.1
+HTTP Method: GET
+Request URL: http://127.0.0.1:5000/page_2.html
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+Referrer: None
+
+Timestamp: 2024-03-27 22:48:50
+IP Address: 127.0.0.1
+HTTP Method: GET
+Request URL: http://127.0.0.1:5000/page_2.html
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+Referrer: None
+
+Timestamp: 2024-03-27 22:48:56
+IP Address: 104.28.55.233
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
+Referrer: None
+
+Timestamp: 2024-03-27 23:00:25
+IP Address: 172.226.20.29
+Country: None
+City: None
+Latitude: None
+Longitude: None
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
+Referrer: None
+
+Timestamp: 2024-03-27 23:03:37
+IP Address: 172.226.194.3
+Country: United States
+City: Secaucus
+Latitude: 40.78834
+Longitude: -74.05502
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
+Referrer: None
+
+Timestamp: 2024-03-27 23:33:11
+IP Address: 172.226.198.6
+Country: United States
+City: Secaucus
+Latitude: 40.78834
+Longitude: -74.05502
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
+Referrer: None
+

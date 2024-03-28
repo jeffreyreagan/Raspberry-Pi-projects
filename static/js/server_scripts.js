@@ -852,7 +852,7 @@ function renderChart() {
 }
 
 // Function to continuously update data and render the chart
-function saveGraphDataToServer(data) {
+/*function saveGraphDataToServer(data) {
     const currentTime = new Date().toLocaleTimeString(); // Get current time
 
     // Calculate average of the data
@@ -882,13 +882,13 @@ function saveGraphDataToServer(data) {
         console.error('Error saving graph data:', error);
     });
 }
-
+*/
 function updateDataAndRenderChart() {
     fetchPumpVacuumData(); // Fetch current vacuum data
      // Fetch graph data from the server
     setTimeout(() => {
         renderChart(); // Render or update the chart
-        saveGraphDataToServer(vacuumData); // Send updated graph data to the server
+        //saveGraphDataToServer(vacuumData); // Send updated graph data to the server
     }, 1000); // Wait for 1 second before rendering the chart
     setTimeout(updateDataAndRenderChart, 5000); // Update every 5 seconds (adjust as needed)
 }

@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JReaganAutomation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.0.0/luxon.min.js"></script>
-    <script src="{{ url_for('static', filename='js/temp_2.js') }}"></script>
-    <meta name="viewport" content="width=400"/>
-
-    </head>
+</head>
+<body>    
     <header>
         <div class="nav-home">
             <nav>
                 <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
                 <div class="navbar-nav">
                     <ol class="navbar-nav1">
-                        <li><a href="index.html" style="text-decoration: none;">Home</a></li>
-                        <li><a href="page_2.html" style="text-decoration:none">Industrial Control Web interfaces</a></li>
-                        <li><a href="page_3.html" style="text-decoration:none">Technologies used</a></li>
+                        <li><a href="page_2.html" style="text-decoration:none">Industrial Control Web Interfaces</a></li>
+                        <li><a href="page_3.html" style="text-decoration:none">Technologies Used</a></li>
                         <li><a href="page_4.html" style="text-decoration:none">Implementation</a></li>
                         <li><a href="page_5.html" style="text-decoration:none">Benefits</a></li>
-                        <li><a href="page_6.html" style="text-decoration:none">About me</a></li>
+                        <li><a href="page_6.html" style="text-decoration:none">About Me</a></li>
                         <li><a href="page_7.html" style="text-decoration:none">Contact</a></li>
                     </ol>
                 </div>
             </nav>
         </div>
-        
     </header>
+    </div>
     <div class="welcome">
     
         <div id="popup">
@@ -38,8 +37,8 @@
         <p id="clientip">Your IP Address: {{ visitor_ip }}</p>
 
         <p id="serverip"></p>
+        
     </h2>
-    </div>
         <body>
         <section class="content">
             <h2 class="stick">Projects</h2>
@@ -563,6 +562,7 @@
                 </div>
             
             <div id="palletizer">
+                <h2>Palletizer</h2>
                 <svg id="palletizer" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
 
                     <g>
@@ -830,30 +830,19 @@
                          <ellipse transform="rotate(2.57573 689.171 224.813)" stroke="#000" ry="3.18351" rx="3.40861" id="svg_274" cy="224.81281" cx="689.16962" fill="#fff"/>
                         </g>
                        </g>
-                   </svg>
-                  
+                    </svg>
+                </div>
+                   <div id="palletizercontrols"> 
+                  <button id="startpalletizerbutton" onclick="startpalletizer()">Start Palletizer</button>
             </div>
         </section>
         
-        <footer>
-            <p>&copy; 2024 Jeffrey Reagan</p>
-        </footer>
 
-        <h1>Test for back to home Button</h1>
-        <button id="home_button" onclick="changePage_home()">Go home Button</button>
-        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
-        <button id="page_3_button" onclick="changePage_3()">Page 3</button>
-        <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
 
-    
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>PLC/HMI/SCADA Experience</title>
-            <link rel="stylesheet" href="static/css/style.css">
-        </head>
+  
 </body>
+<footer>
+    <p>&copy; 2024 Jeffrey Reagan www.AutomationScada.com</p>
+    <script>src="{{ url_for('static', filename='js/main.js') }}"</script>
+</footer>
 </html>

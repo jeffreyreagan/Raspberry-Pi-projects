@@ -673,4 +673,4 @@ def get_pump_5_alarm_history():
     }
     return jsonify(data)
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, use_reloader=True)
+    app.run(host='0.0.0.0',port ='5000', debug=False, use_reloader=True)

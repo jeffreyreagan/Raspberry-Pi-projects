@@ -1206,7 +1206,7 @@ function lowersheetarms3() {
     sheet3.style.display = 'block'
 }
 function pickupsheet3() {
-    sheet2 = document.getElementById('sheet2')
+    sheet3 = document.getElementById('sheet3')
     cuparm1 = document.getElementById('cuparm1');
     cuparm2 = document.getElementById('cuparm2');
     cup1 = document.getElementById('cup1');
@@ -1289,7 +1289,25 @@ function lowersheetarms4() {
     console.log('done')
     sheet4.style.display = 'block'
 }
-
+function pickupsheet4() {
+    sheet4 = document.getElementById('sheet4')
+    cuparm1 = document.getElementById('cuparm1');
+    cuparm2 = document.getElementById('cuparm2');
+    cup1 = document.getElementById('cup1');
+    cup2 = document.getElementById('cup2');
+    cup1.classList.remove('lowercupsoverpallet')
+    cup2.classList.remove('lowercupsoverpallet')
+    cup1.classList.add('pickupsheet')
+    cup2.classList.add('pickupsheet')
+    cuparm1.classList.remove('lowersheetarms')
+    cuparm2.classList.remove('lowersheetarms')
+    cuparm1.classList.add('raisesheetarms')
+    cuparm2.classList.add('raisesheetarms')
+    cuparm1.setAttribute('height', '10px');
+    cuparm2.setAttribute('height', '10px');
+    sheet4.classList.add('sheetpickedup')
+}
+function startpalletizer() {
 setTimeout(raisepallethoist, 1000);
 setTimeout(grabfirstpallet, 6000);
 setTimeout(carriagetakespallet, 11000);
@@ -1321,3 +1339,5 @@ setTimeout(raisecupsandarms, 100000)
 setTimeout(fourthsweep, 102000)
 setTimeout(hoistdownfifthlayer, 107000)
 setTimeout(lowersheetarms4, 109000)
+setTimeout(pickupsheet4, 111000)
+}

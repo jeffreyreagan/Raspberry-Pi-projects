@@ -459,10 +459,16 @@ body {
   height: 400px;
   width: 350px;
 }
+footer {
+  margin-top: 300px;
+}
 
 #palletizer {
   width: 620px;
-  height: 800px;
+  height: 500px;
+  background: slategray;
+  margin-top: 50px;
+  display: block;
 }
 
 .lowerpallethoist {
@@ -705,7 +711,7 @@ body {
 }
 .lowersheet4 {
   transition: transform 5s ease-in-out;
-  transform: translate(105px, 82px);
+  transform: translate(105px, 62px);
   transform-origin: center bottom;
 }
 .palletlowerdown4 {

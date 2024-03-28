@@ -730,5 +730,72 @@ def get_pump_5_alarm_history():
         "descriptions": pump5alarmdescriptions
     }
     return jsonify(data)
+
+
+
+
+
+
+
+storedKW1 = []
+storedKW2 = []
+storedKW3 = []
+windmillstat = 0
+
+@app.route('/stop_windmill_1' , methods=['POST'])
+def stop_windmill_1():
+    global storedKW1
+    global windmillstat
+    windmillstat = 0
+    
+      
+
+
+@app.route('/start_windmill_1' , methods=['POST'])
+def start_windmill_1():
+    global storedKW1
+    global windmillstat
+    windmillstat = 1
+
+      
+    
+    
+   
+def simulate_data_windmills():
+    global storedKW1
+    global windmillstat
+    if windmillstat == 1:
+        storedKW1.append(random.randint(10, 20))
+    else:
+        storedKW1.append(0)
+        
+        
+
+
+@app.route('/get_data_windmills', methods=['GET'])
+def get_data_windmills():
+    global allpumpstimestamp
+    global storedKW1
+    global storedKW2
+    global storedKW3
+    simulate_data_windmills()
+    data = {
+        "timestamps": allpumpstimestamp,
+        "storedKW1": storedKW1,
+        "storedKW2": storedKW2,
+        "storedKW3": storedKW3,
+    }
+    print(data)
+    return jsonify(data)
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', debug=False, use_reloader=True)

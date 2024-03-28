@@ -354,6 +354,9 @@ img {
   display: inline-block;
   margin-bottom: 20px;
 }
+footer {
+  margin-top: 200px;
+}
 @media (min-width: 775px) {
 html {
   zoom: .75;
@@ -485,6 +488,7 @@ svg {
 #palletizer {
   width: 620px;
   height: 500px;
+  background: #aaa;
 }
 
 .lowerpallethoist {
@@ -747,4 +751,8 @@ svg {
 .originalposition {
   transform: translate(0px, 0px) !important;
   transform-origin: center bottom;
+}
+
+#palletizercontrols {
+  background: #aaa;
 }

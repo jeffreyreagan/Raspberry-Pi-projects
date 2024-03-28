@@ -132,9 +132,55 @@ $(document).ready(function() {
 
     // Initial update
     updatepump1setdisplay();
+    
 
+    $('#wind1start').on('click', function() {
+        // Call the server to toggle pump 1 status
+        $.ajax({
+            url: '/start_windmill_1',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response === 1) {
+                    $('#wind1start').text('Start Windmill 1');
+                    $('#status').text('Windmill 1 is On');
+                    
+                } else {
+                    $('#togglePump1Button').text('Start Windmill 1');
+                    $('#status').text('Pump 1 is Off');
+                    
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump:', error);
+            }
+        });
+    });
+    $('#wind1stop').on('click', function() {
+        // Call the server to toggle pump 1 status
+        $.ajax({
+            url: '/stop_windmill_1',
+            type: 'POST',
+            success: function(response) {
+                // Update the button text and status display
+                if (response === 0) {
+                    $('#wind1start').text('Start Windmill 1');
+                    $('#status').text('Windmill 1 is On');
+                    
+                } else {
+                    $('#togglePump1Button').text('Start Windmill 1');
+                    $('#status').text('Pump 1 is Off');
+                    
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error toggling pump:', error);
+            }
+        });
+    });
 
 });
+
 
 function simulatealarms() {
     fetch('/simulate_alarms');
@@ -508,6 +554,8 @@ function openpump1valve() {
     
 }
 let currentIndexx = -10;
+let currentindexxx = -10;
+
 window.addEventListener('beforeunload', function(event) {
      //Clear local storage when the browser is closed or refreshed
     localStorage.clear();
@@ -570,22 +618,22 @@ window.onload = function() {
     document.getElementById('windmill2').style.display = 'none';
     document.getElementById('windmill3').style.display = 'none';
     document.getElementById('windmill4').style.display = 'none';
-    startAnimationsvg();
+    
      // Adjust the interval as needed
 
     // Call animateSVG immediately to start the animation
     
 }
 
-let animationInterval;
+let animationInterval2;
 
 
 function startAnimationsvg() {
-    animationInterval = setInterval(animateSVG, 1000); // Adjust interval as needed
+    animationInterval2 = setInterval(animateSVG, 1000); // Adjust interval as needed
 }
 
 function stopAnimationsvg() {
-    clearInterval(animationInterval);
+    clearInterval(animationInterval2);
 }
 
 function animateSVG() {

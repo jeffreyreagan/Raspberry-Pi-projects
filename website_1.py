@@ -747,6 +747,7 @@ def stop_windmill_1():
     global storedKW1
     global windmillstat
     windmillstat = 0
+    return jsonify({'value': windmillstat})
     
       
 
@@ -756,6 +757,8 @@ def start_windmill_1():
     global storedKW1
     global windmillstat
     windmillstat = 1
+    print(windmillstat)
+    return jsonify({'value': windmillstat})
 
       
     
@@ -768,7 +771,7 @@ def simulate_data_windmills():
         storedKW1.append(random.randint(10, 20))
     else:
         storedKW1.append(0)
-        
+    return windmillstat
         
 
 
@@ -778,12 +781,14 @@ def get_data_windmills():
     global storedKW1
     global storedKW2
     global storedKW3
+    global windmillstat
     simulate_data_windmills()
     data = {
         "timestamps": allpumpstimestamp,
         "storedKW1": storedKW1,
         "storedKW2": storedKW2,
         "storedKW3": storedKW3,
+        "windmillstat": windmillstat
     }
     print(data)
     return jsonify(data)

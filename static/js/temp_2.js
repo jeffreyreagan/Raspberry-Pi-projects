@@ -17,7 +17,7 @@ function openwindmillpowerchart() {
 
 setTimeout(openwindmillpowerchart(),2000);
 
-
+//async function
 // Function to fetch pump data from the server and update the chart
 function fetchAndUpdateChart4(cccendpoint) {
     fetch(cccendpoint)
@@ -46,7 +46,6 @@ function fetchAndUpdateChart4(cccendpoint) {
  // Current index of the first data point displayed
 var numDataPoints = 5; 
 
-console.log(currentindexxx);
 // Function to initialize the chart outside the modal
 function initializeChart4OutsideModal(timestamps, storedKW1, storedKW2, storedKW3) {
     // Ensure the Chart.js instance is created
@@ -76,7 +75,7 @@ function initializeChart4OutsideModal(timestamps, storedKW1, storedKW2, storedKW
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 },
                 plugins: {
@@ -118,5 +117,4 @@ function updateChartData4(timestamps, storedKW1, storedKW2, storedKW3) {
     
     
     // Add event listeners to the left and right arrow buttons
-    document.getElementById('leftArroww').addEventListener('click', scrolleftt);
-    document.getElementById('rightArroww').addEventListener('click', scrollRightt);
+

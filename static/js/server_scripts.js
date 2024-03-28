@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $('#togglePump1Button').on('click', function() {
         // Call the server to toggle pump 1 status
         $.ajax({
@@ -44,7 +45,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    
     $('#togglePump3Button').on('click', function() {
         // Call the server to toggle pump 3 status
         $.ajax({
@@ -133,51 +134,6 @@ $(document).ready(function() {
     // Initial update
     updatepump1setdisplay();
     
-
-    $('#wind1start').on('click', function() {
-        // Call the server to toggle pump 1 status
-        $.ajax({
-            url: '/start_windmill_1',
-            type: 'POST',
-            success: function(response) {
-                // Update the button text and status display
-                if (response === 1) {
-                    $('#wind1start').text('Start Windmill 1');
-                    $('#status').text('Windmill 1 is On');
-                    
-                } else {
-                    $('#togglePump1Button').text('Start Windmill 1');
-                    $('#status').text('Pump 1 is Off');
-                    
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error toggling pump:', error);
-            }
-        });
-    });
-    $('#wind1stop').on('click', function() {
-        // Call the server to toggle pump 1 status
-        $.ajax({
-            url: '/stop_windmill_1',
-            type: 'POST',
-            success: function(response) {
-                // Update the button text and status display
-                if (response === 0) {
-                    $('#wind1start').text('Start Windmill 1');
-                    $('#status').text('Windmill 1 is On');
-                    
-                } else {
-                    $('#togglePump1Button').text('Start Windmill 1');
-                    $('#status').text('Pump 1 is Off');
-                    
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error toggling pump:', error);
-            }
-        });
-    });
 
 });
 
@@ -527,7 +483,7 @@ function fetchPumpVacuumData() {
         $('#seperator5_psi').text(data.seperator5_psi);
     });
 }
-fetchPumpVacuumData();
+setTimeout(fetchPumpVacuumData(),1000);
 
 function closepump1valve() {
         var rect = document.getElementById('pump1valve');
@@ -625,43 +581,6 @@ window.onload = function() {
     
 }
 
-let animationInterval2;
-
-
-function startAnimationsvg() {
-    animationInterval2 = setInterval(animateSVG, 1000); // Adjust interval as needed
-}
-
-function stopAnimationsvg() {
-    clearInterval(animationInterval2);
-}
-
-function animateSVG() {
-    // Show the first shape
-    document.getElementById('initialwindmill').style.display = 'block';
-    // Hide other shapes
-    document.getElementById('windmill2').style.display = 'none';
-    document.getElementById('windmill3').style.display = 'none';
-    document.getElementById('windmill4').style.display = 'none';
-
-    // Transition to the second shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill2').style.display = 'block';
-        document.getElementById('initialwindmill').style.display = 'none';
-    }, 250); // Adjust the delay as needed
-
-    // Transition to the third shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill3').style.display = 'block';
-        document.getElementById('windmill2').style.display = 'none';
-    }, 500); // Adjust the delay as needed
-
-    // Transition to the fourth shape after a shorter delay
-    setTimeout(() => {
-        document.getElementById('windmill4').style.display = 'block';
-        document.getElementById('windmill3').style.display = 'none';
-    }, 750); // Adjust the delay as needed
-}
 
 
 
@@ -1569,3 +1488,90 @@ function manualControl(step) {
             break;
     }
 }
+
+
+
+let animationInterval2;
+let windmill1stat = '';
+function fetchwindmillstats() {
+    $.getJSON('/get_data_windmills', function(data) {
+        windmill1stat = data.windmillstat; 
+        if (data.windmillstat == 1) {
+            startAnimationsvg();
+        } else {
+            stopAnimationsvg();
+        }
+    });
+}
+
+
+setInterval(fetchwindmillstats(),3000)
+function startAnimationsvg() {
+    $.ajax({
+        url: '/start_windmill_1',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 1) {
+                clearInterval(animationInterval2);
+                animationInterval2 = setInterval(animateSVG, 1000);;
+            } else if (response.value == 0) {
+                stopAnimationsvg()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill:', error);
+        }
+    });
+     // Adjust interval as needed
+    windmill1stat = 1
+    
+}
+
+function stopAnimationsvg() {
+    $.ajax({
+        url: '/stop_windmill_1',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 0) {
+                clearInterval(animationInterval2);
+                windmill1stat = 0;
+            } else if (response.value == 1) {
+                startAnimationsvg()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill:', error);
+        }
+    });
+    
+}
+
+function animateSVG() {
+    // Show the first shape
+    document.getElementById('initialwindmill').style.display = 'block';
+    // Hide other shapes
+    document.getElementById('windmill2').style.display = 'none';
+    document.getElementById('windmill3').style.display = 'none';
+    document.getElementById('windmill4').style.display = 'none';
+    
+    // Transition to the second shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill2').style.display = 'block';
+        document.getElementById('initialwindmill').style.display = 'none';
+    }, 250); // Adjust the delay as needed
+
+    // Transition to the third shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill3').style.display = 'block';
+        document.getElementById('windmill2').style.display = 'none';
+    }, 500); // Adjust the delay as needed
+
+    // Transition to the fourth shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill4').style.display = 'block';
+        document.getElementById('windmill3').style.display = 'none';
+    }, 750); // Adjust the delay as needed
+}
+

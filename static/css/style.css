@@ -355,7 +355,10 @@ img {
   margin-bottom: 20px;
 }
 footer {
-  margin-top: 200px;
+  margin-top: 400px;
+}
+#dev {
+  margin-top: 0px;
 }
 @media (min-width: 775px) {
 html {

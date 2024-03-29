@@ -569,11 +569,9 @@ window.onload = function() {
         document.getElementById('pump5valvestem').setAttribute('y', newY10 + 'px');
     }
 
-    document.getElementById('initialwindmill').style.display = 'block';
-    // Hide other shapes
-    document.getElementById('windmill2').style.display = 'none';
-    document.getElementById('windmill3').style.display = 'none';
-    document.getElementById('windmill4').style.display = 'none';
+    fetchwindmillstats()
+    fetchwindmill2stats()
+    fetchwindmill3stats()
     
      // Adjust the interval as needed
 
@@ -1563,6 +1561,11 @@ function stopAnimationsvg() {
             if (response.value == 0) {
                 clearInterval(animationInterval2);
                 windmill1stat = 0;
+                document.getElementById('initialwindmill').style.display = 'block';
+    // Hide other shapes
+                document.getElementById('windmill2').style.display = 'none';
+                document.getElementById('windmill3').style.display = 'none';
+                document.getElementById('windmill4').style.display = 'none';
             } else if (response.value == 1) {
                 startAnimationsvg()
             }
@@ -1601,3 +1604,195 @@ function animateSVG() {
     }, 750); // Adjust the delay as needed
 }
 
+
+
+
+
+
+
+
+
+
+
+
+let animationInterval3;
+let windmill2stat = '';
+function fetchwindmill2stats() {
+    $.getJSON('/get_data_windmills', function(data) {
+        windmill2stat = data.windmill2stat; 
+        if (data.windmill2stat == 1) {
+            startAnimationsvg2();
+        } else {
+            stopAnimationsvg2();
+        }
+    });
+}
+
+
+setInterval(fetchwindmill2stats(),3000)
+function startAnimationsvg2() {
+    $.ajax({
+        url: '/start_windmill_2',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 1) {
+                clearInterval(animationInterval3);
+                animationInterval3 = setInterval(animateSVG2, 1000);;
+            } else if (response.value == 0) {
+                stopAnimationsvg2()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill 2:', error);
+        }
+    });
+     // Adjust interval as needed
+    windmill2stat = 1
+    
+}
+
+function stopAnimationsvg2() {
+    $.ajax({
+        url: '/stop_windmill_2',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 0) {
+                clearInterval(animationInterval3);
+                windmill2stat = 0;
+                document.getElementById('initialwindmill2').style.display = 'block';
+                document.getElementById('windmill2_2').style.display = 'none';
+                document.getElementById('windmill3_2').style.display = 'none';
+                document.getElementById('windmill4_2').style.display = 'none';
+            } else if (response.value == 1) {
+                startAnimationsvg2()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill 2:', error);
+        }
+    });
+    
+}
+
+function animateSVG2() {
+    // Show the first shape
+    document.getElementById('initialwindmill2').style.display = 'block';
+    // Hide other shapes
+    document.getElementById('windmill2_2').style.display = 'none';
+    document.getElementById('windmill3_2').style.display = 'none';
+    document.getElementById('windmill4_2').style.display = 'none';
+    
+    // Transition to the second shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill2_2').style.display = 'block';
+        document.getElementById('initialwindmill2').style.display = 'none';
+    }, 250); // Adjust the delay as needed
+
+    // Transition to the third shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill3_2').style.display = 'block';
+        document.getElementById('windmill2_2').style.display = 'none';
+    }, 500); // Adjust the delay as needed
+
+    // Transition to the fourth shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill4_2').style.display = 'block';
+        document.getElementById('windmill3_2').style.display = 'none';
+    }, 750); // Adjust the delay as needed
+}
+
+
+
+
+let animationInterval4;
+let windmill3stat = '';
+function fetchwindmill3stats() {
+    $.getJSON('/get_data_windmills', function(data) {
+        windmill3stat = data.windmill3stat; 
+        if (data.windmill3stat == 1) {
+            startAnimationsvg3();
+        } else {
+            stopAnimationsvg3();
+            document.getElementById('windmill2_3').style.display = 'none';
+            document.getElementById('windmill3_3').style.display = 'none';
+            document.getElementById('windmill4_3').style.display = 'none';
+        }
+    });
+}
+
+
+setInterval(fetchwindmill3stats(),3000)
+function startAnimationsvg3() {
+    $.ajax({
+        url: '/start_windmill_3',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 1) {
+                clearInterval(animationInterval4);
+                animationInterval4 = setInterval(animateSVG3, 1000);;
+            } else if (response.value == 0) {
+                stopAnimationsvg3()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill 3:', error);
+        }
+    });
+     // Adjust interval as needed
+    windmill3stat = 1
+    
+}
+
+function stopAnimationsvg3() {
+    $.ajax({
+        url: '/stop_windmill_3',
+        type: 'POST',
+        success: function(response) {
+            // Update the button text and status display
+            if (response.value == 0) {
+                clearInterval(animationInterval4);
+                windmill3stat = 0;
+                document.getElementById('windmill2_3').style.display = 'none';
+                document.getElementById('windmill3_3').style.display = 'none';
+                document.getElementById('windmill4_3').style.display = 'none';
+                document.getElementById('initialwindmill3').style.display = 'block';
+            } else if (response.value == 1) {
+                startAnimationsvg3()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error toggling windmill 3:', error);
+        }
+    });
+    
+}
+
+function animateSVG3() {
+    // Show the first shape
+    document.getElementById('initialwindmill3').style.display = 'block';
+    // Hide other shapes
+    document.getElementById('windmill2_3').style.display = 'none';
+    document.getElementById('windmill3_3').style.display = 'none';
+    document.getElementById('windmill4_3').style.display = 'none';
+    
+    // Transition to the second shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill2_3').style.display = 'block';
+        document.getElementById('initialwindmill3').style.display = 'none';
+    }, 250); // Adjust the delay as needed
+
+    // Transition to the third shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill3_3').style.display = 'block';
+        document.getElementById('windmill2_3').style.display = 'none';
+    }, 500); // Adjust the delay as needed
+
+    // Transition to the fourth shape after a shorter delay
+    setTimeout(() => {
+        document.getElementById('windmill4_3').style.display = 'block';
+        document.getElementById('windmill3_3').style.display = 'none';
+    }, 750); // Adjust the delay as needed
+}

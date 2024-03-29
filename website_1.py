@@ -741,6 +741,8 @@ storedKW1 = []
 storedKW2 = []
 storedKW3 = []
 windmillstat = 0
+windmill2stat = 0
+windmill3stat = 0
 
 @app.route('/stop_windmill_1' , methods=['POST'])
 def stop_windmill_1():
@@ -749,9 +751,6 @@ def stop_windmill_1():
     windmillstat = 0
     return jsonify({'value': windmillstat})
     
-      
-
-
 @app.route('/start_windmill_1' , methods=['POST'])
 def start_windmill_1():
     global storedKW1
@@ -760,17 +759,56 @@ def start_windmill_1():
     print(windmillstat)
     return jsonify({'value': windmillstat})
 
-      
+@app.route('/stop_windmill_2' , methods=['POST'])
+def stop_windmill_2():
+    global storedKW2
+    global windmill2stat
+    windmill2stat = 0
+    return jsonify({'value': windmill2stat})
     
+@app.route('/start_windmill_2' , methods=['POST'])
+def start_windmill_2():
+    global storedKW2
+    global windmill2stat
+    windmill2stat = 1
+    print(windmill2stat)
+    return jsonify({'value': windmill2stat})
+
+@app.route('/stop_windmill_3' , methods=['POST'])
+def stop_windmill_3():
+    global storedKW3
+    global windmill3stat
+    windmill3stat = 0
+    return jsonify({'value': windmill3stat})
+    
+@app.route('/start_windmill_3' , methods=['POST'])
+def start_windmill_3():
+    global storedKW3
+    global windmill3stat
+    windmill3stat = 1
+    print(windmill3stat)
+    return jsonify({'value': windmill3stat})
     
    
 def simulate_data_windmills():
     global storedKW1
     global windmillstat
+    global storedKW2
+    global windmill2stat
+    global storedKW3
+    global windmill3stat
     if windmillstat == 1:
         storedKW1.append(random.randint(10, 20))
-    else:
+    elif windmillstat == 0:
         storedKW1.append(0)
+    if windmill2stat == 1:
+        storedKW2.append(random.randint(10, 20))
+    elif windmill2stat == 0:
+        storedKW2.append(0)
+    if windmill3stat == 1:
+        storedKW3.append(random.randint(10, 20))
+    elif windmill3stat == 0:
+        storedKW3.append(0)
     return windmillstat
         
 
@@ -782,13 +820,17 @@ def get_data_windmills():
     global storedKW2
     global storedKW3
     global windmillstat
+    global windmill2stat
+    global windmill3stat
     simulate_data_windmills()
     data = {
         "timestamps": allpumpstimestamp,
         "storedKW1": storedKW1,
         "storedKW2": storedKW2,
         "storedKW3": storedKW3,
-        "windmillstat": windmillstat
+        "windmillstat": windmillstat,
+        "windmill2stat": windmill2stat,
+        "windmill3stat": windmill3stat
     }
     print(data)
     return jsonify(data)

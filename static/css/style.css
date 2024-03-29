@@ -490,10 +490,12 @@ svg {
 #windmillsvg {
   width: 350px;
   height: 600px;
+  display: inline-block;
 }
 .windmillsvg {
   height: 400px;
   width: 350px;
+  display: inline-block;
 }
 
 #palletizer {

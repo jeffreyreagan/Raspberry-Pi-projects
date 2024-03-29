@@ -571,3 +571,69 @@ Request URL: http://www.automationscada.com/page_2.html
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
 Referrer: http://www.automationscada.com/
 
+Timestamp: 2024-03-28 16:34:13
+IP Address: 172.226.194.6
+Country: United States
+City: Secaucus
+Latitude: 40.78834
+Longitude: -74.05502
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1
+Referrer: http://www.automationscada.com/
+
+Timestamp: 2024-03-28 19:57:25
+IP Address: 174.60.2.53
+Country: United States
+City: Lock Haven
+Latitude: 41.13701
+Longitude: -77.44693
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+Referrer: http://www.automationscada.com/
+
+Timestamp: 2024-03-28 19:59:49
+IP Address: 174.60.2.53
+Country: United States
+City: Lock Haven
+Latitude: 41.13701
+Longitude: -77.44693
+HTTP Method: GET
+Request URL: http://www.automationscada.com/index.html
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+Referrer: http://www.automationscada.com/page_2.html
+
+Timestamp: 2024-03-28 20:00:00
+IP Address: 174.60.2.53
+Country: United States
+City: Lock Haven
+Latitude: 41.13701
+Longitude: -77.44693
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+Referrer: http://www.automationscada.com/index.html
+
+Timestamp: 2024-03-28 20:00:06
+IP Address: 174.60.2.53
+Country: United States
+City: Lock Haven
+Latitude: 41.13701
+Longitude: -77.44693
+HTTP Method: GET
+Request URL: http://www.automationscada.com/index.html
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+Referrer: http://www.automationscada.com/page_2.html
+
+Timestamp: 2024-03-28 20:00:23
+IP Address: 174.60.2.53
+Country: United States
+City: Lock Haven
+Latitude: 41.13701
+Longitude: -77.44693
+HTTP Method: GET
+Request URL: http://www.automationscada.com/index.html
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+Referrer: http://www.automationscada.com/page_3.html
+

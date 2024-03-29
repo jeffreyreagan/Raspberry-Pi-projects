@@ -22,12 +22,22 @@
         </div>
         
     </header>
-    <h1>This is Page 3! A spot for development</h1>
-
-
-    
-
-
+    <h2>Technologies Used</h2>
+   <h3>PLC data collection</h3>
+<p> PyLogix, a Python library, enables communication with Allen-Bradley PLCs using the CIP protocol (Common Industrial Protocol). This library simplifies data exchange between the Python backend and PLCs, facilitating seamless integration and control.</p>
+<h3>Web Server</h3>
+<p>This web server is a simple Raspberry Pi 4b utilizing python's Flask library. Data storage is done on the server side with no SQL databases being used quite yet.</p>
+<p>Flask servers can be set up locally or a full production application can be developed for remote connection applications.</p>
+<h3>Design</h3>
+<p>These SCADA systems are designed from scratch using html with svg drawings, allowing nearly unlimitted customization.</p>
+<h3>Visualization</h3>
+<p>SCADA systems at their core specialize in displaying critical information. Visualization is done using vanilla JavaScript. After the webpage is loaded, data is constantly being retrieved from the server. Javascipt allows this data to dynamically change the webpage, all without refreshing the page. The charts are rendered via Chart.js </p>
+<h3>Reporting</h3>
+<p>In the near future, SQL databases will be incorporated to permenately store all data. As of now, the Flask server temporarily stores all data in memory.</p>
+<h3>Version Control</h3>
+<p>Check for latest version in branches.</p>
+<a href="https://github.com/jeffreyreagan/Raspberry-Pi-projects/tree/scada_v2.29">Github Project Tree</a>
+<img id="serverscreen" src="/static/images/server.png"/>
 
 
 
@@ -44,10 +54,7 @@
 
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <h1>Test for page 2 Button</h1>
-    <button id="page_2_button" onclick="changePage_2()"> Go to Page 2 </button>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <button id="home_button" onclick="changePage_home()">Go home Button</button>
+    
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 

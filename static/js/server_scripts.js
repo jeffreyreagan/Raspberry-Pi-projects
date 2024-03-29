@@ -1302,22 +1302,48 @@ function lowersheetarms4() {
 }
 function resetpalletizerpostion() {
     
-    document.getElementById('mainhoist').classList.add('originalposition')
+    document.getElementById('mainhoist').classList.remove('hoistdowntofifthlayer')
+    document.getElementById('mainhoist').classList.remove('hoistdowntofourthlayer')
+    document.getElementById('mainhoist').classList.remove('hoistdowntothirdlayer')
+    document.getElementById('mainhoist').classList.remove('hoistdowntosecondlayer')
+    document.getElementById('mainhoist').classList.remove('mainhoistgetpallet')
+    document.getElementById('mainhoist').classList.remove('mainhoistraisingpallet')
     document.getElementById('firstpallet').classList.add('originalposition')
-    document.getElementById('sheet').classList.add('originalposition')
-    document.getElementById('second_layer').classList.add('originalposition')
+    document.getElementById('firstpallet').classList.remove('palletlowerdown4')
+    document.getElementById('firstpallet').classList.remove('palletlowerdown3')
+    document.getElementById('firstpallet').classList.remove('palletlowerdown2')
+    document.getElementById('firstpallet').classList.remove('palletlowerdown1')
+    document.getElementById('firstpallet').classList.remove('palletraisingwithhoist')
+    document.getElementById('firstpallet').classList.remove('carriagetakespallet')
+    document.getElementById('firstpallet').classList.remove('palletgettingrabbed')
+    document.getElementById('sheet').classList.remove('lowersheet4', 'lowersheet2_2', 'lowersheet2', 'sheetdroppedlayer1')
+    document.getElementById('second_layer').classList.remove('lowersecondlayer3', 'lowersecondlayer2', 'lowersecondlayer','secondlayersweep', 'conveyormovement')
+    document.getElementById('third_layer').classList.remove('lowerthirdlayer2', 'lowerthirdlayer1', 'conveyormovement')
     document.getElementById('third_layer').classList.add('originalposition')
+    document.getElementById('fourth_layer').classList.remove('lowerfourthlayer1', 'conveyormovement')
     document.getElementById('fourth_layer').classList.add('originalposition')
+    document.getElementById('fifth-layer').classList.remove('conveyormovement3', 'conveyormovement2', 'conveyormovement')
+    document.getElementById('first_layer').classList.remove('firstlayerdown4', 'firstlayerdown3', 'firstlayerdown2', 'firstlayerdown1', 'firstlayersweep')
     document.getElementById('first_layer').classList.add('originalposition')
+    document.getElementById('sheet2').classList.remove('lowersheet2_2', 'lowersheet2','sheetdroppedlayer1')
     document.getElementById('sheet2').classList.add('originalposition')
+    document.getElementById('sheet3').classList.remove('lowersheet2')
     document.getElementById('sheet3').classList.add('originalposition')
     document.getElementById('sheet4').classList.add('originalposition')
     document.getElementById('sweep').classList.add('originalposition')
+    document.getElementById('sweep').classList.remove('sweepadjustment1', 'firstlayersweep','carriagetoplacesheet')
+    document.getElementById('cup1').classList.remove('lowercups', 'raisecups','lowercupsoverpallet')
+    document.getElementById('cup2').classList.remove('lowercups', 'raisecups','lowercupsoverpallet')
+    document.getElementById('cuparm1').classList.remove('lowersheetarms')
+    document.getElementById('cuparm2').classList.remove('lowersheetarms')
     document.getElementById('cup1').classList.add('originalposition')
     document.getElementById('cup2').classList.add('originalposition')
-    document.getElementById('cuparm1').classList.add('originalposition')
-    document.getElementById('cuparm2').classList.add('originalposition')
+    document.getElementById('cuparm1').classList.add('raisecupsandarms')
+    cuparm1.setAttribute('height', '10px');
+    cuparm2.setAttribute('height', '10px');
+    document.getElementById('cuparm2').classList.add('raisecupsandarms')
     document.getElementById('fifth-layer').classList.add('originalposition')
+    document.getElementById('pallethoist').classList.remove('grabfirstpallet','lowerpallethoist')
     document.getElementById('pallethoist').classList.add('originalposition')
     
 }
@@ -1375,7 +1401,7 @@ function startPalletizer() {
     setTimeout(fourthsweep, 102000)
     setTimeout(hoistdownfifthlayer, 107000)
     setTimeout(lowersheetarms4, 109000)
-    setTimeout(resetpalletizerpostion, 110000)
+   
 }
 
 // Function to stop the palletizer routine

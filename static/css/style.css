@@ -1,4 +1,6 @@
-
+#serverscreen {
+  display: block;
+}
 li {
   
   font-size: x-large;
@@ -136,7 +138,7 @@ h3 {
   margin-left: 18rem;
 }
 .scadadata {
-  font-size: small;
+  font-size: medium;
 }
 
 h2 {
@@ -347,6 +349,12 @@ img {
   height: 50%;
   margin-left: 11rem;
 }
+#chartContainer2 {
+  display: block;
+  width: 70% !important;
+  height: 50%;
+  margin-left: 11rem;
+}
 .scadabuttoncontainer {
   display: block;
 }
@@ -361,9 +369,7 @@ footer {
   margin-top: 0px;
 }
 @media (min-width: 775px) {
-html {
-  zoom: .75;
-}
+
 
     .navbar-toggler {
         display: none;
@@ -462,6 +468,8 @@ svg {
 
 .scada2 {
   background-color: slategray;
+  width: 1500px;
+  height: 1700px;
 }
 
 .intro {

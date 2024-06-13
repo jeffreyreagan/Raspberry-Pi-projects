@@ -1,6 +1,7 @@
 '''This program is meant for educational purposes. Do not use for other purposes. No Warranty of Any Kind. Thanks JR'''
 #imports 
-from flask import Flask, render_template, send_file, request, jsonify
+from flask import Flask, render_template, send_file, request, jsonify, redirect, url_for
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
 from routes import *
 from utils.image_generator import get_random_image_io
 import subprocess
@@ -12,7 +13,11 @@ from pylogix import PLC
 import random
 from Reading import pump1alarmtimestamp, pump2alarmtimestamp, pump3alarmtimestamp, pump4alarmtimestamp, pump5alarmtimestamp, pump_1_status_description, pump1alarmdescriptions, pump2alarmdescriptions, pump3alarmdescriptions, pump4alarmdescriptions, pump5alarmdescriptions, pump_1_status_value, pump_2_status_value, pump_3_status_value, pump_4_status_value, pump_5_status_value, toggle_pump_1, toggle_pump_2, toggle_pump_3, toggle_pump_4, toggle_pump_5, read_plc_tag, update_circle_color, update_alarm_tags_all_pumps, toggle_pump_1
 
-app = Flask(__name__)
+app = Flask(__name__)   
+app.secret_key = "secret key"
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 app.register_blueprint(main_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(page_2_bp)
@@ -21,6 +26,50 @@ app.register_blueprint(page_4_bp)
 app.register_blueprint(page_5_bp)
 app.register_blueprint(page_6_bp)
 print("WEBSERVER starting Jeff")
+
+users = {'user1': {'password': 'password1'}}
+
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+#user loader
+@login_manager.user_loader
+def load_user(user_id):
+    print(f"Loading user: {user_id}")  # Debug statement
+    if user_id in users:
+        return User(user_id)
+    return None
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    print("Login route accessed")  # Debug statement
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print(f"Received username: {username}, password: {password}")  # Debug statement
+        if username in users and users[username]['password'] == password:
+            user = User(username)
+            login_user(user)
+            print(f"User {username} logged in successfully")  # Debug statement
+            return redirect(url_for('protected'))
+        else:
+            print("Invalid username/password combination")  # Debug statement
+            return 'Invalid username/password combination'
+    return render_template('login.html')
+
+@app.route('/protected')
+@login_required
+def protected():
+    print("Accessing protected route")  # Debug statement
+    return render_template('protected.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    print("User logged out")  # Debug statement
+    return redirect(url_for('index'))
 
 
 def get_location(ip_address):
@@ -194,7 +243,10 @@ pump5setpoint= None
 def set_setpoint():
     global pump1setpoint
     data = request.json
-    setpoint = data.get('setpoint')
+    setpointstr = data.get('setpoint')
+    setpoint = float(setpointstr)
+    if float(setpoint) > 0:
+        setpoint = -setpoint
     print(float(setpoint))
     pump1setpoint = float(setpoint)
     return "Setpoint updated successfully."
@@ -845,4 +897,4 @@ def get_data_windmills():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000', debug=False, use_reloader=True)
+    app.run(host='0.0.0.0', port='5000', debug=True, use_reloader=True)

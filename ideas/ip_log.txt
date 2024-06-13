@@ -637,3 +637,36 @@ Request URL: http://www.automationscada.com/index.html
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
 Referrer: http://www.automationscada.com/page_3.html
 
+Timestamp: 2024-06-08 22:54:43
+IP Address: 104.28.57.246
+Country: United States
+City: New York
+Latitude: 40.71455
+Longitude: -74.00714
+HTTP Method: GET
+Request URL: http://96.59.18.35:5001/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1
+Referrer: http://96.59.18.35:5001/
+
+Timestamp: 2024-06-09 08:46:36
+IP Address: 104.28.57.246
+Country: United States
+City: New York
+Latitude: 40.71455
+Longitude: -74.00714
+HTTP Method: GET
+Request URL: http://96.59.18.35:5001/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1
+Referrer: None
+
+Timestamp: 2024-06-09 18:06:19
+IP Address: 172.226.190.37
+Country: United States
+City: Miami
+Latitude: 25.77481
+Longitude: -80.19773
+HTTP Method: GET
+Request URL: http://www.automationscada.com/page_2.html
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1
+Referrer: http://www.automationscada.com/
+
